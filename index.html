@@ -516,18 +516,6 @@
             }
         });
 
-        // Lógica de Pop-up y Formulario
-        window.onload = function() {
-            setTimeout(function() {
-                document.getElementById('waChatBox').style.display = 'block';
-            }, 5000);
-
-            if(!sessionStorage.getItem('popSeen')) {
-                setTimeout(openModal, 3000);
-                sessionStorage.setItem('popSeen', 'true');
-            }
-        }
-
         function openModal() { document.getElementById('registrationModal').style.display = 'flex'; }
         function closeModal() { document.getElementById('registrationModal').style.display = 'none'; }
 
