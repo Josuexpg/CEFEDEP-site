@@ -2,7 +2,6 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Simulador Pro Medicina 2026 | CEFEDEP</title>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Playfair+Display:wght@700;900&display=swap" rel="stylesheet">
@@ -12,7 +11,6 @@
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body { font-family: 'Montserrat', sans-serif; background: var(--light); padding-top: 90px; user-select: none; min-height: 100vh; }
 
-        /* NAVEGACIÓN Y BARRA FIJA */
         .fixed-top-container { position: fixed; top: 0; width: 100%; z-index: 1000; background: var(--primary); box-shadow: 0 4px 15px rgba(0,0,0,0.2); }
         header { padding: 10px 5%; display: flex; justify-content: space-between; align-items: center; height: 70px; }
         .progress-container { width: 100%; height: 6px; background: rgba(255,255,255,0.1); }
@@ -25,11 +23,9 @@
         .user-info { color: white; line-height: 1.2; }
         .timer-box { background: rgba(0,0,0,0.4); color: var(--secondary); padding: 8px 15px; border-radius: 5px; font-weight: 800; border: 1px solid var(--secondary); font-family: monospace; font-size: 1.2rem; }
 
-        /* CONTENEDOR PRINCIPAL */
         .container { max-width: 900px; margin: 30px auto; padding: 0 20px 100px 20px; position: relative; z-index: 10; }
         .card { background: white; padding: 40px; border-radius: 15px; box-shadow: 0 10px 40px rgba(0,0,0,0.05); }
         
-        /* PANTALLA DE INICIO Y CONFIGURACIÓN */
         #intro-screen { text-align: center; }
         #intro-screen h1 { color: var(--primary); font-family: 'Playfair Display', serif; font-size: 2.2rem; margin-bottom: 10px; }
         
@@ -41,7 +37,6 @@
         .config-item select, .config-item input { padding: 10px 15px; border: 2px solid #ddd; border-radius: 8px; font-family: 'Montserrat', sans-serif; font-size: 1rem; outline: none; transition: 0.3s; }
         .config-item select:focus, .config-item input:focus { border-color: var(--secondary); }
 
-        /* EXAMEN */
         .question-text { font-size: 1.25rem; line-height: 1.6; font-weight: 600; color: var(--primary); margin-bottom: 30px; }
         .options { display: grid; gap: 12px; }
         .option { padding: 18px 25px; border: 2px solid #edf0f2; border-radius: 12px; cursor: pointer; transition: 0.2s; display: flex; align-items: center; gap: 15px; }
@@ -54,12 +49,10 @@
         .btn-next:hover { background: var(--secondary); }
         .btn-finish { background: var(--danger); color: white; }
 
-        /* MODO FLASHCARDS */
         .fc-container { perspective: 1000px; width: 100%; min-height: 350px; margin-bottom: 30px; cursor: pointer; }
         .fc-inner { position: relative; width: 100%; height: 100%; min-height: 350px; text-align: center; transition: transform 0.6s; transform-style: preserve-3d; }
         .fc-container.flipped .fc-inner { transform: rotateY(180deg); }
         .fc-front, .fc-back { position: absolute; width: 100%; height: 100%; backface-visibility: hidden; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 30px 40px; border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); overflow-y: auto; }
-        /* Scrollbar elegante para casos clínicos inmensos */
         .fc-front::-webkit-scrollbar, .fc-back::-webkit-scrollbar { width: 6px; }
         .fc-front::-webkit-scrollbar-thumb, .fc-back::-webkit-scrollbar-thumb { background: rgba(0,0,0,0.15); border-radius: 10px; }
         .fc-front { background: white; border: 3px solid var(--secondary); color: var(--primary); }
@@ -70,7 +63,6 @@
         .fc-back p { font-size: 1.2rem; font-weight: 600; margin-bottom: 25px; line-height: 1.5; }
         .fc-hint { font-size: 0.8rem; opacity: 0.7; position: absolute; bottom: 20px; }
 
-        /* MÉTRICAS DE RESULTADOS */
         .metrics-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; margin-top: 30px; }
         .metric-box { background: #f8f9fa; border: 1px solid #eee; padding: 20px; border-radius: 12px; text-align: center; border-bottom: 4px solid var(--secondary); }
         .metric-box i { font-size: 2rem; color: var(--primary); margin-bottom: 10px; }
@@ -82,14 +74,12 @@
         .diag-bueno { background: #fef9e7; color: #d4ac0d; border: 1px solid #f9e79f; }
         .diag-critico { background: #fdedec; color: #cb4335; border: 1px solid #f5b7b1; }
 
-        /* REVISIÓN */
         .review-item { margin-bottom: 20px; padding: 25px; border-radius: 10px; border-left: 6px solid #ccc; background: #fff; box-shadow: 0 2px 10px rgba(0,0,0,0.05); }
         .item-correct { border-left-color: var(--success); background: #f0fff4; }
         .item-incorrect { border-left-color: var(--danger); background: #fff5f5; }
         .btn-ia { margin-top: 15px; background: #4285F4; color: white; padding: 8px 15px; border-radius: 5px; border: none; cursor: pointer; font-size: 0.85rem; font-weight: 600; display: inline-flex; align-items: center; gap: 5px; }
         .btn-ia:hover { background: #3367d6; }
 
-        /* MARCA DE AGUA REPETIDA */
         .watermark-wrapper { position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 1; overflow: hidden; display: flex; flex-wrap: wrap; justify-content: space-around; align-content: space-around; opacity: 0.04; }
         .watermark-item { transform: rotate(-30deg); font-size: 3rem; font-weight: 900; color: #000; white-space: nowrap; padding: 50px; }
     </style>
@@ -102,7 +92,7 @@
         <header>
             <div class="nav-btns">
                 <a href="index.html" class="btn-nav"><i class="fa-solid fa-house"></i> Volver a CEFEDEP</a>
-                <button class="btn-nav" onclick="netlifyIdentity.logout()"><i class="fa-solid fa-right-from-bracket"></i> Cerrar Sesión</button>
+                <button class="btn-nav" onclick="firebase.auth().signOut()"><i class="fa-solid fa-right-from-bracket"></i> Cerrar Sesión</button>
             </div>
             <div class="timer-box" id="clock" style="display:none;">00:00:00</div>
             <button class="btn btn-finish" id="btn-finalizar-top" style="display:none;" onclick="confirmFinish()">FINALIZAR EXAMEN</button>
@@ -220,29 +210,43 @@
     </div>
 
     <script src="js/preguntas.js"></script>
+
+    <!-- LIBRERÍAS DE FIREBASE -->
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
+
     <script>
+        const firebaseConfig = {
+            apiKey: "AIzaSyDM8QEUh_FnvbGdcINHzsxUWkWGQQigSmo",
+            authDomain: "cefedep-ecuador.firebaseapp.com",
+            projectId: "cefedep-ecuador",
+            storageBucket: "cefedep-ecuador.firebasestorage.app",
+            messagingSenderId: "722072935685",
+            appId: "1:722072935685:web:8e1fd0139eff6eaab02b6c",
+            measurementId: "G-9GX5GQ1YDL"
+        };
+        firebase.initializeApp(firebaseConfig);
+        
+        // PROTECCIÓN Y SEGURIDAD FIREBASE
+        firebase.auth().onAuthStateChanged(user => {
+            if (!user) {
+                window.location.href = "index.html";
+            } else {
+                const userName = user.email.split('@')[0];
+                document.getElementById('user-welcome').innerText = userName.toUpperCase();
+                createWatermarks(userName.toUpperCase());
+            }
+        });
+
         // VARIABLES GLOBALES
         let currentMode = 'exam';
         let currentIdx = 0;
         let testSet = [];
         let userAnswers = {};
         
-        // Variables de Tiempo
         let initialTimerSeconds = 0;
         let currentTimerSeconds = 0;
         let timerInterval;
-
-        // SEGURIDAD NETLIFY
-        netlifyIdentity.on('init', user => {
-            if (!user) {
-                window.location.href = "index.html";
-            } else {
-                const userName = user.user_metadata.full_name || user.email.split('@')[0];
-                document.getElementById('user-welcome').innerText = userName;
-                createWatermarks(userName.toUpperCase());
-            }
-        });
-        netlifyIdentity.on('logout', () => window.location.href = "index.html");
 
         function createWatermarks(text) {
             const wrapper = document.getElementById('watermark-layer');
@@ -254,7 +258,6 @@
             }
         }
 
-        // ESCONDER TIEMPO SI ES FLASHCARD
         function toggleTimeConfig() {
             const mode = document.getElementById('config-mode').value;
             const timeWrapper = document.getElementById('time-config-wrapper');
@@ -262,34 +265,27 @@
             timeWrapper.style.pointerEvents = mode === 'flashcard' ? 'none' : 'auto';
         }
 
-        // ------------------ INICIAR LA SESIÓN ------------------
         function startSession() {
             if (typeof bancoPreguntas === 'undefined') {
                 alert("Error: No se detectó banco de preguntas.");
                 return;
             }
 
-            // 1. Limpiar variables
             currentIdx = 0;
             userAnswers = {};
             clearInterval(timerInterval);
 
-            // 2. Leer configuraciones
             currentMode = document.getElementById('config-mode').value;
             let qCount = parseInt(document.getElementById('config-q').value) || 100;
             let tCount = parseInt(document.getElementById('config-time').value) || 120;
 
-            // 3. Límites de seguridad
             if(qCount > bancoPreguntas.length) qCount = bancoPreguntas.length;
             if(qCount < 5) qCount = 5;
             
-            // 4. Mezclar y cortar banco
             testSet = [...bancoPreguntas].sort(() => 0.5 - Math.random()).slice(0, qCount);
             
-            // 5. Ocultar inicio
             document.getElementById('intro-screen').style.display = 'none';
 
-            // 6. Arrancar modo correspondiente
             if (currentMode === 'exam') {
                 document.getElementById('quiz-card').style.display = 'block';
                 document.getElementById('clock').style.display = 'block';
@@ -305,7 +301,6 @@
             }
         }
 
-        // ------------------ RELOJ DEL EXAMEN ------------------
         function startClock() {
             timerInterval = setInterval(() => {
                 let h = Math.floor(currentTimerSeconds / 3600);
@@ -327,21 +322,16 @@
             }
         }
 
-       // ------------------ LÓGICA MODO EXAMEN ------------------
         function renderExam() {
             const q = testSet[currentIdx];
-            
             if (!q) return;
 
-            // 1. Actualizar barra y contadores
             document.getElementById('q-counter').innerText = `PREGUNTA ${currentIdx + 1} DE ${testSet.length}`;
             document.getElementById('progress').style.width = `${((currentIdx + 1) / testSet.length) * 100}%`;
             
-            // 2. Insertar el texto de la pregunta
             const qElement = document.getElementById('question');
             qElement.innerText = q.pregunta;
             
-            // Ajuste dinámico de tamaño si la pregunta es un caso clínico muy largo
             if (q.pregunta.length > 250) {
                 qElement.style.fontSize = "1.05rem";
                 qElement.style.textAlign = "justify";
@@ -350,7 +340,6 @@
                 qElement.style.textAlign = "left";
             }
             
-            // 3. Dibujar las opciones de respuesta
             const optContainer = document.getElementById('options');
             optContainer.innerHTML = '';
             
@@ -359,7 +348,6 @@
                 div.className = `option ${userAnswers[currentIdx] === i ? 'selected' : ''}`;
                 div.innerHTML = `<strong>${String.fromCharCode(65+i)})</strong> &nbsp; ${opt}`;
                 
-                // Al hacer clic en una respuesta
                 div.onclick = () => { 
                     userAnswers[currentIdx] = i; 
                     renderExam(); 
@@ -367,7 +355,6 @@
                 optContainer.appendChild(div);
             });
 
-            // 4. Activar o desactivar el botón Siguiente
             const btnNext = document.getElementById('btn-next');
             if(btnNext) {
                 btnNext.disabled = userAnswers[currentIdx] === undefined;
@@ -382,24 +369,19 @@
             }
         }
 
-        // ------------------ LÓGICA MODO FLASHCARDS ------------------
         function renderFlashcard() {
             const q = testSet[currentIdx];
             document.getElementById('fc-counter').innerText = `TARJETA ${currentIdx + 1} DE ${testSet.length}`;
             document.getElementById('progress').style.width = `${((currentIdx + 1) / testSet.length) * 100}%`;
             
-            // Quitar el giro si estaba volteada
             document.getElementById('fc-container').classList.remove('flipped');
             
-            // Obtener los elementos de texto
             const qText = document.getElementById('fc-q-text');
             const aText = document.getElementById('fc-a-text');
             
-            // Insertar los textos
             qText.innerText = q.pregunta;
             aText.innerText = q.opciones[q.correcta];
 
-            // AJUSTE DINÁMICO DE TAMAÑO DE LETRA
             if (q.pregunta.length > 250) {
                 qText.style.fontSize = "0.95rem";
                 qText.style.textAlign = "justify";
@@ -417,7 +399,6 @@
                 aText.style.fontSize = "1.2rem";
             }
 
-            // Configurar botón IA
             const prompt = `Explica médicamente el concepto clave de esta pregunta: ${q.pregunta}. La respuesta correcta es: ${q.opciones[q.correcta]}`;
             const encoded = btoa(unescape(encodeURIComponent(prompt)));
             document.getElementById('fc-ia-btn').setAttribute('onclick', `event.stopPropagation(); openAIPopup('${encoded}')`);
@@ -434,7 +415,6 @@
             }
         }
 
-       // ------------------ VOLVER A CONFIGURACIÓN ------------------
         function returnToConfig() {
             currentIdx = 0;
             document.getElementById('progress').style.width = '0%';
@@ -443,7 +423,6 @@
             document.getElementById('intro-screen').style.display = 'block';
         }
 
-        // ------------------ RESULTADOS Y MÉTRICAS ------------------
         function formatTime(seconds) {
             let m = Math.floor(seconds / 60);
             let s = seconds % 60;
@@ -479,19 +458,16 @@
                 </div>`;
             });
 
-            // 1. Cálculo de Métricas
             const percentage = Math.round((correctas / testSet.length) * 100);
             const timeSpentSeconds = initialTimerSeconds - currentTimerSeconds;
             const avgSecondsPerQ = Math.round(timeSpentSeconds / testSet.length);
 
-            // 2. Pintar Métricas
             document.getElementById('met-score').innerText = `${percentage}%`;
             document.getElementById('met-score').style.color = percentage >= 70 ? 'var(--success)' : 'var(--danger)';
             
             document.getElementById('met-time').innerText = formatTime(timeSpentSeconds);
             document.getElementById('met-avg').innerText = `${avgSecondsPerQ} seg`;
 
-            // 3. Diagnóstico Automático
             const diagBox = document.getElementById('diagnostic-box');
             if(percentage >= 85) {
                 diagBox.className = "diagnostic-msg diag-excelente";
@@ -504,7 +480,6 @@
                 diagBox.innerHTML = "<i class='fa-solid fa-book-medical'></i> Rendimiento Crítico. Necesitas reforzar tus conocimientos teóricos. Te recomendamos pausar los exámenes y estudiar exclusivamente en <strong>Modo Flashcards</strong>.";
             }
 
-            // 4. Pintar Revisión
             document.getElementById('review-list').innerHTML = html;
             window.scrollTo(0,0);
         }
