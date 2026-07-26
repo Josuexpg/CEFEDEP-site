@@ -9,7 +9,6 @@
     
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700;800&family=Playfair+Display:wght@700;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
     
     <style>
         :root {
@@ -42,6 +41,16 @@
 
         #dynamic-menu { display: flex; align-items: center; gap: 10px; }
 
+        /* ESTILOS PARA EL MENÚ DESPLEGABLE (DROPDOWN) */
+        .dropdown { position: relative; display: inline-block; }
+        .dropdown-menu { display: none; position: absolute; background-color: white; min-width: 260px; box-shadow: 0 10px 25px rgba(0,0,0,0.1); border-radius: 12px; z-index: 2000; top: 100%; left: 0; padding: 10px 0; overflow: hidden; border-top: 3px solid var(--secondary); }
+        .dropdown-menu li { list-style: none; }
+        .dropdown-menu li a { color: var(--primary) !important; padding: 12px 20px; display: block; text-transform: none !important; font-weight: 600 !important; font-size: 0.85rem !important; border-bottom: 1px solid #f5f5f5; transition: 0.3s background; }
+        .dropdown-menu li:last-child a { border-bottom: none; }
+        .dropdown-menu li a:hover { background-color: var(--light); color: var(--secondary) !important; padding-left: 25px; }
+        .dropdown:hover .dropdown-menu { display: block; animation: fadeIn 0.3s ease; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
         /* Hero Section */
         .hero { height: 80vh; background: linear-gradient(rgba(51, 66, 53, 0.8), rgba(51, 66, 53, 0.6)), url('https://images.unsplash.com/photo-1524178232363-1fb2b075b655?auto=format&fit=crop&w=1950&q=80'); background-size: cover; background-position: center; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; color: var(--white); padding: 0 10%; margin-top: 85px; }
         .hero h1 { font-family: 'Playfair Display', serif; font-size: 3.5rem; margin-bottom: 1rem; line-height: 1.1; }
@@ -56,6 +65,9 @@
         .section-header { text-align: center; margin-bottom: 50px; }
         .section-header h2 { font-family: 'Playfair Display', serif; font-size: 2.5rem; color: var(--primary); }
         .divider { width: 60px; height: 4px; background: var(--secondary); margin: 15px auto; border-radius: 10px; }
+
+        /* Clase para ocultar secciones temporalmente */
+        .oculto-temporalmente { display: none !important; }
 
         /* SECCIÓN DESTACADA: PREGUNTAS DE ALTO IMPACTO */
         .featured-banner { 
@@ -81,7 +93,6 @@
         .core-card { background: var(--white); border-radius: 20px; padding: 40px 30px; border: 1px solid #eee; text-align: center; transition: 0.3s; }
         .core-card:hover { transform: translateY(-10px); box-shadow: 0 15px 35px rgba(0,0,0,0.07); border-color: var(--secondary); }
         .core-icon { font-size: 3rem; color: var(--primary); margin-bottom: 20px; }
-        /* Estilos para las métricas integradas */
         .metric-highlight { font-family: 'Playfair Display', serif; font-size: 3rem; font-weight: 900; color: var(--secondary); margin-top: -10px; margin-bottom: 5px; line-height: 1; }
         .metric-label { display: block; font-size: 0.8rem; font-weight: 800; text-transform: uppercase; color: var(--accent); letter-spacing: 1px; margin-bottom: 20px; }   
 
@@ -135,6 +146,8 @@
             .menu-toggle { display: block; }
             .nav-links { display: none; flex-direction: column; position: absolute; top: 85px; left: 0; width: 100%; background: rgba(255, 255, 255, 0.98); padding: 20px 0; box-shadow: 0 10px 15px rgba(0,0,0,0.1); text-align: center; gap: 15px; }
             .nav-links.active { display: flex; }
+            .dropdown-menu { position: relative; box-shadow: none; border: none; background: #f9f9f9; display: none; }
+            .dropdown:hover .dropdown-menu { display: block; }
         }
     </style>
 </head>
@@ -182,6 +195,29 @@
         </div>
     </div>
 
+    <!-- MODAL DE INICIO DE SESIÓN DE FIREBASE -->
+    <div class="modal-overlay" id="authModal">
+        <div class="promo-modal">
+            <span class="close-modal" onclick="closeAuthModal()">&times;</span>
+            <div class="modal-header-img" style="height: 100px;">
+                <h3 style="font-family: 'Playfair Display'; font-size: 1.5rem;">Plataforma de Simuladores</h3>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label>Correo Electrónico</label>
+                    <input type="email" id="authEmail" placeholder="usuario@correo.com">
+                </div>
+                <div class="form-group">
+                    <label>Contraseña</label>
+                    <input type="password" id="authPassword" placeholder="******">
+                </div>
+                <p id="authError" style="color: red; font-size: 0.8rem; display: none; margin-bottom: 10px;"></p>
+                <button class="btn-main" onclick="loginFirebase()" style="width: 100%; border-radius: 10px; margin-bottom: 10px;">Ingresar</button>
+                <button class="btn-main btn-outline" onclick="registerFirebase()" style="width: 100%; border-radius: 10px; color: var(--primary); border-color: var(--primary);">Crear Cuenta Nueva</button>
+            </div>
+        </div>
+    </div>
+
     <nav>
         <a href="#inicio" class="brand">
             <img src="LOGO_CEFEDEP.png" alt="Logo">
@@ -194,13 +230,21 @@
             </div>
         </a>
         <ul class="nav-links">
-            <li><a href="#inscripcion" style="color: var(--secondary);">Inscripciones EHEP</a></li>
-            <li><a href="#consultoria">Consultoría</a></li>
-            <li><a href="#especialidad">Reactivos Pro</a></li>
-            <li><a href="#cursos">Cursos</a></li>
+            <li><a href="index.html#inscripcion" style="color: var(--secondary);">Inscripciones EHEP</a></li>
+            <li><a href="index.html#consultoria">Consultoría</a></li>
+            <li><a href="index.html#especialidad">Reactivos Pro</a></li>
+            
+            <li class="dropdown">
+                <a href="#cursos" style="cursor: pointer;">Cursos Formativos <i class="fa-solid fa-chevron-down" style="font-size: 0.7rem; margin-left: 3px;"></i></a>
+                <ul class="dropdown-menu">
+                    <li><a href="curso_farmacia.html" target="_blank"><i class="fa-solid fa-pills" style="color: var(--secondary); margin-right: 8px;"></i> Auxiliar en Farmacia</a></li>
+                    <li><a href="curso_jurisprudencia.html" target="_blank"><i class="fa-solid fa-scale-balanced" style="color: var(--secondary); margin-right: 8px;"></i> Auxiliar en Jurisprudencia</a></li>
+                    <li><a href="curso_admin_salud.html" target="_blank"><i class="fa-solid fa-hospital-user" style="color: var(--secondary); margin-right: 8px;"></i> Administración en Salud</a></li>
+                </ul>
+            </li>
             
             <li id="dynamic-menu">
-                <a href="#" onclick="netlifyIdentity.open()" class="login-btn">INICIAR SESIÓN SIMULADORES</a>
+                <a href="#" onclick="openAuthModal()" class="login-btn">INICIAR SESIÓN SIMULADORES</a>
             </li>
         </ul>
     </nav>
@@ -281,7 +325,7 @@
         </div>
     </section>
 
-<section id="consultoria">
+    <section id="consultoria">
         <div class="section-header">
             <h2>Soluciones Institucionales</h2>
             <div class="divider"></div>
@@ -289,7 +333,7 @@
         </div>
         
         <div class="core-services">
-            <div class="core-card">
+            <div class="core-card oculto-temporalmente">
                 <i class="fa-solid fa-building-columns core-icon"></i>
                 <div class="metric-highlight">2</div>
                 <span class="metric-label">Institutos Creados</span>
@@ -298,7 +342,7 @@
                 <p>Asesoría legal y académica para la creación y aprobación de Institutos Tecnológicos y Universitarios.</p>
             </div>
             
-            <div class="core-card" id="tesis">
+            <div class="core-card oculto-temporalmente" id="tesis">
                 <i class="fa-solid fa-graduation-cap core-icon"></i>
                 <div class="metric-highlight">+50</div>
                 <span class="metric-label">Titulados de Grado & Posgrado </span>
@@ -320,24 +364,48 @@
 
     <section id="cursos" class="courses-section">
         <div class="section-header">
+            <span class="featured-tag" style="background: var(--primary);">Educación Continua</span>
             <h2>Capacitación Profesional</h2>
             <div class="divider"></div>
+            <p style="color: #666; font-size: 1.1rem; max-width: 700px; margin: 0 auto;">Programas avalados para potenciar tu currículum y abrir nuevas oportunidades laborales.</p>
         </div>
         <div class="courses-grid">
             <div class="course-card">
                 <img src="https://images.unsplash.com/photo-1587854692152-cbe660dbde88?w=600" class="course-img" alt="Farmacia">
                 <div class="course-info">
-                    <h4>Auxiliar en Farmacia</h4>
-                    <p style="color: #666; margin-bottom: 15px; font-size: 0.9rem;">Formación técnica enfocada en farmacología y atención al paciente.</p>
-                    <a href="https://wa.me/593987321024" target="_blank" style="color: var(--primary); font-weight: 700; text-decoration: none;">Más Información</a>
+                    <span style="font-size: 0.7rem; color: white; background: var(--secondary); padding: 4px 8px; border-radius: 4px; font-weight: bold; text-transform: uppercase;">120 Horas</span>
+                    <h4 style="margin-top: 10px; font-size: 1.2rem; color: var(--primary);">Auxiliar en Farmacia</h4>
+                    <p style="color: #666; margin-bottom: 15px; font-size: 0.9rem; margin-top: 10px;">Formación técnica enfocada en farmacología, atención al paciente y dispensación de medicamentos.</p>
+                    <div style="display: flex; justify-content: space-between; align-items: center; border-top: 1px solid #eee; padding-top: 15px;">
+                        <span style="font-size: 0.8rem; font-weight: 600; color: var(--accent);"><i class="fa-solid fa-laptop"></i> 100% Online</span>
+                        <a href="https://wa.me/593987321024?text=Hola,%20deseo%20más%20información%20del%20curso%20de%20Auxiliar%20en%20Farmacia" target="_blank" style="color: var(--primary); font-weight: 700; text-decoration: none; font-size: 0.9rem;">Ver Detalles <i class="fa-solid fa-arrow-right"></i></a>
+                    </div>
                 </div>
             </div>
+            
             <div class="course-card">
                 <img src="https://images.unsplash.com/photo-1589829085413-56de8ae18c73?w=600" class="course-img" alt="Jurisprudencia">
                 <div class="course-info">
-                    <h4>Auxiliar en Jurisprudencia</h4>
-                    <p style="color: #666; margin-bottom: 15px; font-size: 0.9rem;">Capacitación para asistencia técnica en procesos legales y notariales.</p>
-                    <a href="https://wa.me/593987321024" target="_blank" style="color: var(--primary); font-weight: 700; text-decoration: none;">Más Información</a>
+                    <span style="font-size: 0.7rem; color: white; background: var(--secondary); padding: 4px 8px; border-radius: 4px; font-weight: bold; text-transform: uppercase;">150 Horas</span>
+                    <h4 style="margin-top: 10px; font-size: 1.2rem; color: var(--primary);">Auxiliar en Jurisprudencia</h4>
+                    <p style="color: #666; margin-bottom: 15px; font-size: 0.9rem; margin-top: 10px;">Capacitación integral para asistencia técnica en procesos legales, notariales y gestión de archivos.</p>
+                    <div style="display: flex; justify-content: space-between; align-items: center; border-top: 1px solid #eee; padding-top: 15px;">
+                        <span style="font-size: 0.8rem; font-weight: 600; color: var(--accent);"><i class="fa-solid fa-laptop"></i> 100% Online</span>
+                        <a href="https://wa.me/593987321024?text=Hola,%20deseo%20más%20información%20del%20curso%20de%20Auxiliar%20en%20Jurisprudencia" target="_blank" style="color: var(--primary); font-weight: 700; text-decoration: none; font-size: 0.9rem;">Ver Detalles <i class="fa-solid fa-arrow-right"></i></a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="course-card">
+                <img src="https://images.unsplash.com/photo-1551076805-e18690c5e53b?w=600" class="course-img" alt="Administración Hospitalaria">
+                <div class="course-info">
+                    <span style="font-size: 0.7rem; color: white; background: var(--secondary); padding: 4px 8px; border-radius: 4px; font-weight: bold; text-transform: uppercase;">200 Horas</span>
+                    <h4 style="margin-top: 10px; font-size: 1.2rem; color: var(--primary);">Administración en Salud</h4>
+                    <p style="color: #666; margin-bottom: 15px; font-size: 0.9rem; margin-top: 10px;">Gestión de centros médicos, auditoría de calidad y manejo de sistemas hospitalarios.</p>
+                    <div style="display: flex; justify-content: space-between; align-items: center; border-top: 1px solid #eee; padding-top: 15px;">
+                        <span style="font-size: 0.8rem; font-weight: 600; color: var(--accent);"><i class="fa-solid fa-chalkboard-user"></i> Híbrido</span>
+                        <a href="https://wa.me/593987321024?text=Hola,%20deseo%20más%20información%20del%20curso%20de%20Administración%20en%20Salud" target="_blank" style="color: var(--primary); font-weight: 700; text-decoration: none; font-size: 0.9rem;">Ver Detalles <i class="fa-solid fa-arrow-right"></i></a>
+                    </div>
                 </div>
             </div>
         </div>
@@ -379,40 +447,99 @@
         </div>
     </div>
 
+    <!-- LIBRERÍAS DE FIREBASE -->
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
+
     <script>
+        const firebaseConfig = {
+            apiKey: "AIzaSyDM8QEUh_FnvbGdcINHzsxUWkWGQQigSmo",
+            authDomain: "cefedep-ecuador.firebaseapp.com",
+            projectId: "cefedep-ecuador",
+            storageBucket: "cefedep-ecuador.firebasestorage.app",
+            messagingSenderId: "722072935685",
+            appId: "1:722072935685:web:8e1fd0139eff6eaab02b6c",
+            measurementId: "G-9GX5GQ1YDL"
+        };
+
+        firebase.initializeApp(firebaseConfig);
+        const auth = firebase.auth();
+
+        // CONTROL DEL MODAL DE LOGIN
+        function openAuthModal() { document.getElementById('authModal').style.display = 'flex'; }
+        function closeAuthModal() { 
+            document.getElementById('authModal').style.display = 'none'; 
+            document.getElementById('authError').style.display = 'none';
+        }
+
+        // FUNCIÓN DE INGRESO
+        function loginFirebase() {
+            const email = document.getElementById('authEmail').value;
+            const pass = document.getElementById('authPassword').value;
+            const errBox = document.getElementById('authError');
+            
+            auth.signInWithEmailAndPassword(email, pass)
+                .then(() => { closeAuthModal(); })
+                .catch(err => {
+                    errBox.style.display = 'block';
+                    errBox.innerText = "Error: Correo o contraseña incorrectos.";
+                });
+        }
+
+        // FUNCIÓN DE REGISTRO
+        function registerFirebase() {
+            const email = document.getElementById('authEmail').value;
+            const pass = document.getElementById('authPassword').value;
+            const errBox = document.getElementById('authError');
+            
+            auth.createUserWithEmailAndPassword(email, pass)
+                .then(() => { closeAuthModal(); })
+                .catch(err => {
+                    errBox.style.display = 'block';
+                    errBox.innerText = "Error: La contraseña debe tener al menos 6 caracteres o el correo ya existe.";
+                });
+        }
+
+        // ACTUALIZAR MENÚ DEPENDIENDO DE SI HAY SESIÓN
+        auth.onAuthStateChanged(user => {
+            const menuContainer = document.getElementById('dynamic-menu');
+            if (user) {
+                menuContainer.innerHTML = `
+                    <a href="simulador.html" class="login-btn" style="background: var(--primary); color: white !important; border-color: var(--primary); font-size: 0.75rem;">MEDICINA</a>
+                    <a href="simulador_enf.html" class="login-btn" style="background: #2b7a78; color: white !important; border-color: #2b7a78; font-size: 0.75rem;">ENFERMERÍA</a>
+                    <a href="#" onclick="auth.signOut()" style="color: #ff4757; text-decoration: none; font-size: 0.8rem; font-weight: 700; margin-left: 10px;"><i class="fa-solid fa-right-from-bracket"></i> SALIR</a>
+                `;
+            } else {
+                menuContainer.innerHTML = `
+                    <a href="#" onclick="openAuthModal()" class="login-btn">INICIAR SESIÓN SIMULADORES</a>
+                `;
+            }
+        });
+
         // Lógica de Pop-up y Formulario
         window.onload = function() {
-            // Mostrar chat a los 5 segundos
             setTimeout(function() {
                 document.getElementById('waChatBox').style.display = 'block';
             }, 5000);
 
-            // Mostrar Pop-up promocional a los 3 segundos (solo una vez por sesión opcionalmente)
             if(!sessionStorage.getItem('popSeen')) {
                 setTimeout(openModal, 3000);
                 sessionStorage.setItem('popSeen', 'true');
             }
         }
 
-        function openModal() {
-            document.getElementById('registrationModal').style.display = 'flex';
-        }
-
-        function closeModal() {
-            document.getElementById('registrationModal').style.display = 'none';
-        }
+        function openModal() { document.getElementById('registrationModal').style.display = 'flex'; }
+        function closeModal() { document.getElementById('registrationModal').style.display = 'none'; }
 
         // Validación y envío de formulario
         document.getElementById('ehepForm').addEventListener('submit', function(e) {
             e.preventDefault();
-            
             const name = document.getElementById('formName').value;
             const course = document.getElementById('formCourse').value;
             const phone = document.getElementById('formPhone').value;
             const email = document.getElementById('formEmail').value;
             const emailError = document.getElementById('emailError');
 
-            // Validar Gmail
             if (!email.includes('@gmail.com')) {
                 emailError.style.display = 'block';
                 return;
@@ -420,7 +547,6 @@
                 emailError.style.display = 'none';
             }
 
-            // Construir mensaje de WhatsApp
             const businessNumber = "593987321024";
             const text = `Hola CEFEDEP, mi nombre es *${name}*. Deseo inscribirme al curso de preparación EHEP para *${course}*.\n\n` +
                          `*Datos de registro:*\n` +
@@ -431,7 +557,6 @@
             const encodedText = encodeURIComponent(text);
             const waUrl = `https://wa.me/${businessNumber}?text=${encodedText}`;
             
-            // Redirigir
             window.open(waUrl, '_blank');
             closeModal();
         });
@@ -458,7 +583,7 @@
             }
         }
 
-        document.querySelectorAll('.nav-links a').forEach(link => {
+        document.querySelectorAll('.nav-links a:not(.dropdown-menu a)').forEach(link => {
             link.addEventListener('click', () => {
                 document.querySelector('.nav-links').classList.remove('active');
                 if(document.querySelector('.menu-toggle i')) {
@@ -466,29 +591,6 @@
                 }
             });
         });
-
-        // LÓGICA DE NETLIFY IDENTITY
-        function actualizarMenu(usuario) {
-            const menuContainer = document.getElementById('dynamic-menu');
-            if (usuario) {
-                menuContainer.innerHTML = `
-                    <a href="simulador.html" class="login-btn" style="background: var(--primary); color: white !important; border-color: var(--primary); font-size: 0.75rem;">MEDICINA</a>
-                    <a href="simulador_enf.html" class="login-btn" style="background: #2b7a78; color: white !important; border-color: #2b7a78; font-size: 0.75rem;">ENFERMERÍA</a>
-                    <a href="#" onclick="netlifyIdentity.logout()" style="color: #ff4757; text-decoration: none; font-size: 0.8rem; font-weight: 700; margin-left: 10px;"><i class="fa-solid fa-right-from-bracket"></i> SALIR</a>
-                `;
-            } else {
-                menuContainer.innerHTML = `
-                    <a href="#" onclick="netlifyIdentity.open()" class="login-btn">INICIAR SESIÓN SIMULADORES</a>
-                `;
-            }
-        }
-
-        netlifyIdentity.on('init', user => actualizarMenu(user));
-        netlifyIdentity.on('login', user => {
-            actualizarMenu(user);
-            netlifyIdentity.close();
-        });
-        netlifyIdentity.on('logout', () => actualizarMenu(null));
     </script>
 </body>
 </html>
