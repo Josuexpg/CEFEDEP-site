@@ -41,15 +41,40 @@
 
         #dynamic-menu { display: flex; align-items: center; gap: 10px; }
 
-        /* ESTILOS PARA EL MENÚ DESPLEGABLE (DROPDOWN) */
+/* ESTILOS PARA EL MENÚ DESPLEGABLE CATEGORIZADO */
         .dropdown { position: relative; display: inline-block; }
-        .dropdown-menu { display: none; position: absolute; background-color: white; min-width: 260px; box-shadow: 0 10px 25px rgba(0,0,0,0.1); border-radius: 12px; z-index: 2000; top: 100%; left: 0; padding: 10px 0; overflow: hidden; border-top: 3px solid var(--secondary); }
+        .dropdown-menu { 
+            display: none; position: absolute; background-color: white; 
+            min-width: 380px; /* Más ancho para textos largos */
+            max-height: 75vh; /* Altura máxima */
+            overflow-y: auto; /* Scroll si hay muchos cursos */
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1); border-radius: 12px; 
+            z-index: 2000; top: 100%; left: -50px; padding: 10px 0; 
+            border-top: 3px solid var(--secondary); 
+        }
+        /* Personalizar el scrollbar del menú */
+        .dropdown-menu::-webkit-scrollbar { width: 6px; }
+        .dropdown-menu::-webkit-scrollbar-thumb { background: #ddd; border-radius: 10px; }
+        
+        .dropdown-category {
+            font-size: 0.75rem; font-weight: 800; color: var(--secondary);
+            text-transform: uppercase; letter-spacing: 1px;
+            padding: 15px 20px 5px; background: #fdfdfd;
+            border-top: 1px solid #eee; margin-top: 5px;
+        }
+        .dropdown-menu li:first-child .dropdown-category { border-top: none; margin-top: 0; padding-top: 10px; }
+        
         .dropdown-menu li { list-style: none; }
-        .dropdown-menu li a { color: var(--primary) !important; padding: 12px 20px; display: block; text-transform: none !important; font-weight: 600 !important; font-size: 0.85rem !important; border-bottom: 1px solid #f5f5f5; transition: 0.3s background; }
-        .dropdown-menu li:last-child a { border-bottom: none; }
+        .dropdown-menu li a { 
+            color: var(--primary) !important; padding: 10px 20px; display: flex; 
+            align-items: flex-start; gap: 10px; text-transform: none !important; 
+            font-weight: 600 !important; font-size: 0.8rem !important; 
+            line-height: 1.3; transition: 0.3s background; 
+        }
         .dropdown-menu li a:hover { background-color: var(--light); color: var(--secondary) !important; padding-left: 25px; }
+        .dropdown-menu li a i { margin-top: 2px; font-size: 0.9rem; width: 15px; text-align: center; }
+        
         .dropdown:hover .dropdown-menu { display: block; animation: fadeIn 0.3s ease; }
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
 
         /* Hero Section */
         .hero { height: 80vh; background: linear-gradient(rgba(51, 66, 53, 0.8), rgba(51, 66, 53, 0.6)), url('https://images.unsplash.com/photo-1524178232363-1fb2b075b655?auto=format&fit=crop&w=1950&q=80'); background-size: cover; background-position: center; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; color: var(--white); padding: 0 10%; margin-top: 85px; }
@@ -229,19 +254,44 @@
                 <i class="fa-solid fa-bars"></i>
             </div>
         </a>
-        <ul class="nav-links">
-            <li><a href="index.html#inscripcion" style="color: var(--secondary);">Inscripciones EHEP</a></li>
+<ul class="nav-links">
             <li><a href="index.html#consultoria">Consultoría</a></li>
-            <li><a href="index.html#especialidad">Reactivos Pro</a></li>
             
+            <!-- MENÚ DESPLEGABLE DE CURSOS -->
             <li class="dropdown">
                 <a href="#cursos" style="cursor: pointer;">Cursos Formativos <i class="fa-solid fa-chevron-down" style="font-size: 0.7rem; margin-left: 3px;"></i></a>
                 <ul class="dropdown-menu">
-                    <li><a href="curso_farmacia.html" target="_blank"><i class="fa-solid fa-pills" style="color: var(--secondary); margin-right: 8px;"></i> Auxiliar en Farmacia</a></li>
-                    <li><a href="curso_jurisprudencia.html" target="_blank"><i class="fa-solid fa-scale-balanced" style="color: var(--secondary); margin-right: 8px;"></i> Auxiliar en Jurisprudencia</a></li>
-                    <li><a href="curso_admin_salud.html" target="_blank"><i class="fa-solid fa-hospital-user" style="color: var(--secondary); margin-right: 8px;"></i> Administración en Salud</a></li>
+                    
+                    <!-- ÁREA DE SALUD -->
+                    <li><div class="dropdown-category">Área de Salud</div></li>
+                    <li><a href="curso_farmacia.html" target="_blank"><i class="fa-solid fa-pills" style="color: var(--accent);"></i> Auxiliar en Farmacia</a></li>
+                    <li><a href="curso_enfermeria.html" target="_blank"><i class="fa-solid fa-user-nurse" style="color: var(--accent);"></i> Auxiliar en Enfermería</a></li>
+                    
+                    <!-- ÁREA HUMANA -->
+                    <li><div class="dropdown-category">Área Humana y Educación</div></li>
+                    <li><a href="curso_asistencia_juridica.html" target="_blank"><i class="fa-solid fa-scale-balanced" style="color: var(--secondary);"></i> Asistencia Jurídica</a></li>
+                    <li><a href="curso_asistencia_parvularia.html" target="_blank"><i class="fa-solid fa-children" style="color: var(--secondary);"></i> Asistencia Parvularia</a></li>
+                    <li><a href="curso_cosmeticos.html" target="_blank"><i class="fa-solid fa-flask" style="color: var(--secondary);"></i> Formulación y Confección Artesanal de Productos Cosméticos</a></li>
+                    <li><a href="curso_tramites_judiciales.html" target="_blank"><i class="fa-solid fa-file-signature" style="color: var(--secondary);"></i> Gestión Operativa de Trámites Judiciales</a></li>
+                    <li><a href="curso_recursos_didacticos.html" target="_blank"><i class="fa-solid fa-laptop-code" style="color: var(--secondary);"></i> Diseño de Recursos Didácticos Interactivos (Digitales)</a></li>
+                    <li><a href="curso_apoyo_pedagogico.html" target="_blank"><i class="fa-solid fa-puzzle-piece" style="color: var(--secondary);"></i> Estrategias de Apoyo Pedagógico (Parvularia)</a></li>
+                    <li><a href="curso_proyectos_educativos.html" target="_blank"><i class="fa-solid fa-lightbulb" style="color: var(--secondary);"></i> Elaboración de Proyectos Educativos con Innovación</a></li>
+                    <li><a href="curso_facilitacion_grupos.html" target="_blank"><i class="fa-solid fa-users-rays" style="color: var(--secondary);"></i> Técnicas de Facilitación y Conducción (Capacitación Corporativa)</a></li>
+                    <li><a href="curso_evaluacion_desempeno.html" target="_blank"><i class="fa-solid fa-clipboard-check" style="color: var(--secondary);"></i> Diseño de Instrumentos de Evaluación del Aprendizaje</a></li>
+
+                    <!-- ÁREA DE INGENIERÍA Y TECNOLOGÍAS -->
+                    <li><div class="dropdown-category">Ingeniería y Tecnologías</div></li>
+                    <li><a href="curso_python_automatizacion.html" target="_blank"><i class="fa-brands fa-python" style="color: #306998;"></i> Diseño de Soluciones y Automatización (Python)</a></li>
+                    <li><a href="curso_python_basica.html" target="_blank"><i class="fa-brands fa-python" style="color: #306998;"></i> Programación Básica y Resolución de Problemas (Python)</a></li>
+                    <li><a href="curso_python_datos.html" target="_blank"><i class="fa-solid fa-chart-pie" style="color: #306998;"></i> Procesamiento y Visualización de Datos (Python)</a></li>
+                    <li><a href="curso_python_vision.html" target="_blank"><i class="fa-solid fa-eye" style="color: #306998;"></i> Técnicas de Visión por Computadora (Python)</a></li>
+                    <li><a href="curso_desarrollo_web.html" target="_blank"><i class="fa-solid fa-code" style="color: #306998;"></i> Desarrollo Web</a></li>
+                    <li><a href="curso_cloud_computing.html" target="_blank"><i class="fa-solid fa-cloud" style="color: #306998;"></i> Fundamentos de Cloud Computing</a></li>
                 </ul>
             </li>
+
+            <li><a href="index.html#inscripcion" style="color: var(--secondary);">EHEP 2026</a></li>
+            <li><a href="index.html#contacto">Contacto</a></li>
             
             <li id="dynamic-menu">
                 <a href="#" onclick="openAuthModal()" class="login-btn">INICIAR SESIÓN SIMULADORES</a>
