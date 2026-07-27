@@ -605,13 +605,20 @@
         }
 
         // Script para desplegar el menú de cursos en móviles al hacer clic
-        function toggleDropdownMobile(e) {
-            if (window.innerWidth <= 900) {
-                e.preventDefault();
-                const dropdown = document.getElementById('btn-cursos');
-                dropdown.classList.toggle('active');
-            }
+// Script para desplegar el menú de cursos en móviles al hacer clic (Corregido)
+function toggleDropdownMobile(e) {
+    if (window.innerWidth <= 900) {
+        // Verifica si el usuario tocó un enlace de un curso específico
+        if (e.target.closest('.dropdown-menu a')) {
+            return; // Si es un curso, no interrumpe y deja que abra la página
         }
+        
+        // Si tocó el título principal, despliega u oculta el menú
+        e.preventDefault();
+        const dropdown = document.getElementById('btn-cursos');
+        dropdown.classList.toggle('active');
+    }
+}
 
        // Botón "Explorar cursos" y "Ver Especialidades"
        function abrirMenuCursos() {
