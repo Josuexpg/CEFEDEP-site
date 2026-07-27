@@ -120,7 +120,40 @@
         .course-info { padding: 30px; }
         .course-info h4 { font-size: 1.3rem; color: var(--primary); margin: 10px 0; font-family: 'Playfair Display', serif; }
         .course-info p { text-align: left; }
-
+        /* Insignias de Modalidades de Estudio */
+        .modalities-container { 
+            display: flex; 
+            justify-content: center; 
+            gap: 15px; 
+            flex-wrap: wrap; 
+            margin: 30px 0 40px; 
+        }
+        .modality-badge { 
+            display: flex; 
+            align-items: center; 
+            gap: 10px; 
+            background: white; 
+            padding: 12px 25px; 
+            border-radius: 50px; 
+            font-size: 0.9rem; 
+            font-weight: 700; 
+            color: var(--primary); 
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05); 
+            border: 1px solid #eee;
+            transition: 0.3s;
+        }
+        .modality-badge:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+        }
+        .badge-incompany { 
+            background: var(--secondary); 
+            color: white; 
+            border-color: var(--secondary); 
+        }
+        .badge-incompany i {
+            color: white !important;
+        }
         /* Tarjetas de Servicios y EHEP */
         .core-services { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; margin-top: 30px; }
         .core-card { background: white; padding: 40px; border-radius: 20px; box-shadow: 0 10px 25px rgba(0,0,0,0.05); text-align: center; }
@@ -328,15 +361,28 @@
         </div>
     </section>
 
-    <!-- TOP CURSOS PROFESIONALES -->
+<!-- TOP CURSOS PROFESIONALES -->
     <section id="cursos" class="courses-section">
         <div class="section-header">
             <span class="featured-tag" style="background: var(--primary);">Educación Continua</span>
             <h2>Programas Destacados</h2>
             <div class="divider"></div>
-            <p style="color: #666; font-size: 1.1rem; max-width: 700px; margin: 0 auto;">Potencia tu currículum con nuestras áreas de mayor demanda laboral.</p>
+            <p style="color: #666; font-size: 1.1rem; max-width: 700px; margin: 0 auto;">Potencia tu currículum con nuestras áreas de mayor demanda laboral, adaptadas a tu disponibilidad.</p>
+            
+            <!-- NUEVO: Modalidades de Estudio -->
+            <div class="modalities-container">
+                <div class="modality-badge">
+                    <i class="fa-solid fa-laptop" style="color: var(--accent);"></i> Virtual
+                </div>
+                <div class="modality-badge">
+                    <i class="fa-solid fa-chalkboard-user" style="color: var(--accent);"></i> Híbrida
+                </div>
+                <div class="modality-badge badge-incompany">
+                    <i class="fa-solid fa-building-user"></i> Modalidad In-Company (Corporativa)
+                </div>
+            </div>
         </div>
-        
+
         <div class="courses-grid">
             <div class="course-card">
                 <img src="curso_salud.jpg" class="course-img" alt="Área de Salud">
@@ -344,7 +390,7 @@
                     <span class="featured-tag" style="background: var(--accent); margin-bottom: 0;">Área de la Salud</span>
                     <h4>Auxiliares en Farmacia y Enfermería</h4>
                     <p style="color: #666; font-size: 0.95rem; margin-bottom: 15px;">Formación técnica avalada para el manejo seguro de pacientes, normativa ARCSA y farmacología.</p>
-                    <a href="curso_farmacia.html" target="_blank" style="color: var(--primary); font-weight: 800; text-decoration: none;">Ver Especialidades <i class="fa-solid fa-arrow-right"></i></a>
+                    <a href="#" onclick="abrirMenuCursos(); return false;" style="color: var(--primary); font-weight: 800; text-decoration: none;">Ver Especialidades <i class="fa-solid fa-arrow-right"></i></a>   
                 </div>
             </div>
             <div class="course-card">
@@ -353,7 +399,7 @@
                     <span class="featured-tag" style="background: var(--secondary); margin-bottom: 0;">Derecho y Educación</span>
                     <h4>Asistencia Jurídica y Parvularia</h4>
                     <p style="color: #666; font-size: 0.95rem; margin-bottom: 15px;">Apoya la gestión de trámites notariales o domina la estimulación pedagógica en la primera infancia.</p>
-                    <a href="curso_asistencia_juridica.html" target="_blank" style="color: var(--primary); font-weight: 800; text-decoration: none;">Ver Especialidades <i class="fa-solid fa-arrow-right"></i></a>
+                    <a href="#" onclick="abrirMenuCursos(); return false;" style="color: var(--primary); font-weight: 800; text-decoration: none;">Ver Especialidades <i class="fa-solid fa-arrow-right"></i></a>
                 </div>
             </div>
             <div class="course-card">
@@ -362,7 +408,7 @@
                     <span class="featured-tag" style="background: #306998; margin-bottom: 0;">Ingeniería y Sistemas</span>
                     <h4>Programación en Python y Desarrollo</h4>
                     <p style="color: #666; font-size: 0.95rem; margin-bottom: 15px;">Domina el lenguaje del futuro: Automatización, Visión por Computadora y Análisis de Datos con IA.</p>
-                    <a href="curso_python_automatizacion.html" target="_blank" style="color: var(--primary); font-weight: 800; text-decoration: none;">Ver Especialidades <i class="fa-solid fa-arrow-right"></i></a>
+                    <a href="#" onclick="abrirMenuCursos(); return false;" style="color: var(--primary); font-weight: 800; text-decoration: none;">Ver Especialidades <i class="fa-solid fa-arrow-right"></i></a>
                 </div>
             </div>
         </div>
@@ -567,17 +613,35 @@
             }
         }
 
-        // Botón "Explorar cursos"
-        function abrirMenuCursos() {
-            window.scrollTo({ top: 0, behavior: 'smooth' });
+       // Botón "Explorar cursos" y "Ver Especialidades"
+       function abrirMenuCursos() {
+    // Sube suavemente al inicio
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+    
+    // Espera a que termine de subir para abrir el menú
+    setTimeout(() => {
+        if (window.innerWidth <= 900) {
+            // Comportamiento para Celulares
+            document.querySelector('.nav-links').classList.add('active');
+            document.getElementById('btn-cursos').classList.add('active');
+            document.querySelector('.menu-toggle i').classList.replace('fa-bars', 'fa-xmark');
+        } else {
+            // Comportamiento para PC: Fuerza la apertura del menú desplegable
+            const dropdownMenu = document.querySelector('.dropdown-menu');
+            dropdownMenu.style.display = 'block';
+            
+            // Cierra el menú automáticamente si el usuario hace clic en cualquier otro lado de la pantalla
             setTimeout(() => {
-                if (window.innerWidth <= 900) {
-                    document.querySelector('.nav-links').classList.add('active');
-                    document.getElementById('btn-cursos').classList.add('active');
-                    document.querySelector('.menu-toggle i').classList.replace('fa-bars', 'fa-xmark');
-                }
-            }, 600);
+                document.addEventListener('click', function closeDrop(e) {
+                    if (!e.target.closest('#btn-cursos')) {
+                        dropdownMenu.style.display = ''; // Lo vuelve a ocultar
+                        document.removeEventListener('click', closeDrop);
+                    }
+                });
+            }, 100);
         }
+    }, 600);
+}
 
         // Cerrar menú móvil al tocar otro enlace
         document.querySelectorAll('.nav-links a:not(.dropdown-menu a):not(#btn-cursos a)').forEach(link => {
