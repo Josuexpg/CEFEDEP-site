@@ -28,6 +28,12 @@
         html { scroll-behavior: smooth; }
         body { font-family: 'Montserrat', sans-serif; color: var(--dark); background-color: var(--white); overflow-x: hidden; }
 
+        /* Mejoras en tipografía y alineación general */
+        p { 
+            line-height: 1.7; 
+            margin-bottom: 15px; 
+        }
+
         /* Navegación */
         nav { background: rgba(255, 255, 255, 0.98); padding: 15px 5%; display: flex; justify-content: space-between; align-items: center; position: fixed; width: 100%; top: 0; z-index: 1000; box-shadow: 0 5px 25px rgba(0,0,0,0.1); }
         .brand { display: flex; align-items: center; text-decoration: none; }
@@ -44,7 +50,7 @@
 
         #dynamic-menu { display: flex; align-items: center; gap: 10px; }
 
-        /* ESTILOS PARA EL MENÚ DESPLEGABLE MEJORADO */
+        /* ESTILOS PARA EL MENÚ DESPLEGABLE */
         .dropdown { position: relative; display: inline-block; }
         .dropdown-menu { 
             display: none; position: absolute; background-color: white; 
@@ -62,7 +68,6 @@
         .dropdown-menu li a:hover { background-color: var(--light); color: var(--secondary) !important; padding-left: 25px; }
         .dropdown-menu li a i { margin-top: 2px; font-size: 0.9rem; width: 15px; text-align: center; }
         
-        /* Hover solo para PC */
         @media (min-width: 901px) {
             .dropdown:hover .dropdown-menu { display: block; animation: fadeIn 0.3s ease; }
         }
@@ -96,7 +101,7 @@
         .social-card { padding: 30px; border-radius: 20px; color: white; text-align: center; text-decoration: none; transition: 0.3s; display: flex; flex-direction: column; align-items: center; justify-content: center; }
         .social-card:hover { transform: translateY(-10px); box-shadow: 0 15px 30px rgba(0,0,0,0.2); }
         .social-card i { font-size: 3.5rem; margin-bottom: 15px; }
-        .bg-facebook { background: linear-gradient(45deg, #1877F2, #0e5a1f); } /* Mezclado sutil con tu verde */
+        .bg-facebook { background: linear-gradient(45deg, #1877F2, #0e5a1f); }
         .bg-instagram { background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888); }
         .bg-tiktok { background: linear-gradient(45deg, #000000, #25f4ee); color: white;}
 
@@ -114,6 +119,12 @@
         .course-img { width: 100%; height: 220px; object-fit: cover; }
         .course-info { padding: 30px; }
         .course-info h4 { font-size: 1.3rem; color: var(--primary); margin: 10px 0; font-family: 'Playfair Display', serif; }
+        .course-info p { text-align: left; }
+
+        /* Tarjetas de Servicios y EHEP */
+        .core-services { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; margin-top: 30px; }
+        .core-card { background: white; padding: 40px; border-radius: 20px; box-shadow: 0 10px 25px rgba(0,0,0,0.05); text-align: center; }
+        .core-icon { font-size: 3rem; color: var(--secondary); margin-bottom: 20px; }
 
         /* Modales y utilidades ocultas */
         .oculto-temporalmente { display: none !important; }
@@ -126,21 +137,46 @@
         .form-group { margin-bottom: 15px; }
         .form-group label { display: block; font-size: 0.8rem; font-weight: 700; margin-bottom: 5px; color: var(--primary); }
         .form-group input, .form-group select { width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 8px; font-family: inherit; }
+        
+        /* Estilo profesional para avisos internos del modal */
+        .form-info-box { 
+            background: rgba(107, 122, 90, 0.1); 
+            border-left: 4px solid var(--accent); 
+            padding: 12px 18px; 
+            margin-bottom: 25px; 
+            border-radius: 0 8px 8px 0;
+            font-size: 0.85rem; 
+            line-height: 1.5;
+            text-align: left;
+            color: var(--primary);
+        }
 
         /* Footer */
         footer { background: var(--primary); color: white; padding: 50px 10%; text-align: center; }
         .footer-logo { height: 80px; background: white; padding: 10px 20px; border-radius: 12px; margin-bottom: 20px; }
 
-        /* WHATSAPP CHAT WIDGET */
+        /* WHATSAPP CHAT WIDGET MEJORADO */
         .wa-widget-container { position: fixed; bottom: 30px; right: 30px; z-index: 2000; }
-        .wa-chat-box { position: absolute; bottom: 80px; right: 0; width: 320px; background: white; border-radius: 15px; box-shadow: 0 10px 25px rgba(0,0,0,0.2); display: none; overflow: hidden; animation: fadeInUp 0.4s ease; }
+        .wa-chat-box { position: absolute; bottom: 80px; right: 0; width: 340px; background: white; border-radius: 15px; box-shadow: 0 15px 35px rgba(0,0,0,0.2); display: none; overflow: hidden; animation: fadeInUp 0.4s ease; }
         @keyframes fadeInUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
-        .wa-chat-header { background: var(--whatsapp); color: white; padding: 20px; display: flex; align-items: center; gap: 15px; }
+
+        /* Cabecera Alineada */
+        .wa-chat-header { background: var(--whatsapp); color: white; padding: 20px; display: flex; align-items: center; justify-content: space-between; }
+        .wa-header-info { display: flex; align-items: center; gap: 12px; }
+        .wa-close { color: white; cursor: pointer; font-size: 1.8rem; line-height: 1; }
+
+        /* Cuerpo tipo chat */
+        .wa-chat-body { background-color: #e5ddd5; padding: 20px; min-height: 120px; }
+        .wa-msg { background: white; padding: 12px 16px; border-radius: 0 12px 12px 12px; font-size: 0.9rem; line-height: 1.5; color: #333; text-align: left; box-shadow: 0 1px 2px rgba(0,0,0,0.1); display: inline-block; position: relative; margin-bottom: 10px; }
+        .wa-msg::before { content: ""; position: absolute; top: 0; left: -10px; border-width: 0 10px 10px 0; border-style: solid; border-color: transparent white transparent transparent; }
+
+        /* Footer WhatsApp */
         .wa-chat-footer { padding: 15px; background: white; text-align: center; }
-        .wa-chat-btn { background: var(--whatsapp); color: white; text-decoration: none; padding: 10px 20px; border-radius: 20px; font-weight: 700; display: inline-flex; align-items: center; gap: 8px; transition: 0.3s; }
+        .wa-chat-btn { background: var(--whatsapp); color: white; text-decoration: none; padding: 12px 25px; border-radius: 30px; font-weight: 700; display: inline-flex; align-items: center; gap: 10px; transition: 0.3s; width: 100%; justify-content: center;}
+        .wa-chat-btn:hover { background: #1ebe57; transform: translateY(-2px); }
+        
         .wa-float-btn { width: 60px; height: 60px; background: var(--whatsapp); color: white; border-radius: 50%; display: flex; justify-content: center; align-items: center; font-size: 30px; cursor: pointer; box-shadow: 0 5px 15px rgba(0,0,0,0.3); transition: 0.3s; }
         .wa-float-btn:hover { transform: scale(1.1); }
-        .wa-close { position: absolute; top: 10px; right: 10px; color: white; cursor: pointer; font-size: 1.2rem; }
 
         /* MÓVILES */
         .menu-toggle { display: none; font-size: 1.8rem; color: var(--primary); cursor: pointer; }
@@ -154,7 +190,6 @@
             .nav-links > li { width: 100%; padding: 10px 20px; border-bottom: 1px solid #f0f0f0; }
             .nav-links > li:last-child { border-bottom: none; text-align: center; padding-top: 20px; }
             
-            /* Corrección del dropdown en móvil (ahora por clic) */
             .dropdown-menu { position: static; box-shadow: none; border: none; background: #f4f6f4; width: 100%; margin-top: 10px; border-radius: 8px; display: none; }
             .dropdown.active .dropdown-menu { display: block; }
         }
@@ -173,7 +208,7 @@
                 </div>
             </div>
             <div class="modal-body">
-                <div class="form-info-box"><strong>Incluye:</strong> 10h clases, Plataforma Classroom y Simulador.</div>
+                <div class="form-info-box"><strong>Incluye:</strong> 10h clases, Plataforma Classroom y Simulador exclusivo con IA.</div>
                 <form id="ehepForm">
                     <div class="form-group"><label>Nombre Completo</label><input type="text" id="formName" required></div>
                     <div class="form-group"><label>Carrera</label>
@@ -221,16 +256,14 @@
         <ul class="nav-links">
             <li><a href="#inicio">Inicio</a></li>
             
-            <!-- MENÚ DESPLEGABLE DE CURSOS MEJORADO -->
+            <!-- MENÚ DESPLEGABLE DE CURSOS -->
             <li class="dropdown" id="btn-cursos" onclick="toggleDropdownMobile(event)">
                 <a href="javascript:void(0)" style="cursor: pointer;">Cursos Avalados <i class="fa-solid fa-chevron-down" style="font-size: 0.7rem; margin-left: 3px;"></i></a>
                 <ul class="dropdown-menu">
-                    <!-- ÁREA DE SALUD -->
                     <li><div class="dropdown-category">Área de Salud</div></li>
                     <li><a href="curso_farmacia.html" target="_blank"><i class="fa-solid fa-pills" style="color: var(--accent);"></i> Auxiliar en Farmacia</a></li>
                     <li><a href="curso_enfermeria.html" target="_blank"><i class="fa-solid fa-user-nurse" style="color: var(--accent);"></i> Auxiliar en Enfermería</a></li>
                     
-                    <!-- ÁREA HUMANA -->
                     <li><div class="dropdown-category">Área Humana y Educación</div></li>
                     <li><a href="curso_asistencia_juridica.html" target="_blank"><i class="fa-solid fa-scale-balanced" style="color: var(--secondary);"></i> Asistencia Jurídica</a></li>
                     <li><a href="curso_asistencia_parvularia.html" target="_blank"><i class="fa-solid fa-children" style="color: var(--secondary);"></i> Asistencia Parvularia</a></li>
@@ -242,7 +275,6 @@
                     <li><a href="curso_facilitacion_grupos.html" target="_blank"><i class="fa-solid fa-users-rays" style="color: var(--secondary);"></i> Facilitación Corporativa</a></li>
                     <li><a href="curso_evaluacion_desempeno.html" target="_blank"><i class="fa-solid fa-clipboard-check" style="color: var(--secondary);"></i> Instrumentos de Evaluación</a></li>
 
-                    <!-- TECNOLOGÍA -->
                     <li><div class="dropdown-category">Ingeniería y Tecnología</div></li>
                     <li><a href="curso_python_automatizacion.html" target="_blank"><i class="fa-brands fa-python" style="color: #306998;"></i> Automatización con Python e IA</a></li>
                     <li><a href="curso_python_basica.html" target="_blank"><i class="fa-brands fa-python" style="color: #306998;"></i> Programación Básica Python</a></li>
@@ -306,7 +338,6 @@
         </div>
         
         <div class="courses-grid">
-            <!-- Destacado Salud -->
             <div class="course-card">
                 <img src="curso_salud.jpg" class="course-img" alt="Área de Salud">
                 <div class="course-info">
@@ -316,7 +347,6 @@
                     <a href="curso_farmacia.html" target="_blank" style="color: var(--primary); font-weight: 800; text-decoration: none;">Ver Especialidades <i class="fa-solid fa-arrow-right"></i></a>
                 </div>
             </div>
-            <!-- Destacado Humana -->
             <div class="course-card">
                 <img src="curso_humana.jpg" class="course-img" alt="Área Humana">
                 <div class="course-info">
@@ -326,7 +356,6 @@
                     <a href="curso_asistencia_juridica.html" target="_blank" style="color: var(--primary); font-weight: 800; text-decoration: none;">Ver Especialidades <i class="fa-solid fa-arrow-right"></i></a>
                 </div>
             </div>
-            <!-- Destacado Tecnología -->
             <div class="course-card">
                 <img src="curso_tecnologia.jpg" class="course-img" alt="Área Tecnología">
                 <div class="course-info">
@@ -352,7 +381,7 @@
         </div>
     </section>
 
-    <!-- SECCIÓN EHEP (Publicidad Simuladores) -->
+    <!-- SECCIÓN EHEP -->
     <section id="inscripcion" style="background-color: var(--white); border-bottom: 1px solid #eee;">
         <div class="section-header">
             <span class="featured-tag">Médicos / Enfermeros / Odontólogos</span>
@@ -360,25 +389,36 @@
             <div class="divider"></div>
         </div>
         <div class="core-services">
-            <div class="core-card" style="text-align: left; padding: 40px; border-left: 5px solid var(--secondary);">
-                <h3 style="color: var(--primary); margin-bottom: 20px;">Plataforma y Simulador</h3>
-                <ul style="list-style: none;">
-                    <li style="margin-bottom: 12px;"><i class="fa-solid fa-check-circle" style="color: var(--accent); margin-right: 10px;"></i> 10 horas intensivas de refuerzo.</li>
-                    <li style="margin-bottom: 12px;"><i class="fa-solid fa-check-circle" style="color: var(--accent); margin-right: 10px;"></i> Clases sincrónicas en Google Classroom.</li>
-                    <li style="margin-bottom: 12px;"><i class="fa-solid fa-check-circle" style="color: var(--accent); margin-right: 10px;"></i> Acceso exclusivo a nuestro simulador con IA.</li>
+            <!-- Tarjeta EHEP Alineada -->
+            <div class="core-card" style="text-align: left; padding: 40px; border-left: 5px solid var(--secondary); background: white; border-radius: 20px; box-shadow: 0 10px 25px rgba(0,0,0,0.05);">
+                <h3 style="color: var(--primary); margin-bottom: 20px; font-family: 'Playfair Display', serif; font-size: 1.8rem;">Plataforma y Simulador</h3>
+                <ul style="list-style: none; padding-left: 0; margin-bottom: 25px;">
+                    <li style="margin-bottom: 15px; display: flex; align-items: flex-start; gap: 10px; line-height: 1.5;">
+                        <i class="fa-solid fa-check-circle" style="color: var(--accent); margin-top: 4px;"></i> 
+                        <span>10 horas intensivas de refuerzo académico.</span>
+                    </li>
+                    <li style="margin-bottom: 15px; display: flex; align-items: flex-start; gap: 10px; line-height: 1.5;">
+                        <i class="fa-solid fa-check-circle" style="color: var(--accent); margin-top: 4px;"></i> 
+                        <span>Clases sincrónicas a través de Google Classroom.</span>
+                    </li>
+                    <li style="margin-bottom: 15px; display: flex; align-items: flex-start; gap: 10px; line-height: 1.5;">
+                        <i class="fa-solid fa-check-circle" style="color: var(--accent); margin-top: 4px;"></i> 
+                        <span>Acceso exclusivo a nuestro simulador con IA.</span>
+                    </li>
                 </ul>
-                <button onclick="openModal()" class="btn-main" style="margin-top: 20px;">Quiero Inscribirme</button>
+                <button onclick="openModal()" class="btn-main" style="width: 100%;">Quiero Inscribirme</button>
             </div>
+            
             <div class="core-card" style="background: var(--light);">
                 <i class="fa-solid fa-laptop-medical core-icon"></i>
-                <h3>Usuarios Registrados</h3>
-                <p style="margin-top: 15px;">Si ya eres parte de nuestro programa intensivo, accede directamente a tu plataforma de evaluación clínica.</p>
-                <button onclick="openAuthModal()" class="btn-main btn-outline" style="margin-top: 20px; color: var(--primary); border-color: var(--primary);">Entrar al Simulador</button>
+                <h3 style="font-family: 'Playfair Display', serif; font-size: 1.8rem; color: var(--primary);">Usuarios Registrados</h3>
+                <p style="margin-top: 15px; text-align: center;">Si ya eres parte de nuestro programa intensivo, accede directamente a tu plataforma de evaluación clínica.</p>
+                <button onclick="openAuthModal()" class="btn-main btn-outline" style="margin-top: 20px; color: var(--primary); border-color: var(--primary); width: 100%;">Entrar al Simulador</button>
             </div>
         </div>
     </section>
 
-    <!-- SECCIÓN DE REDES SOCIALES (NUEVA) -->
+    <!-- SECCIÓN DE REDES SOCIALES -->
     <section id="redes" style="background-color: var(--light);">
         <div class="section-header">
             <span class="featured-tag">Comunidad CEFEDEP</span>
@@ -411,19 +451,24 @@
         <p style="font-size: 0.8rem; margin-top: 10px;">Contacto Directo: +593 98 732 1024 | info@cefedep.com</p>
     </footer>
 
-    <!-- WIDGET WHATSAPP -->
+    <!-- WIDGET WHATSAPP MEJORADO -->
     <div class="wa-widget-container">
         <div class="wa-chat-box" id="waChatBox">
             <div class="wa-chat-header">
-                <i class="fa-brands fa-whatsapp"></i>
-                <div><div style="font-weight: 800;">Atención CEFEDEP</div><div style="font-size: 0.75rem;">En línea ahora</div></div>
+                <div class="wa-header-info">
+                    <i class="fa-brands fa-whatsapp" style="font-size: 1.8rem;"></i>
+                    <div>
+                        <div style="font-weight: 800; line-height: 1.2; font-size: 1rem;">Atención CEFEDEP</div>
+                        <div style="font-size: 0.75rem; opacity: 0.9;">En línea ahora</div>
+                    </div>
+                </div>
                 <span class="wa-close" onclick="closeWaChat()">&times;</span>
             </div>
             <div class="wa-chat-body">
-                <div class="wa-msg">¡Hola! 👋 Bienvenido a CEFEDEP ECUADOR. ¿Cómo podemos ayudarte hoy?</div>
+                <div class="wa-msg">¡Hola! 👋 Bienvenido a CEFEDEP ECUADOR.<br><br>¿Cómo podemos ayudarte hoy?</div>
             </div>
             <div class="wa-chat-footer">
-                <a href="https://wa.me/593987321024" target="_blank" class="wa-chat-btn">Chat en WhatsApp <i class="fa-solid fa-paper-plane"></i></a>
+                <a href="https://wa.me/593987321024" target="_blank" class="wa-chat-btn">Abrir Chat <i class="fa-solid fa-paper-plane"></i></a>
             </div>
         </div>
         <div class="wa-float-btn" onclick="toggleWaChat()"><i class="fa-brands fa-whatsapp"></i></div>
@@ -434,7 +479,7 @@
     <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
 
     <script>
-        // CONFIGURACIÓN DE FIREBASE (Tal cual la tenías)
+        // CONFIGURACIÓN DE FIREBASE
         const firebaseConfig = {
             apiKey: "AIzaSyDM8QEUh_FnvbGdcINHzsxUWkWGQQigSmo",
             authDomain: "cefedep-ecuador.firebaseapp.com",
@@ -530,8 +575,6 @@
                     document.querySelector('.nav-links').classList.add('active');
                     document.getElementById('btn-cursos').classList.add('active');
                     document.querySelector('.menu-toggle i').classList.replace('fa-bars', 'fa-xmark');
-                } else {
-                    // Simular hover en PC temporalmente si lo deseas
                 }
             }, 600);
         }
