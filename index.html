@@ -19,6 +19,9 @@
             --white: #ffffff;
             --dark: #1a1a1a;
             --whatsapp: #25D366;
+            --facebook: #1877F2;
+            --instagram: #E1306C;
+            --tiktok: #000000;
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -41,47 +44,37 @@
 
         #dynamic-menu { display: flex; align-items: center; gap: 10px; }
 
-/* ESTILOS PARA EL MENÚ DESPLEGABLE CATEGORIZADO */
+        /* ESTILOS PARA EL MENÚ DESPLEGABLE MEJORADO */
         .dropdown { position: relative; display: inline-block; }
         .dropdown-menu { 
             display: none; position: absolute; background-color: white; 
-            min-width: 380px; /* Más ancho para textos largos */
-            max-height: 75vh; /* Altura máxima */
-            overflow-y: auto; /* Scroll si hay muchos cursos */
+            min-width: 380px; max-height: 75vh; overflow-y: auto; 
             box-shadow: 0 10px 25px rgba(0,0,0,0.1); border-radius: 12px; 
             z-index: 2000; top: 100%; left: -50px; padding: 10px 0; 
             border-top: 3px solid var(--secondary); 
         }
-        /* Personalizar el scrollbar del menú */
         .dropdown-menu::-webkit-scrollbar { width: 6px; }
         .dropdown-menu::-webkit-scrollbar-thumb { background: #ddd; border-radius: 10px; }
-        
-        .dropdown-category {
-            font-size: 0.75rem; font-weight: 800; color: var(--secondary);
-            text-transform: uppercase; letter-spacing: 1px;
-            padding: 15px 20px 5px; background: #fdfdfd;
-            border-top: 1px solid #eee; margin-top: 5px;
-        }
+        .dropdown-category { font-size: 0.75rem; font-weight: 800; color: var(--secondary); text-transform: uppercase; letter-spacing: 1px; padding: 15px 20px 5px; background: #fdfdfd; border-top: 1px solid #eee; margin-top: 5px; }
         .dropdown-menu li:first-child .dropdown-category { border-top: none; margin-top: 0; padding-top: 10px; }
-        
         .dropdown-menu li { list-style: none; }
-        .dropdown-menu li a { 
-            color: var(--primary) !important; padding: 10px 20px; display: flex; 
-            align-items: flex-start; gap: 10px; text-transform: none !important; 
-            font-weight: 600 !important; font-size: 0.8rem !important; 
-            line-height: 1.3; transition: 0.3s background; 
-        }
+        .dropdown-menu li a { color: var(--primary) !important; padding: 10px 20px; display: flex; align-items: flex-start; gap: 10px; text-transform: none !important; font-weight: 600 !important; font-size: 0.8rem !important; line-height: 1.3; transition: 0.3s background; }
         .dropdown-menu li a:hover { background-color: var(--light); color: var(--secondary) !important; padding-left: 25px; }
         .dropdown-menu li a i { margin-top: 2px; font-size: 0.9rem; width: 15px; text-align: center; }
         
-        .dropdown:hover .dropdown-menu { display: block; animation: fadeIn 0.3s ease; }
+        /* Hover solo para PC */
+        @media (min-width: 901px) {
+            .dropdown:hover .dropdown-menu { display: block; animation: fadeIn 0.3s ease; }
+        }
+
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
 
         /* Hero Section */
         .hero { height: 80vh; background: linear-gradient(rgba(51, 66, 53, 0.8), rgba(51, 66, 53, 0.6)), url('https://images.unsplash.com/photo-1524178232363-1fb2b075b655?auto=format&fit=crop&w=1950&q=80'); background-size: cover; background-position: center; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; color: var(--white); padding: 0 10%; margin-top: 85px; }
         .hero h1 { font-family: 'Playfair Display', serif; font-size: 3.5rem; margin-bottom: 1rem; line-height: 1.1; }
         .hero p { font-size: 1.2rem; max-width: 800px; margin-bottom: 2.5rem; font-weight: 300; }
         
-        .btn-main { background: var(--secondary); color: white; padding: 18px 30px; text-decoration: none; border-radius: 50px; font-weight: 800; text-transform: uppercase; letter-spacing: 1px; transition: 0.4s; box-shadow: 0 10px 30px rgba(188, 160, 91, 0.4); display: inline-block; cursor: pointer; border: none; }
+        .btn-main { background: var(--secondary); color: white; padding: 18px 30px; text-decoration: none; border-radius: 50px; font-weight: 800; text-transform: uppercase; letter-spacing: 1px; transition: 0.4s; box-shadow: 0 10px 30px rgba(188, 160, 91, 0.4); display: inline-block; cursor: pointer; border: none; font-size: 0.9rem;}
         .btn-main:hover { transform: translateY(-3px); background: var(--white); color: var(--primary); }
         .btn-outline { background: transparent; border: 2px solid white; box-shadow: none; }
         .btn-outline:hover { background: white; color: var(--primary); border-color: white; }
@@ -91,44 +84,39 @@
         .section-header h2 { font-family: 'Playfair Display', serif; font-size: 2.5rem; color: var(--primary); }
         .divider { width: 60px; height: 4px; background: var(--secondary); margin: 15px auto; border-radius: 10px; }
 
-        /* Clase para ocultar secciones temporalmente */
-        .oculto-temporalmente { display: none !important; }
+        /* GALERÍA DE IMÁGENES REALES */
+        .gallery-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; }
+        .gallery-item { position: relative; border-radius: 15px; overflow: hidden; box-shadow: 0 10px 20px rgba(0,0,0,0.1); cursor: pointer; }
+        .gallery-item img { width: 100%; height: 280px; object-fit: cover; transition: transform 0.5s ease; display: block; }
+        .gallery-item:hover img { transform: scale(1.08); }
+        .gallery-overlay { position: absolute; bottom: 0; left: 0; width: 100%; background: linear-gradient(transparent, rgba(0,0,0,0.8)); padding: 30px 20px 20px; color: white; font-weight: 700; font-size: 1.1rem; }
 
-        /* SECCIÓN DESTACADA: PREGUNTAS DE ALTO IMPACTO */
-        .featured-banner { 
-            background: linear-gradient(rgba(26, 26, 26, 0.85), rgba(26, 26, 26, 0.85)), url('preguntas.jpg'); 
-            background-size: cover; 
-            background-position: center; 
-            background-attachment: fixed;
-            border-radius: 30px; 
-            padding: 70px; 
-            color: white; 
-            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
-            border-left: 8px solid var(--secondary);
-        }
+        /* REDES SOCIALES SECCIÓN */
+        .social-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 30px; margin-top: 30px; }
+        .social-card { padding: 30px; border-radius: 20px; color: white; text-align: center; text-decoration: none; transition: 0.3s; display: flex; flex-direction: column; align-items: center; justify-content: center; }
+        .social-card:hover { transform: translateY(-10px); box-shadow: 0 15px 30px rgba(0,0,0,0.2); }
+        .social-card i { font-size: 3.5rem; margin-bottom: 15px; }
+        .bg-facebook { background: linear-gradient(45deg, #1877F2, #0e5a1f); } /* Mezclado sutil con tu verde */
+        .bg-instagram { background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888); }
+        .bg-tiktok { background: linear-gradient(45deg, #000000, #25f4ee); color: white;}
+
+        /* PREGUNTAS ALTO IMPACTO */
+        .featured-banner { background: linear-gradient(rgba(26, 26, 26, 0.85), rgba(26, 26, 26, 0.85)), url('preguntas.jpg'); background-size: cover; background-position: center; background-attachment: fixed; border-radius: 30px; padding: 70px; color: white; box-shadow: 0 20px 40px rgba(0,0,0,0.3); border-left: 8px solid var(--secondary); }
         .featured-tag { background: var(--secondary); color: white; padding: 6px 15px; border-radius: 4px; font-size: 0.75rem; font-weight: 800; text-transform: uppercase; margin-bottom: 20px; display: inline-block; }
         .featured-banner h3 { font-family: 'Playfair Display', serif; font-size: 2.5rem; margin-bottom: 20px; color: var(--secondary); }
         .featured-banner p { font-size: 1.1rem; line-height: 1.6; margin-bottom: 25px; max-width: 900px; }
-        .featured-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; margin-top: 30px; }
-        .feat-item { display: flex; align-items: flex-start; gap: 12px; font-size: 0.95rem; }
-        .feat-item i { color: var(--secondary); font-size: 1.2rem; margin-top: 3px; }
 
-        /* Servicios */
-        .core-services { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
-        .core-card { background: var(--white); border-radius: 20px; padding: 40px 30px; border: 1px solid #eee; text-align: center; transition: 0.3s; }
-        .core-card:hover { transform: translateY(-10px); box-shadow: 0 15px 35px rgba(0,0,0,0.07); border-color: var(--secondary); }
-        .core-icon { font-size: 3rem; color: var(--primary); margin-bottom: 20px; }
-        .metric-highlight { font-family: 'Playfair Display', serif; font-size: 3rem; font-weight: 900; color: var(--secondary); margin-top: -10px; margin-bottom: 5px; line-height: 1; }
-        .metric-label { display: block; font-size: 0.8rem; font-weight: 800; text-transform: uppercase; color: var(--accent); letter-spacing: 1px; margin-bottom: 20px; }   
-
-        /* Cursos */
+        /* Cursos Mejorados */
         .courses-section { background: var(--light); }
-        .courses-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 25px; }
-        .course-card { background: white; border-radius: 15px; overflow: hidden; box-shadow: 0 5px 15px rgba(0,0,0,0.05); }
-        .course-img { width: 100%; height: 200px; object-fit: cover; }
-        .course-info { padding: 25px; }
+        .courses-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
+        .course-card { background: white; border-radius: 20px; overflow: hidden; box-shadow: 0 10px 25px rgba(0,0,0,0.05); transition: 0.3s; border: 1px solid transparent;}
+        .course-card:hover { transform: translateY(-8px); border-color: var(--secondary); box-shadow: 0 15px 35px rgba(188, 160, 91, 0.15); }
+        .course-img { width: 100%; height: 220px; object-fit: cover; }
+        .course-info { padding: 30px; }
+        .course-info h4 { font-size: 1.3rem; color: var(--primary); margin: 10px 0; font-family: 'Playfair Display', serif; }
 
-        /* NUEVOS ESTILOS: POPUP Y FORMULARIO */
+        /* Modales y utilidades ocultas */
+        .oculto-temporalmente { display: none !important; }
         .modal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); z-index: 3000; display: none; align-items: center; justify-content: center; backdrop-filter: blur(5px); }
         .promo-modal { background: var(--white); width: 90%; max-width: 500px; border-radius: 20px; position: relative; overflow: hidden; animation: zoomIn 0.3s ease; }
         @keyframes zoomIn { from { transform: scale(0.8); opacity: 0; } to { transform: scale(1); opacity: 1; } }
@@ -138,46 +126,43 @@
         .form-group { margin-bottom: 15px; }
         .form-group label { display: block; font-size: 0.8rem; font-weight: 700; margin-bottom: 5px; color: var(--primary); }
         .form-group input, .form-group select { width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 8px; font-family: inherit; }
-        .form-info-box { background: #f0f4f1; padding: 15px; border-radius: 10px; font-size: 0.85rem; margin-bottom: 20px; border-left: 4px solid var(--secondary); }
 
         /* Footer */
         footer { background: var(--primary); color: white; padding: 50px 10%; text-align: center; }
         .footer-logo { height: 80px; background: white; padding: 10px 20px; border-radius: 12px; margin-bottom: 20px; }
-        .social-links { display: flex; justify-content: center; gap: 20px; margin-top: 20px; }
-        .social-links a { color: white; font-size: 1.5rem; transition: 0.3s; }
-        .social-links a:hover { color: var(--secondary); }
 
         /* WHATSAPP CHAT WIDGET */
         .wa-widget-container { position: fixed; bottom: 30px; right: 30px; z-index: 2000; }
         .wa-chat-box { position: absolute; bottom: 80px; right: 0; width: 320px; background: white; border-radius: 15px; box-shadow: 0 10px 25px rgba(0,0,0,0.2); display: none; overflow: hidden; animation: fadeInUp 0.4s ease; }
         @keyframes fadeInUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
         .wa-chat-header { background: var(--whatsapp); color: white; padding: 20px; display: flex; align-items: center; gap: 15px; }
-        .wa-chat-header i { font-size: 2rem; }
-        .wa-chat-body { padding: 20px; background: #f0f2f5; font-size: 0.9rem; position: relative; }
-        .wa-msg { background: white; padding: 15px; border-radius: 10px; box-shadow: 0 2px 5px rgba(0,0,0,0.05); line-height: 1.4; }
         .wa-chat-footer { padding: 15px; background: white; text-align: center; }
         .wa-chat-btn { background: var(--whatsapp); color: white; text-decoration: none; padding: 10px 20px; border-radius: 20px; font-weight: 700; display: inline-flex; align-items: center; gap: 8px; transition: 0.3s; }
-        .wa-chat-btn:hover { background: #1eb954; }
         .wa-float-btn { width: 60px; height: 60px; background: var(--whatsapp); color: white; border-radius: 50%; display: flex; justify-content: center; align-items: center; font-size: 30px; cursor: pointer; box-shadow: 0 5px 15px rgba(0,0,0,0.3); transition: 0.3s; }
         .wa-float-btn:hover { transform: scale(1.1); }
         .wa-close { position: absolute; top: 10px; right: 10px; color: white; cursor: pointer; font-size: 1.2rem; }
 
-        /* ESTILOS PARA EL MENÚ HAMBURGUESA */
+        /* MÓVILES */
         .menu-toggle { display: none; font-size: 1.8rem; color: var(--primary); cursor: pointer; }
 
         @media (max-width: 900px) { 
             .hero h1 { font-size: 2.2rem; } 
             .featured-banner { padding: 40px 30px; }
             .menu-toggle { display: block; }
-            .nav-links { display: none; flex-direction: column; position: absolute; top: 85px; left: 0; width: 100%; background: rgba(255, 255, 255, 0.98); padding: 20px 0; box-shadow: 0 10px 15px rgba(0,0,0,0.1); text-align: center; gap: 15px; }
+            .nav-links { display: none; flex-direction: column; position: absolute; top: 85px; left: 0; width: 100%; background: rgba(255, 255, 255, 0.98); padding: 20px 0; box-shadow: 0 10px 15px rgba(0,0,0,0.1); text-align: left; gap: 0; }
             .nav-links.active { display: flex; }
-            .dropdown-menu { position: relative; box-shadow: none; border: none; background: #f9f9f9; display: none; }
-            .dropdown:hover .dropdown-menu { display: block; }
+            .nav-links > li { width: 100%; padding: 10px 20px; border-bottom: 1px solid #f0f0f0; }
+            .nav-links > li:last-child { border-bottom: none; text-align: center; padding-top: 20px; }
+            
+            /* Corrección del dropdown en móvil (ahora por clic) */
+            .dropdown-menu { position: static; box-shadow: none; border: none; background: #f4f6f4; width: 100%; margin-top: 10px; border-radius: 8px; display: none; }
+            .dropdown.active .dropdown-menu { display: block; }
         }
     </style>
 </head>
 <body>
 
+    <!-- MODAL INSCRIPCIÓN EHEP -->
     <div class="modal-overlay" id="registrationModal">
         <div class="promo-modal">
             <span class="close-modal" onclick="closeModal()">&times;</span>
@@ -188,80 +173,58 @@
                 </div>
             </div>
             <div class="modal-body">
-                <div class="form-info-box">
-                    <strong>Incluye:</strong> 10h clases sincrónicas/grabadas, Plataforma Classroom, Simulador automático y material de estudio.
-                </div>
+                <div class="form-info-box"><strong>Incluye:</strong> 10h clases, Plataforma Classroom y Simulador.</div>
                 <form id="ehepForm">
-                    <div class="form-group">
-                        <label>Nombre Completo</label>
-                        <input type="text" id="formName" placeholder="Ej. Juan Pérez" required>
-                    </div>
-                    <div class="form-group">
-                        <label>Carrera</label>
+                    <div class="form-group"><label>Nombre Completo</label><input type="text" id="formName" required></div>
+                    <div class="form-group"><label>Carrera</label>
                         <select id="formCourse" required>
-                            <option value="">Seleccione su carrera</option>
-                            <option value="Medicina">Medicina</option>
-                            <option value="Enfermería">Enfermería</option>
-                            <option value="Odontología">Odontología</option>
+                            <option value="">Seleccione</option><option value="Medicina">Medicina</option><option value="Enfermería">Enfermería</option><option value="Odontología">Odontología</option>
                         </select>
                     </div>
-                    <div class="form-group">
-                        <label>WhatsApp (con código de país)</label>
-                        <input type="tel" id="formPhone" placeholder="+593 999 999 999" required>
-                    </div>
-                    <div class="form-group">
-                        <label>Correo de Google (Gmail)</label>
-                        <input type="email" id="formEmail" placeholder="usuario@gmail.com" required>
-                        <small id="emailError" style="color: red; display: none; font-size: 0.7rem;">Debe ser un correo @gmail.com para Google Classroom.</small>
-                    </div>
+                    <div class="form-group"><label>WhatsApp</label><input type="tel" id="formPhone" required></div>
+                    <div class="form-group"><label>Correo (Gmail)</label><input type="email" id="formEmail" required><small id="emailError" style="color: red; display: none;">Debe ser @gmail.com.</small></div>
                     <button type="submit" class="btn-main" style="width: 100%; border-radius: 10px;">Completar Inscripción</button>
                 </form>
             </div>
         </div>
     </div>
 
-    <!-- MODAL DE INICIO DE SESIÓN DE FIREBASE -->
+    <!-- MODAL FIREBASE -->
     <div class="modal-overlay" id="authModal">
         <div class="promo-modal">
             <span class="close-modal" onclick="closeAuthModal()">&times;</span>
             <div class="modal-header-img" style="height: 100px;">
-                <h3 style="font-family: 'Playfair Display'; font-size: 1.5rem;">Plataforma de Simuladores</h3>
+                <h3 style="font-family: 'Playfair Display'; font-size: 1.5rem;">Simuladores Médicos</h3>
             </div>
             <div class="modal-body">
-                <div class="form-group">
-                    <label>Correo Electrónico</label>
-                    <input type="email" id="authEmail" placeholder="usuario@correo.com">
-                </div>
-                <div class="form-group">
-                    <label>Contraseña</label>
-                    <input type="password" id="authPassword" placeholder="******">
-                </div>
+                <div class="form-group"><label>Correo Electrónico</label><input type="email" id="authEmail"></div>
+                <div class="form-group"><label>Contraseña</label><input type="password" id="authPassword"></div>
                 <p id="authError" style="color: red; font-size: 0.8rem; display: none; margin-bottom: 10px;"></p>
                 <button class="btn-main" onclick="loginFirebase()" style="width: 100%; border-radius: 10px; margin-bottom: 10px;">Ingresar</button>
-                <button class="btn-main btn-outline" onclick="registerFirebase()" style="width: 100%; border-radius: 10px; color: var(--primary); border-color: var(--primary);">Crear Cuenta Nueva</button>
+                <button class="btn-main btn-outline" onclick="registerFirebase()" style="width: 100%; border-radius: 10px; color: var(--primary); border-color: var(--primary);">Crear Cuenta</button>
             </div>
         </div>
     </div>
 
+    <!-- MENÚ SUPERIOR -->
     <nav>
         <a href="#inicio" class="brand">
-            <img src="LOGO_CEFEDEP.png" alt="Logo">
+            <img src="LOGO_CEFEDEP.png" alt="Logo CEFEDEP">
             <div class="brand-text">
                 <span class="brand-name">CEFEDEP</span>
                 <span class="brand-sub">ECUADOR</span>
             </div>
-            <div class="menu-toggle" onclick="toggleMobileMenu()">
-                <i class="fa-solid fa-bars"></i>
-            </div>
         </a>
-<ul class="nav-links">
-            <li><a href="index.html#consultoria">Consultoría</a></li>
+        <div class="menu-toggle" onclick="toggleMobileMenu()">
+            <i class="fa-solid fa-bars"></i>
+        </div>
+        <ul class="nav-links">
+            <li><a href="#inicio">Inicio</a></li>
             
-            <!-- MENÚ DESPLEGABLE DE CURSOS -->
-            <li class="dropdown">
-                <a href="#cursos" style="cursor: pointer;">Cursos Formativos <i class="fa-solid fa-chevron-down" style="font-size: 0.7rem; margin-left: 3px;"></i></a>
+            <!-- MENÚ DESPLEGABLE DE CURSOS MEJORADO -->
+            <li class="dropdown" id="btn-cursos" onclick="toggleDropdownMobile(event)">
+                <a href="javascript:void(0)" style="cursor: pointer;">Cursos Avalados <i class="fa-solid fa-chevron-down" style="font-size: 0.7rem; margin-left: 3px;"></i></a>
                 <ul class="dropdown-menu">
-                    
                     <!-- ÁREA DE SALUD -->
                     <li><div class="dropdown-category">Área de Salud</div></li>
                     <li><a href="curso_farmacia.html" target="_blank"><i class="fa-solid fa-pills" style="color: var(--accent);"></i> Auxiliar en Farmacia</a></li>
@@ -271,30 +234,31 @@
                     <li><div class="dropdown-category">Área Humana y Educación</div></li>
                     <li><a href="curso_asistencia_juridica.html" target="_blank"><i class="fa-solid fa-scale-balanced" style="color: var(--secondary);"></i> Asistencia Jurídica</a></li>
                     <li><a href="curso_asistencia_parvularia.html" target="_blank"><i class="fa-solid fa-children" style="color: var(--secondary);"></i> Asistencia Parvularia</a></li>
-                    <li><a href="curso_cosmeticos.html" target="_blank"><i class="fa-solid fa-flask" style="color: var(--secondary);"></i> Formulación y Confección Artesanal de Productos Cosméticos</a></li>
-                    <li><a href="curso_tramites_judiciales.html" target="_blank"><i class="fa-solid fa-file-signature" style="color: var(--secondary);"></i> Gestión Operativa de Trámites Judiciales</a></li>
-                    <li><a href="curso_recursos_didacticos.html" target="_blank"><i class="fa-solid fa-laptop-code" style="color: var(--secondary);"></i> Diseño de Recursos Didácticos Interactivos (Digitales)</a></li>
-                    <li><a href="curso_apoyo_pedagogico.html" target="_blank"><i class="fa-solid fa-puzzle-piece" style="color: var(--secondary);"></i> Estrategias de Apoyo Pedagógico (Parvularia)</a></li>
-                    <li><a href="curso_proyectos_educativos.html" target="_blank"><i class="fa-solid fa-lightbulb" style="color: var(--secondary);"></i> Elaboración de Proyectos Educativos con Innovación</a></li>
-                    <li><a href="curso_facilitacion_grupos.html" target="_blank"><i class="fa-solid fa-users-rays" style="color: var(--secondary);"></i> Técnicas de Facilitación y Conducción (Capacitación Corporativa)</a></li>
-                    <li><a href="curso_evaluacion_desempeno.html" target="_blank"><i class="fa-solid fa-clipboard-check" style="color: var(--secondary);"></i> Diseño de Instrumentos de Evaluación del Aprendizaje</a></li>
+                    <li><a href="curso_cosmeticos.html" target="_blank"><i class="fa-solid fa-flask" style="color: var(--secondary);"></i> Cosmética Artesanal</a></li>
+                    <li><a href="curso_tramites_judiciales.html" target="_blank"><i class="fa-solid fa-file-signature" style="color: var(--secondary);"></i> Trámites Judiciales</a></li>
+                    <li><a href="curso_recursos_didacticos.html" target="_blank"><i class="fa-solid fa-laptop-code" style="color: var(--secondary);"></i> Recursos Didácticos Digitales</a></li>
+                    <li><a href="curso_apoyo_pedagogico.html" target="_blank"><i class="fa-solid fa-puzzle-piece" style="color: var(--secondary);"></i> Estrategias Parvularia</a></li>
+                    <li><a href="curso_proyectos_educativos.html" target="_blank"><i class="fa-solid fa-lightbulb" style="color: var(--secondary);"></i> Proyectos Curriculares (IES)</a></li>
+                    <li><a href="curso_facilitacion_grupos.html" target="_blank"><i class="fa-solid fa-users-rays" style="color: var(--secondary);"></i> Facilitación Corporativa</a></li>
+                    <li><a href="curso_evaluacion_desempeno.html" target="_blank"><i class="fa-solid fa-clipboard-check" style="color: var(--secondary);"></i> Instrumentos de Evaluación</a></li>
 
-                    <!-- ÁREA DE INGENIERÍA Y TECNOLOGÍAS -->
-                    <li><div class="dropdown-category">Ingeniería y Tecnologías</div></li>
-                    <li><a href="curso_python_automatizacion.html" target="_blank"><i class="fa-brands fa-python" style="color: #306998;"></i> Diseño de Soluciones y Automatización (Python)</a></li>
-                    <li><a href="curso_python_basica.html" target="_blank"><i class="fa-brands fa-python" style="color: #306998;"></i> Programación Básica y Resolución de Problemas (Python)</a></li>
-                    <li><a href="curso_python_datos.html" target="_blank"><i class="fa-solid fa-chart-pie" style="color: #306998;"></i> Procesamiento y Visualización de Datos (Python)</a></li>
-                    <li><a href="curso_python_vision.html" target="_blank"><i class="fa-solid fa-eye" style="color: #306998;"></i> Técnicas de Visión por Computadora (Python)</a></li>
+                    <!-- TECNOLOGÍA -->
+                    <li><div class="dropdown-category">Ingeniería y Tecnología</div></li>
+                    <li><a href="curso_python_automatizacion.html" target="_blank"><i class="fa-brands fa-python" style="color: #306998;"></i> Automatización con Python e IA</a></li>
+                    <li><a href="curso_python_basica.html" target="_blank"><i class="fa-brands fa-python" style="color: #306998;"></i> Programación Básica Python</a></li>
+                    <li><a href="curso_python_datos.html" target="_blank"><i class="fa-solid fa-chart-pie" style="color: #306998;"></i> Visualización de Datos Python</a></li>
+                    <li><a href="curso_python_vision.html" target="_blank"><i class="fa-solid fa-eye" style="color: #306998;"></i> Visión por Computadora Python</a></li>
                     <li><a href="curso_desarrollo_web.html" target="_blank"><i class="fa-solid fa-code" style="color: #306998;"></i> Desarrollo Web</a></li>
-                    <li><a href="curso_cloud_computing.html" target="_blank"><i class="fa-solid fa-cloud" style="color: #306998;"></i> Fundamentos de Cloud Computing</a></li>
+                    <li><a href="curso_cloud_computing.html" target="_blank"><i class="fa-solid fa-cloud" style="color: #306998;"></i> Cloud Computing</a></li>
                 </ul>
             </li>
 
-            <li><a href="index.html#inscripcion" style="color: var(--secondary);">EHEP 2026</a></li>
-            <li><a href="index.html#contacto">Contacto</a></li>
+            <li><a href="#inscripcion" style="color: var(--secondary);">Simulador EHEP</a></li>
+            <li><a href="#galeria">Galería</a></li>
+            <li><a href="#redes">Redes</a></li>
             
             <li id="dynamic-menu">
-                <a href="#" onclick="openAuthModal()" class="login-btn">INICIAR SESIÓN SIMULADORES</a>
+                <a href="#" onclick="openAuthModal()" class="login-btn">INICIAR SESIÓN EHEP</a>
             </li>
         </ul>
     </nav>
@@ -302,199 +266,167 @@
     <section class="hero" id="inicio">
         <h1>Liderazgo en Consultoría Educativa Superior</h1>
         <p>Acompañamos a instituciones y profesionales hacia la acreditación, el éxito en exámenes nacionales y la excelencia académica integral.</p>
-        
         <div style="display: flex; gap: 20px; flex-wrap: wrap; justify-content: center; margin-top: 20px;">
-            <a href="javascript:void(0)" onclick="openModal()" class="btn-main">Inscríbete Curso EHEP 2026</a>
-            <a href="#consultoria" class="btn-main btn-outline">Servicios Institucionales</a>
+            <a href="javascript:void(0)" onclick="openModal()" class="btn-main">Simulador EHEP 2026</a>
+            <a href="#cursos" class="btn-main btn-outline">Ver Catálogo de Cursos</a>
         </div>        
     </section>
 
-    <section id="inscripcion" style="background-color: var(--light); border-bottom: 1px solid #eee;">
+    <!-- GALERÍA DE TRAYECTORIA INSTITUCIONAL -->
+    <section id="galeria" style="background: var(--white);">
         <div class="section-header">
-            <span class="featured-tag">Capacitación Intensiva</span>
-            <h2>Preparación Examen EHEP</h2>
+            <span class="featured-tag">Nuestra Trayectoria</span>
+            <h2>Transformando la Educación</h2>
             <div class="divider"></div>
-            <p>Medicina | Enfermería | Odontología</p>
+            <p style="color: #666; font-size: 1.1rem;">Impactamos a profesionales e instituciones de todo el Ecuador con certificaciones y capacitaciones de altísima calidad.</p>
         </div>
-
-        <div class="core-services">
-            <div class="core-card" style="text-align: left; padding: 40px;">
-                <h3 style="color: var(--secondary); margin-bottom: 20px;">Detalles del Programa</h3>
-                <ul style="list-style: none;">
-                    <li style="margin-bottom: 12px;"><i class="fa-solid fa-check-circle" style="color: var(--accent); margin-right: 10px;"></i> <strong>Duración:</strong> 10 horas intensivas.</li>
-                    <li style="margin-bottom: 12px;"><i class="fa-solid fa-check-circle" style="color: var(--accent); margin-right: 10px;"></i> <strong>Metodología:</strong> Clases sincrónicas y acceso a grabaciones.</li>
-                    <li style="margin-bottom: 12px;"><i class="fa-solid fa-check-circle" style="color: var(--accent); margin-right: 10px;"></i> <strong>Plataforma:</strong> Google Classroom (Material descargable).</li>
-                    <li style="margin-bottom: 12px;"><i class="fa-solid fa-check-circle" style="color: var(--accent); margin-right: 10px;"></i> <strong>Simulador:</strong> Habilitación automática al inscribirse.</li>
-                </ul>
-                <div style="margin-top: 30px;">
-                    <button onclick="openModal()" class="btn-main">Iniciar Inscripción Ahora</button>
-                </div>
+        <div class="gallery-grid">
+            <div class="gallery-item">
+                <img src="galeria_diplomas.jpg" alt="Entrega de Diplomas">
+                <div class="gallery-overlay">Entrega de Certificaciones Avaladas</div>
             </div>
-            <div class="core-card">
-                <i class="fa-solid fa-laptop-medical core-icon"></i>
-                <h3>Proceso de Registro</h3>
-                <p style="font-size: 0.9rem; line-height: 1.8;">
-                    1. Llena el formulario oficial.<br>
-                    2. Recibe los datos de pago vía WhatsApp.<br>
-                    3. Reporta tu transferencia.<br>
-                    4. ¡Acceso inmediato al grupo y plataforma!
-                </p>
+            <div class="gallery-item">
+                <img src="galeria_universidad.jpg" alt="Capacitación Universitaria">
+                <div class="gallery-overlay">Capacitación a Docentes Universitarios</div>
+            </div>
+            <div class="gallery-item">
+                <img src="galeria_artes.jpg" alt="Trabajo Institucional">
+                <div class="gallery-overlay">Innovación y Excelencia Institucional</div>
             </div>
         </div>
     </section>
 
-    <section id="especialidad">
-        <div class="featured-banner">
-            <span class="featured-tag">Exclusivo para IES</span>
-            <h3>Elaboración de Preguntas de Alto Impacto</h3>
-            <p>
-                Diseñamos un programa intensivo de <strong>40 horas</strong> dirigido a facultades y cuerpos docentes que buscan elevar su prestigio académico. 
-                Capacitamos a sus docentes en la creación técnica de reactivos de alta complejidad, alineados estrictamente a los estándares de los exámenes nacionales de habilitación profesional.
-            </p>
-            
-            <div class="featured-grid">
-                <div class="feat-item">
-                    <i class="fa-solid fa-stethoscope"></i>
-                    <span><strong>Áreas Críticas:</strong> Medicina, Odontología, Enfermería y Ciencias de la Salud.</span>
-                </div>
-                <div class="feat-item">
-                    <i class="fa-solid fa-chart-line"></i>
-                    <span><strong>Impacto Directo:</strong> Mejora inmediata en el índice de aprobación de sus egresados en el ejercicio profesional.</span>
-                </div>
-                <div class="feat-item">
-                    <i class="fa-solid fa-chalkboard-user"></i>
-                    <span><strong>Metodología:</strong> Entrenamiento práctico para docentes en la construcción de preguntas de razonamiento clínico.</span>
-                </div>
-            </div>
-
-            <div style="margin-top: 40px;">
-                <a href="https://wa.me/593987321024?text=Deseo%20más%20información%20sobre%20el%20Curso%20de%20Preguntas%20de%20Alto%20Impacto%20para%20Instituciones" target="_blank" class="btn-main">
-                    Solicitar Propuesta Institucional
-                </a>
-            </div>
-        </div>
-    </section>
-
-    <section id="consultoria">
-        <div class="section-header">
-            <h2>Soluciones Institucionales</h2>
-            <div class="divider"></div>
-            <p style="max-width: 600px; margin: 0 auto; color: #666;">Resultados tangibles que respaldan nuestro compromiso con la excelencia académica.</p>
-        </div>
-        
-        <div class="core-services">
-            <div class="core-card oculto-temporalmente">
-                <i class="fa-solid fa-building-columns core-icon"></i>
-                <div class="metric-highlight">2</div>
-                <span class="metric-label">Institutos Creados</span>
-                
-                <h3>Creación de Institutos</h3>
-                <p>Asesoría legal y académica para la creación y aprobación de Institutos Tecnológicos y Universitarios.</p>
-            </div>
-            
-            <div class="core-card oculto-temporalmente" id="tesis">
-                <i class="fa-solid fa-graduation-cap core-icon"></i>
-                <div class="metric-highlight">+50</div>
-                <span class="metric-label">Titulados de Grado & Posgrado </span>
-                
-                <h3>Asesoría de Tesis</h3>
-                <p>Desarrollo y corrección de proyectos de grado con aplicación de normas APA/Vancouver y filtros antiplagio.</p>
-            </div>
-            
-            <div class="core-card">
-                <i class="fa-solid fa-award core-icon"></i>
-                <div class="metric-highlight">+15</div>
-                <span class="metric-label">Años de Experiencia</span>
-                
-                <h3>Acreditación y Calidad</h3>
-                <p>Consultoría experta en procesos de evaluación y acreditación para instituciones superiores ante el CACES y organismos internacionales.</p>
-            </div>
-        </div>
-    </section>
-
+    <!-- TOP CURSOS PROFESIONALES -->
     <section id="cursos" class="courses-section">
         <div class="section-header">
             <span class="featured-tag" style="background: var(--primary);">Educación Continua</span>
-            <h2>Capacitación Profesional</h2>
+            <h2>Programas Destacados</h2>
             <div class="divider"></div>
-            <p style="color: #666; font-size: 1.1rem; max-width: 700px; margin: 0 auto;">Programas avalados para potenciar tu currículum y abrir nuevas oportunidades laborales.</p>
+            <p style="color: #666; font-size: 1.1rem; max-width: 700px; margin: 0 auto;">Potencia tu currículum con nuestras áreas de mayor demanda laboral.</p>
         </div>
+        
         <div class="courses-grid">
+            <!-- Destacado Salud -->
             <div class="course-card">
-                <img src="https://images.unsplash.com/photo-1587854692152-cbe660dbde88?w=600" class="course-img" alt="Farmacia">
+                <img src="curso_salud.jpg" class="course-img" alt="Área de Salud">
                 <div class="course-info">
-                    <span style="font-size: 0.7rem; color: white; background: var(--secondary); padding: 4px 8px; border-radius: 4px; font-weight: bold; text-transform: uppercase;">120 Horas</span>
-                    <h4 style="margin-top: 10px; font-size: 1.2rem; color: var(--primary);">Auxiliar en Farmacia</h4>
-                    <p style="color: #666; margin-bottom: 15px; font-size: 0.9rem; margin-top: 10px;">Formación técnica enfocada en farmacología, atención al paciente y dispensación de medicamentos.</p>
-                    <div style="display: flex; justify-content: space-between; align-items: center; border-top: 1px solid #eee; padding-top: 15px;">
-                        <span style="font-size: 0.8rem; font-weight: 600; color: var(--accent);"><i class="fa-solid fa-laptop"></i> 100% Online</span>
-                        <a href="https://wa.me/593987321024?text=Hola,%20deseo%20más%20información%20del%20curso%20de%20Auxiliar%20en%20Farmacia" target="_blank" style="color: var(--primary); font-weight: 700; text-decoration: none; font-size: 0.9rem;">Ver Detalles <i class="fa-solid fa-arrow-right"></i></a>
-                    </div>
+                    <span class="featured-tag" style="background: var(--accent); margin-bottom: 0;">Área de la Salud</span>
+                    <h4>Auxiliares en Farmacia y Enfermería</h4>
+                    <p style="color: #666; font-size: 0.95rem; margin-bottom: 15px;">Formación técnica avalada para el manejo seguro de pacientes, normativa ARCSA y farmacología.</p>
+                    <a href="curso_farmacia.html" target="_blank" style="color: var(--primary); font-weight: 800; text-decoration: none;">Ver Especialidades <i class="fa-solid fa-arrow-right"></i></a>
                 </div>
             </div>
-            
+            <!-- Destacado Humana -->
             <div class="course-card">
-                <img src="https://images.unsplash.com/photo-1589829085413-56de8ae18c73?w=600" class="course-img" alt="Jurisprudencia">
+                <img src="curso_humana.jpg" class="course-img" alt="Área Humana">
                 <div class="course-info">
-                    <span style="font-size: 0.7rem; color: white; background: var(--secondary); padding: 4px 8px; border-radius: 4px; font-weight: bold; text-transform: uppercase;">150 Horas</span>
-                    <h4 style="margin-top: 10px; font-size: 1.2rem; color: var(--primary);">Auxiliar en Jurisprudencia</h4>
-                    <p style="color: #666; margin-bottom: 15px; font-size: 0.9rem; margin-top: 10px;">Capacitación integral para asistencia técnica en procesos legales, notariales y gestión de archivos.</p>
-                    <div style="display: flex; justify-content: space-between; align-items: center; border-top: 1px solid #eee; padding-top: 15px;">
-                        <span style="font-size: 0.8rem; font-weight: 600; color: var(--accent);"><i class="fa-solid fa-laptop"></i> 100% Online</span>
-                        <a href="https://wa.me/593987321024?text=Hola,%20deseo%20más%20información%20del%20curso%20de%20Auxiliar%20en%20Jurisprudencia" target="_blank" style="color: var(--primary); font-weight: 700; text-decoration: none; font-size: 0.9rem;">Ver Detalles <i class="fa-solid fa-arrow-right"></i></a>
-                    </div>
+                    <span class="featured-tag" style="background: var(--secondary); margin-bottom: 0;">Derecho y Educación</span>
+                    <h4>Asistencia Jurídica y Parvularia</h4>
+                    <p style="color: #666; font-size: 0.95rem; margin-bottom: 15px;">Apoya la gestión de trámites notariales o domina la estimulación pedagógica en la primera infancia.</p>
+                    <a href="curso_asistencia_juridica.html" target="_blank" style="color: var(--primary); font-weight: 800; text-decoration: none;">Ver Especialidades <i class="fa-solid fa-arrow-right"></i></a>
                 </div>
             </div>
-            
+            <!-- Destacado Tecnología -->
             <div class="course-card">
-                <img src="https://images.unsplash.com/photo-1551076805-e18690c5e53b?w=600" class="course-img" alt="Administración Hospitalaria">
+                <img src="curso_tecnologia.jpg" class="course-img" alt="Área Tecnología">
                 <div class="course-info">
-                    <span style="font-size: 0.7rem; color: white; background: var(--secondary); padding: 4px 8px; border-radius: 4px; font-weight: bold; text-transform: uppercase;">200 Horas</span>
-                    <h4 style="margin-top: 10px; font-size: 1.2rem; color: var(--primary);">Administración en Salud</h4>
-                    <p style="color: #666; margin-bottom: 15px; font-size: 0.9rem; margin-top: 10px;">Gestión de centros médicos, auditoría de calidad y manejo de sistemas hospitalarios.</p>
-                    <div style="display: flex; justify-content: space-between; align-items: center; border-top: 1px solid #eee; padding-top: 15px;">
-                        <span style="font-size: 0.8rem; font-weight: 600; color: var(--accent);"><i class="fa-solid fa-chalkboard-user"></i> Híbrido</span>
-                        <a href="https://wa.me/593987321024?text=Hola,%20deseo%20más%20información%20del%20curso%20de%20Administración%20en%20Salud" target="_blank" style="color: var(--primary); font-weight: 700; text-decoration: none; font-size: 0.9rem;">Ver Detalles <i class="fa-solid fa-arrow-right"></i></a>
-                    </div>
+                    <span class="featured-tag" style="background: #306998; margin-bottom: 0;">Ingeniería y Sistemas</span>
+                    <h4>Programación en Python y Desarrollo</h4>
+                    <p style="color: #666; font-size: 0.95rem; margin-bottom: 15px;">Domina el lenguaje del futuro: Automatización, Visión por Computadora y Análisis de Datos con IA.</p>
+                    <a href="curso_python_automatizacion.html" target="_blank" style="color: var(--primary); font-weight: 800; text-decoration: none;">Ver Especialidades <i class="fa-solid fa-arrow-right"></i></a>
                 </div>
             </div>
+        </div>
+        <div style="text-align: center; margin-top: 40px;">
+            <button class="btn-main" onclick="abrirMenuCursos()">Explorar todos los cursos aquí</button>
+        </div>
+    </section>
+
+    <!-- SECCIÓN PREGUNTAS ALTO IMPACTO (B2B) -->
+    <section id="especialidad">
+        <div class="featured-banner">
+            <span class="featured-tag">Servicios Exclusivos para IES</span>
+            <h3>Elaboración de Preguntas de Alto Impacto</h3>
+            <p>Capacitamos a facultades y docentes universitarios en la creación técnica de reactivos de alta complejidad, alineados estrictamente a los estándares nacionales (EHEP).</p>
+            <a href="https://wa.me/593987321024?text=Deseo%20más%20información%20sobre%20el%20Curso%20de%20Preguntas%20para%20Universidades" target="_blank" class="btn-main" style="margin-top: 15px;">Solicitar Propuesta Institucional</a>
+        </div>
+    </section>
+
+    <!-- SECCIÓN EHEP (Publicidad Simuladores) -->
+    <section id="inscripcion" style="background-color: var(--white); border-bottom: 1px solid #eee;">
+        <div class="section-header">
+            <span class="featured-tag">Médicos / Enfermeros / Odontólogos</span>
+            <h2>Preparación Examen EHEP 2026</h2>
+            <div class="divider"></div>
+        </div>
+        <div class="core-services">
+            <div class="core-card" style="text-align: left; padding: 40px; border-left: 5px solid var(--secondary);">
+                <h3 style="color: var(--primary); margin-bottom: 20px;">Plataforma y Simulador</h3>
+                <ul style="list-style: none;">
+                    <li style="margin-bottom: 12px;"><i class="fa-solid fa-check-circle" style="color: var(--accent); margin-right: 10px;"></i> 10 horas intensivas de refuerzo.</li>
+                    <li style="margin-bottom: 12px;"><i class="fa-solid fa-check-circle" style="color: var(--accent); margin-right: 10px;"></i> Clases sincrónicas en Google Classroom.</li>
+                    <li style="margin-bottom: 12px;"><i class="fa-solid fa-check-circle" style="color: var(--accent); margin-right: 10px;"></i> Acceso exclusivo a nuestro simulador con IA.</li>
+                </ul>
+                <button onclick="openModal()" class="btn-main" style="margin-top: 20px;">Quiero Inscribirme</button>
+            </div>
+            <div class="core-card" style="background: var(--light);">
+                <i class="fa-solid fa-laptop-medical core-icon"></i>
+                <h3>Usuarios Registrados</h3>
+                <p style="margin-top: 15px;">Si ya eres parte de nuestro programa intensivo, accede directamente a tu plataforma de evaluación clínica.</p>
+                <button onclick="openAuthModal()" class="btn-main btn-outline" style="margin-top: 20px; color: var(--primary); border-color: var(--primary);">Entrar al Simulador</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECCIÓN DE REDES SOCIALES (NUEVA) -->
+    <section id="redes" style="background-color: var(--light);">
+        <div class="section-header">
+            <span class="featured-tag">Comunidad CEFEDEP</span>
+            <h2>Síguenos en Redes Sociales</h2>
+            <div class="divider"></div>
+            <p style="color: #666; font-size: 1.1rem;">Únete a miles de profesionales y descubre contenido de valor, testimonios y promociones diarias.</p>
+        </div>
+        <div class="social-grid">
+            <a href="https://www.tiktok.com/cefedep.ecuador" target="_blank" class="social-card bg-tiktok">
+                <i class="fa-brands fa-tiktok"></i>
+                <h3>TikTok</h3>
+                <p style="font-size: 0.9rem; margin-top: 5px;">Tips rápidos y el día a día</p>
+            </a>
+            <a href="https://www.instagram.com/cefedep_ecuador" target="_blank" class="social-card bg-instagram">
+                <i class="fa-brands fa-instagram"></i>
+                <h3>Instagram</h3>
+                <p style="font-size: 0.9rem; margin-top: 5px;">Fotos, Reels y eventos</p>
+            </a>
+            <a href="https://www.facebook.com/cefedep/" target="_blank" class="social-card bg-facebook">
+                <i class="fa-brands fa-facebook-f"></i>
+                <h3>Facebook</h3>
+                <p style="font-size: 0.9rem; margin-top: 5px;">Noticias y comunidad oficial</p>
+            </a>
         </div>
     </section>
 
     <footer>
         <img src="LOGO_CEFEDEP.png" alt="CEFEDEP" class="footer-logo">
         <p>&copy; 2026 CEFEDEP ECUADOR. Soluciones para el éxito académico.</p>
-        <div class="social-links">
-            <a href="https://www.facebook.com/solucionestrabajostesisyproyectos/" target="_blank"><i class="fa-brands fa-facebook"></i></a>
-            <a href="mailto:info@cefedep.com"><i class="fa-solid fa-envelope"></i></a>
-            <a href="https://wa.me/593987321024" target="_blank"><i class="fa-brands fa-whatsapp"></i></a>
-        </div>
+        <p style="font-size: 0.8rem; margin-top: 10px;">Contacto Directo: +593 98 732 1024 | info@cefedep.com</p>
     </footer>
 
+    <!-- WIDGET WHATSAPP -->
     <div class="wa-widget-container">
         <div class="wa-chat-box" id="waChatBox">
             <div class="wa-chat-header">
                 <i class="fa-brands fa-whatsapp"></i>
-                <div>
-                    <div style="font-weight: 800;">Atención CEFEDEP</div>
-                    <div style="font-size: 0.75rem; opacity: 0.9;">En línea ahora</div>
-                </div>
+                <div><div style="font-weight: 800;">Atención CEFEDEP</div><div style="font-size: 0.75rem;">En línea ahora</div></div>
                 <span class="wa-close" onclick="closeWaChat()">&times;</span>
             </div>
             <div class="wa-chat-body">
-                <div class="wa-msg">
-                    ¡Hola! 👋 Bienvenido a CEFEDEP ECUADOR. ¿Cómo podemos ayudarte hoy con tu proyecto académico o institucional?
-                </div>
+                <div class="wa-msg">¡Hola! 👋 Bienvenido a CEFEDEP ECUADOR. ¿Cómo podemos ayudarte hoy?</div>
             </div>
             <div class="wa-chat-footer">
-                <a href="https://wa.me/593987321024?text=Hola,%20visité%20su%20página%20web%20y%20deseo%20más%20información." target="_blank" class="wa-chat-btn">
-                    Chat en WhatsApp <i class="fa-solid fa-paper-plane"></i>
-                </a>
+                <a href="https://wa.me/593987321024" target="_blank" class="wa-chat-btn">Chat en WhatsApp <i class="fa-solid fa-paper-plane"></i></a>
             </div>
         </div>
-        <div class="wa-float-btn" onclick="toggleWaChat()">
-            <i class="fa-brands fa-whatsapp"></i>
-        </div>
+        <div class="wa-float-btn" onclick="toggleWaChat()"><i class="fa-brands fa-whatsapp"></i></div>
     </div>
 
     <!-- LIBRERÍAS DE FIREBASE -->
@@ -502,6 +434,7 @@
     <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
 
     <script>
+        // CONFIGURACIÓN DE FIREBASE (Tal cual la tenías)
         const firebaseConfig = {
             apiKey: "AIzaSyDM8QEUh_FnvbGdcINHzsxUWkWGQQigSmo",
             authDomain: "cefedep-ecuador.firebaseapp.com",
@@ -511,46 +444,30 @@
             appId: "1:722072935685:web:8e1fd0139eff6eaab02b6c",
             measurementId: "G-9GX5GQ1YDL"
         };
-
         firebase.initializeApp(firebaseConfig);
         const auth = firebase.auth();
 
-        // CONTROL DEL MODAL DE LOGIN
+        // CONTROL DEL MODAL FIREBASE
         function openAuthModal() { document.getElementById('authModal').style.display = 'flex'; }
-        function closeAuthModal() { 
-            document.getElementById('authModal').style.display = 'none'; 
-            document.getElementById('authError').style.display = 'none';
-        }
-
-        // FUNCIÓN DE INGRESO
+        function closeAuthModal() { document.getElementById('authModal').style.display = 'none'; document.getElementById('authError').style.display = 'none'; }
+        
         function loginFirebase() {
             const email = document.getElementById('authEmail').value;
             const pass = document.getElementById('authPassword').value;
             const errBox = document.getElementById('authError');
-            
-            auth.signInWithEmailAndPassword(email, pass)
-                .then(() => { closeAuthModal(); })
-                .catch(err => {
-                    errBox.style.display = 'block';
-                    errBox.innerText = "Error: Correo o contraseña incorrectos.";
-                });
+            auth.signInWithEmailAndPassword(email, pass).then(() => { closeAuthModal(); }).catch(err => {
+                errBox.style.display = 'block'; errBox.innerText = "Error: Correo o contraseña incorrectos.";
+            });
         }
-
-        // FUNCIÓN DE REGISTRO
         function registerFirebase() {
             const email = document.getElementById('authEmail').value;
             const pass = document.getElementById('authPassword').value;
             const errBox = document.getElementById('authError');
-            
-            auth.createUserWithEmailAndPassword(email, pass)
-                .then(() => { closeAuthModal(); })
-                .catch(err => {
-                    errBox.style.display = 'block';
-                    errBox.innerText = "Error: La contraseña debe tener al menos 6 caracteres o el correo ya existe.";
-                });
+            auth.createUserWithEmailAndPassword(email, pass).then(() => { closeAuthModal(); }).catch(err => {
+                errBox.style.display = 'block'; errBox.innerText = "Error al crear cuenta. Mínimo 6 caracteres.";
+            });
         }
 
-        // ACTUALIZAR MENÚ DEPENDIENDO DE SI HAY SESIÓN
         auth.onAuthStateChanged(user => {
             const menuContainer = document.getElementById('dynamic-menu');
             if (user) {
@@ -560,16 +477,13 @@
                     <a href="#" onclick="auth.signOut()" style="color: #ff4757; text-decoration: none; font-size: 0.8rem; font-weight: 700; margin-left: 10px;"><i class="fa-solid fa-right-from-bracket"></i> SALIR</a>
                 `;
             } else {
-                menuContainer.innerHTML = `
-                    <a href="#" onclick="openAuthModal()" class="login-btn">INICIAR SESIÓN SIMULADORES</a>
-                `;
+                menuContainer.innerHTML = `<a href="#" onclick="openAuthModal()" class="login-btn">INICIAR SESIÓN EHEP</a>`;
             }
         });
 
+        // FORMULARIO EHEP
         function openModal() { document.getElementById('registrationModal').style.display = 'flex'; }
         function closeModal() { document.getElementById('registrationModal').style.display = 'none'; }
-
-        // Validación y envío de formulario
         document.getElementById('ehepForm').addEventListener('submit', function(e) {
             e.preventDefault();
             const name = document.getElementById('formName').value;
@@ -578,54 +492,57 @@
             const email = document.getElementById('formEmail').value;
             const emailError = document.getElementById('emailError');
 
-            if (!email.includes('@gmail.com')) {
-                emailError.style.display = 'block';
-                return;
-            } else {
-                emailError.style.display = 'none';
-            }
+            if (!email.includes('@gmail.com')) { emailError.style.display = 'block'; return; } 
+            else { emailError.style.display = 'none'; }
 
-            const businessNumber = "593987321024";
-            const text = `Hola CEFEDEP, mi nombre es *${name}*. Deseo inscribirme al curso de preparación EHEP para *${course}*.\n\n` +
-                         `*Datos de registro:*\n` +
-                         `- Correo Google: ${email}\n` +
-                         `- WhatsApp: ${phone}\n\n` +
-                         `_Solicito los datos de transferencia para completar mi matrícula en Classroom y habilitar el simulador._`;
-            
-            const encodedText = encodeURIComponent(text);
-            const waUrl = `https://wa.me/${businessNumber}?text=${encodedText}`;
-            
-            window.open(waUrl, '_blank');
+            const text = `Hola CEFEDEP, soy *${name}*. Deseo inscribirme al EHEP para *${course}*.\n- Correo: ${email}\n- Celular: ${phone}\n_Solicito datos de pago._`;
+            window.open(`https://wa.me/593987321024?text=${encodeURIComponent(text)}`, '_blank');
             closeModal();
         });
 
-        // Chat de WhatsApp inferior
-        function toggleWaChat() {
-            let chatBox = document.getElementById('waChatBox');
-            chatBox.style.display = (chatBox.style.display === 'none' || chatBox.style.display === '') ? 'block' : 'none';
-        }
+        // WHATSAPP WIDGET
+        setTimeout(() => { document.getElementById('waChatBox').style.display = 'block'; }, 5000);
+        function toggleWaChat() { let cb = document.getElementById('waChatBox'); cb.style.display = (cb.style.display === 'none' || cb.style.display === '') ? 'block' : 'none'; }
+        function closeWaChat() { document.getElementById('waChatBox').style.display = 'none'; }
 
-        function closeWaChat() {
-            document.getElementById('waChatBox').style.display = 'none';
-        }
-
-        // LÓGICA DEL MENÚ HAMBURGUESA PARA MÓVILES
+        // MENÚ MÓVIL Y DROPDOWN
         function toggleMobileMenu() {
             const navLinks = document.querySelector('.nav-links');
             navLinks.classList.toggle('active');
             const icon = document.querySelector('.menu-toggle i');
-            if (navLinks.classList.contains('active')) {
-                icon.classList.replace('fa-bars', 'fa-xmark');
-            } else {
-                icon.classList.replace('fa-xmark', 'fa-bars');
+            icon.classList.replace(navLinks.classList.contains('active') ? 'fa-bars' : 'fa-xmark', navLinks.classList.contains('active') ? 'fa-xmark' : 'fa-bars');
+        }
+
+        // Script para desplegar el menú de cursos en móviles al hacer clic
+        function toggleDropdownMobile(e) {
+            if (window.innerWidth <= 900) {
+                e.preventDefault();
+                const dropdown = document.getElementById('btn-cursos');
+                dropdown.classList.toggle('active');
             }
         }
 
-        document.querySelectorAll('.nav-links a:not(.dropdown-menu a)').forEach(link => {
+        // Botón "Explorar cursos"
+        function abrirMenuCursos() {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+            setTimeout(() => {
+                if (window.innerWidth <= 900) {
+                    document.querySelector('.nav-links').classList.add('active');
+                    document.getElementById('btn-cursos').classList.add('active');
+                    document.querySelector('.menu-toggle i').classList.replace('fa-bars', 'fa-xmark');
+                } else {
+                    // Simular hover en PC temporalmente si lo deseas
+                }
+            }, 600);
+        }
+
+        // Cerrar menú móvil al tocar otro enlace
+        document.querySelectorAll('.nav-links a:not(.dropdown-menu a):not(#btn-cursos a)').forEach(link => {
             link.addEventListener('click', () => {
-                document.querySelector('.nav-links').classList.remove('active');
-                if(document.querySelector('.menu-toggle i')) {
+                if (window.innerWidth <= 900) {
+                    document.querySelector('.nav-links').classList.remove('active');
                     document.querySelector('.menu-toggle i').classList.replace('fa-xmark', 'fa-bars');
+                    document.getElementById('btn-cursos').classList.remove('active');
                 }
             });
         });
