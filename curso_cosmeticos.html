@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Automatización con Python e IA | CEFEDEP</title>
+    
+    <!-- Fuentes y Recursos -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700;800&family=Playfair+Display:wght@700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        :root { 
+            --primary: #334235; 
+            --secondary: #bca05b; 
+            --accent: #6b7a5a; 
+            --light: #f9faf8; 
+            --white: #ffffff; 
+            --dark: #1a1a1a; 
+        }
+        
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Montserrat', sans-serif; color: var(--dark); background-color: var(--light); line-height: 1.6; }
+        
+        /* Encabezado del Curso */
+        .header-curso {
+            background: linear-gradient(rgba(51, 66, 53, 0.9), rgba(51, 66, 53, 0.7)), url('https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?auto=format&fit=crop&w=1950&q=80');
+            background-size: cover; 
+            background-position: center;
+            padding: 120px 10% 100px; 
+            color: white; 
+            text-align: center;
+        }
+        .header-curso h1 { font-family: 'Playfair Display', serif; font-size: 2.8rem; margin-bottom: 15px; color: var(--secondary); line-height: 1.2; }
+        .tag-area { display: inline-block; background: rgba(255,255,255,0.1); border: 1px solid var(--secondary); padding: 5px 15px; border-radius: 20px; font-size: 0.8rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 20px; color: var(--secondary); }
+        
+        /* Contenedor Principal */
+        .container { max-width: 1100px; margin: -50px auto 50px; padding: 0 20px; position: relative; z-index: 10; }
+        .card-main { background: white; padding: 40px; border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.08); }
+        
+        /* Resumen de Datos (Barra de iconos) */
+        .info-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; margin-bottom: 40px; border-bottom: 1px solid #eee; padding-bottom: 30px; }
+        .info-item { text-align: center; padding: 15px; background: var(--light); border-radius: 10px; border-bottom: 3px solid var(--secondary); transition: 0.3s; }
+        .info-item:hover { transform: translateY(-5px); box-shadow: 0 5px 15px rgba(0,0,0,0.05); }
+        .info-item i { font-size: 2rem; color: var(--primary); margin-bottom: 10px; }
+        .info-item h4 { font-size: 0.9rem; color: var(--accent); text-transform: uppercase; margin-bottom: 5px; }
+        .info-item p { font-size: 1.1rem; font-weight: 700; color: var(--dark); }
+        
+        /* Títulos de sección */
+        h2.section-title { color: var(--primary); font-family: 'Playfair Display', serif; font-size: 2rem; margin-bottom: 20px; display: flex; align-items: center; gap: 10px; }
+        h2.section-title i { color: var(--secondary); font-size: 1.5rem; }
+        
+        /* Objetivo */
+        .objetivo-box { background: #fdfdfd; border-left: 5px solid var(--secondary); padding: 25px; border-radius: 0 10px 10px 0; margin-bottom: 40px; font-size: 1.1rem; color: #444; font-weight: 600; box-shadow: 0 2px 10px rgba(0,0,0,0.02); }
+        
+        /* Temario */
+        .module { margin-bottom: 25px; border: 1px solid #eee; border-radius: 10px; overflow: hidden; }
+        .module-header { background: var(--primary); color: white; padding: 15px 20px; font-weight: 700; display: flex; align-items: center; gap: 15px; }
+        .module-number { background: var(--secondary); color: white; width: 30px; height: 30px; display: flex; align-items: center; justify-content: center; border-radius: 50%; font-size: 0.9rem; }
+        .module-content { padding: 20px; background: #fafbfc; }
+        .module-content ul { list-style: none; }
+        .module-content ul li { position: relative; padding-left: 25px; margin-bottom: 12px; font-size: 0.95rem; color: #555; }
+        .module-content ul li::before { content: "\f105"; font-family: "Font Awesome 6 Free"; font-weight: 900; position: absolute; left: 0; color: var(--secondary); }
+        
+        /* Dos columnas para metodología y requisitos */
+        .two-columns { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; margin-top: 40px; }
+        @media (max-width: 768px) { .two-columns { grid-template-columns: 1fr; } }
+        
+        .feature-list { list-style: none; }
+        .feature-list li { margin-bottom: 15px; background: var(--light); padding: 15px; border-radius: 8px; font-size: 0.9rem; display: flex; gap: 15px; }
+        .feature-list li i { color: var(--accent); font-size: 1.2rem; margin-top: 2px; }
+        
+        /* Botón WhatsApp */
+        .btn-whatsapp { background: #25D366; color: white; padding: 18px 40px; text-decoration: none; border-radius: 50px; font-weight: 800; text-transform: uppercase; display: inline-flex; align-items: center; justify-content: center; gap: 12px; transition: 0.3s; margin-top: 40px; width: 100%; max-width: 400px; box-shadow: 0 10px 25px rgba(37, 211, 102, 0.3); border: none; cursor: pointer; font-family: 'Montserrat', sans-serif;}
+        .btn-whatsapp:hover { background: #1eb954; transform: translateY(-3px); }
+        
+        .back-link { display: inline-block; margin-top: 25px; color: var(--primary); font-weight: 700; text-decoration: none; transition: 0.3s; }
+        .back-link:hover { color: var(--secondary); }
+    </style>
+</head>
+<body>
+
+    <div class="header-curso">
+        <span class="tag-area">Área Humana y Educación</span>
+        <h1>Formulación y Confección Artesanal de Productos Cosméticos</h1>
+        <p style="font-size: 1.15rem; max-width: 800px; margin: 0 auto;">Elabora productos de higiene personal garantizando inocuidad, estabilidad física y beneficio dermatológico.</p>
+    </div>
+
+    <div class="container">
+        <div class="card-main">
+            <div class="info-grid">
+                <div class="info-item"><i class="fa-regular fa-clock"></i><h4>Duración Total</h4><p>80 Horas (40t / 40p)</p></div>
+                <div class="info-item"><i class="fa-solid fa-laptop"></i><h4>Modalidad</h4><p>100% Virtual</p></div>
+                <div class="info-item"><i class="fa-solid fa-user-graduate"></i><h4>Público Objetivo</h4><p>Jóvenes y Adultos</p></div>
+                <div class="info-item"><i class="fa-solid fa-file-contract"></i><h4>Requisito</h4><p>Básica / Bachillerato</p></div>
+            </div>
+
+            <div class="objetivo-box">
+                <i class="fa-solid fa-bullseye" style="color: var(--secondary); margin-right: 10px;"></i>
+                <strong>Objetivo del Curso:</strong> Elaborar de forma artesanal productos cosméticos de uso personal e higiene, mediante el análisis de fichas técnicas, la aplicación de Buenas Prácticas de Manufactura (BPM), pesaje seguro, balance de emulsión y medición de pH, con el fin de desarrollar emprendimientos sostenibles.
+            </div>
+
+            <h2 class="section-title"><i class="fa-solid fa-list-check"></i> Estructura del Programa (Temario)</h2>
+            
+            <div class="module"><div class="module-header"><span class="module-number">1</span>Introducción, Anatomía de la Piel y Seguridad</div><div class="module-content"><ul>
+                <li>Historia, evolución y Buenas Prácticas de Manufactura (BPM).</li>
+                <li>Estructura de la piel (epidermis, dermis, hipodermis) y fototipos.</li>
+            </ul></div></div>
+            <div class="module"><div class="module-header"><span class="module-number">2</span>Materias Primas: Aceites, Mantecas, Ceras y Extractos</div><div class="module-content"><ul>
+                <li>Propiedades y perfiles de ácidos grasos. El rol de las ceras consistentes.</li>
+                <li>Aguas florales, extractos botánicos y principios activos hidrosolubles/liposolubles.</li>
+            </ul></div></div>
+            <div class="module"><div class="module-header"><span class="module-number">3</span>Formulación Anhidra, pH y Conservación</div><div class="module-content"><ul>
+                <li>Importancia del pH cutáneo, medición correcta, conservantes y antioxidantes.</li>
+                <li>Diseño de bálsamos labiales, mantecas corporales y aceites terapéuticos.</li>
+            </ul></div></div>
+            <div class="module"><div class="module-header"><span class="module-number">4</span>Emulsiones y Cosmética Sólida/Líquida</div><div class="module-content"><ul>
+                <li>Teoría de la emulsión (O/W y W/O), emulsionantes según HLB y fases.</li>
+                <li>Champú/acondicionador sólido (SCI/SCS) y jabones de glicerina.</li>
+                <li>Geles de ducha, jabones líquidos, aguas micelares y mascarillas arcillosas.</li>
+            </ul></div></div>
+            <div class="module"><div class="module-header"><span class="module-number">5</span>Control de Calidad, Envasado y Rotulado</div><div class="module-content"><ul>
+                <li>Pruebas de estabilidad acelerada (centrifugación, choque térmico) y envasado apto.</li>
+                <li>Elaboración del etiquetado correcto bajo nomenclatura INCI y normativa legal.</li>
+            </ul></div></div>
+
+            <div class="two-columns">
+                <div>
+                    <h2 class="section-title" style="font-size: 1.5rem;"><i class="fa-solid fa-chalkboard-user"></i> Metodología</h2>
+                    <ul class="feature-list">
+                        <li><i class="fa-solid fa-flask"></i><div><strong>Proyectos en Casa:</strong><br>Ejecución de fórmulas guiadas por "videotutoriales paso a paso".</div></li>
+                        <li><i class="fa-solid fa-camera"></i><div><strong>Portafolio Digital:</strong><br>Documentación con fotos del pH, bitácoras de pesaje y videos de emulsión.</div></li>
+                    </ul>
+                </div>
+                <div>
+                    <h2 class="section-title" style="font-size: 1.5rem;"><i class="fa-solid fa-server"></i> Entorno de Aprendizaje</h2>
+                    <ul class="feature-list">
+                        <li><i class="fa-brands fa-google"></i><div><strong>Google Classroom / Meet:</strong><br>Módulos asincrónicos, foros de desestabilización de fórmulas y lecturas INCI.</div></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div style="text-align: center; margin-top: 40px;">
+                <a href="https://wa.me/593987321024?text=Hola,%20deseo%20inscribirme%20en%20Productos%20Cosméticos." target="_blank" class="btn-whatsapp">
+                    <i class="fa-brands fa-whatsapp" style="font-size: 1.6rem;"></i> Solicitar Inscripción
+                </a><br>
+                <a href="index.html" class="back-link"><i class="fa-solid fa-arrow-left"></i> Volver a CEFEDEP</a>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

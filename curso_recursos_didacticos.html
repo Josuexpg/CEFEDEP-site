@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Automatización con Python e IA | CEFEDEP</title>
+    
+    <!-- Fuentes y Recursos -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700;800&family=Playfair+Display:wght@700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        :root { 
+            --primary: #334235; 
+            --secondary: #bca05b; 
+            --accent: #6b7a5a; 
+            --light: #f9faf8; 
+            --white: #ffffff; 
+            --dark: #1a1a1a; 
+        }
+        
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Montserrat', sans-serif; color: var(--dark); background-color: var(--light); line-height: 1.6; }
+        
+        /* Encabezado del Curso */
+        .header-curso {
+            background: linear-gradient(rgba(51, 66, 53, 0.9), rgba(51, 66, 53, 0.7)), url('https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?auto=format&fit=crop&w=1950&q=80');
+            background-size: cover; 
+            background-position: center;
+            padding: 120px 10% 100px; 
+            color: white; 
+            text-align: center;
+        }
+        .header-curso h1 { font-family: 'Playfair Display', serif; font-size: 2.8rem; margin-bottom: 15px; color: var(--secondary); line-height: 1.2; }
+        .tag-area { display: inline-block; background: rgba(255,255,255,0.1); border: 1px solid var(--secondary); padding: 5px 15px; border-radius: 20px; font-size: 0.8rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 20px; color: var(--secondary); }
+        
+        /* Contenedor Principal */
+        .container { max-width: 1100px; margin: -50px auto 50px; padding: 0 20px; position: relative; z-index: 10; }
+        .card-main { background: white; padding: 40px; border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.08); }
+        
+        /* Resumen de Datos (Barra de iconos) */
+        .info-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; margin-bottom: 40px; border-bottom: 1px solid #eee; padding-bottom: 30px; }
+        .info-item { text-align: center; padding: 15px; background: var(--light); border-radius: 10px; border-bottom: 3px solid var(--secondary); transition: 0.3s; }
+        .info-item:hover { transform: translateY(-5px); box-shadow: 0 5px 15px rgba(0,0,0,0.05); }
+        .info-item i { font-size: 2rem; color: var(--primary); margin-bottom: 10px; }
+        .info-item h4 { font-size: 0.9rem; color: var(--accent); text-transform: uppercase; margin-bottom: 5px; }
+        .info-item p { font-size: 1.1rem; font-weight: 700; color: var(--dark); }
+        
+        /* Títulos de sección */
+        h2.section-title { color: var(--primary); font-family: 'Playfair Display', serif; font-size: 2rem; margin-bottom: 20px; display: flex; align-items: center; gap: 10px; }
+        h2.section-title i { color: var(--secondary); font-size: 1.5rem; }
+        
+        /* Objetivo */
+        .objetivo-box { background: #fdfdfd; border-left: 5px solid var(--secondary); padding: 25px; border-radius: 0 10px 10px 0; margin-bottom: 40px; font-size: 1.1rem; color: #444; font-weight: 600; box-shadow: 0 2px 10px rgba(0,0,0,0.02); }
+        
+        /* Temario */
+        .module { margin-bottom: 25px; border: 1px solid #eee; border-radius: 10px; overflow: hidden; }
+        .module-header { background: var(--primary); color: white; padding: 15px 20px; font-weight: 700; display: flex; align-items: center; gap: 15px; }
+        .module-number { background: var(--secondary); color: white; width: 30px; height: 30px; display: flex; align-items: center; justify-content: center; border-radius: 50%; font-size: 0.9rem; }
+        .module-content { padding: 20px; background: #fafbfc; }
+        .module-content ul { list-style: none; }
+        .module-content ul li { position: relative; padding-left: 25px; margin-bottom: 12px; font-size: 0.95rem; color: #555; }
+        .module-content ul li::before { content: "\f105"; font-family: "Font Awesome 6 Free"; font-weight: 900; position: absolute; left: 0; color: var(--secondary); }
+        
+        /* Dos columnas para metodología y requisitos */
+        .two-columns { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; margin-top: 40px; }
+        @media (max-width: 768px) { .two-columns { grid-template-columns: 1fr; } }
+        
+        .feature-list { list-style: none; }
+        .feature-list li { margin-bottom: 15px; background: var(--light); padding: 15px; border-radius: 8px; font-size: 0.9rem; display: flex; gap: 15px; }
+        .feature-list li i { color: var(--accent); font-size: 1.2rem; margin-top: 2px; }
+        
+        /* Botón WhatsApp */
+        .btn-whatsapp { background: #25D366; color: white; padding: 18px 40px; text-decoration: none; border-radius: 50px; font-weight: 800; text-transform: uppercase; display: inline-flex; align-items: center; justify-content: center; gap: 12px; transition: 0.3s; margin-top: 40px; width: 100%; max-width: 400px; box-shadow: 0 10px 25px rgba(37, 211, 102, 0.3); border: none; cursor: pointer; font-family: 'Montserrat', sans-serif;}
+        .btn-whatsapp:hover { background: #1eb954; transform: translateY(-3px); }
+        
+        .back-link { display: inline-block; margin-top: 25px; color: var(--primary); font-weight: 700; text-decoration: none; transition: 0.3s; }
+        .back-link:hover { color: var(--secondary); }
+    </style>
+</head>
+<body>
+
+<div class="header-curso">
+        <span class="tag-area">Área Humana y Educación</span>
+        <h1>Diseño de Recursos Didácticos Interactivos (Digitales)</h1>
+        <p style="font-size: 1.15rem; max-width: 800px; margin: 0 auto;">Crea presentaciones, juegos y aulas dinámicas con Canva, Genially y herramientas de Gamificación.</p>
+    </div>
+
+    <div class="container">
+        <div class="card-main">
+            <div class="info-grid">
+                <div class="info-item"><i class="fa-regular fa-clock"></i><h4>Duración Total</h4><p>80 Horas (48t / 32p)</p></div>
+                <div class="info-item"><i class="fa-solid fa-laptop"></i><h4>Modalidad</h4><p>100% Virtual</p></div>
+                <div class="info-item"><i class="fa-solid fa-user-graduate"></i><h4>Público Objetivo</h4><p>Jóvenes y Adultos</p></div>
+                <div class="info-item"><i class="fa-solid fa-file-contract"></i><h4>Requisito</h4><p>Título de Bachiller</p></div>
+            </div>
+
+            <div class="objetivo-box">
+                <i class="fa-solid fa-bullseye" style="color: var(--secondary); margin-right: 10px;"></i>
+                <strong>Objetivo del Curso:</strong> Diseñar recursos didácticos interactivos multimedia mediante metodologías tecno-pedagógicas, software en la nube y gamificación para potenciar la autonomía del estudiante en entornos virtuales.
+            </div>
+
+            <h2 class="section-title"><i class="fa-solid fa-list-check"></i> Estructura del Programa (Temario)</h2>
+            
+            <div class="module"><div class="module-header"><span class="module-number">1</span>Diseño Instruccional Digital y Curación de Contenidos</div><div class="module-content"><ul>
+                <li>Principios del Modelo ADDIE, usabilidad y accesibilidad en recursos interactivos.</li>
+                <li>Búsqueda avanzada, licencias Creative Commons y derechos de autor.</li>
+            </ul></div></div>
+            <div class="module"><div class="module-header"><span class="module-number">2</span>Diseño Visual (Canva) e Interactividad (Genially)</div><div class="module-content"><ul>
+                <li>Psicología del color y creación de infografías animadas / guías visuales en Canva.</li>
+                <li>Capas de interactividad, mapas conceptuales y breakouts virtuales en Genially.</li>
+            </ul></div></div>
+            <div class="module"><div class="module-header"><span class="module-number">3</span>Gamificación Educativa y Audiovisuales</div><div class="module-content"><ul>
+                <li>El juego como didáctica: Kahoot, Quizizz y Wordwall.</li>
+                <li>Guionización, grabación y edición de videos interactivos y podcasts.</li>
+            </ul></div></div>
+            <div class="module"><div class="module-header"><span class="module-number">4</span>Hojas de Trabajo y Evaluación Interactiva</div><div class="module-content"><ul>
+                <li>Fichas autoevaluables con Liveworksheets.</li>
+                <li>Configuración de encuestas y rúbricas dinámicas integradas en LMS.</li>
+            </ul></div></div>
+
+            <div class="two-columns">
+                <div>
+                    <h2 class="section-title" style="font-size: 1.5rem;"><i class="fa-solid fa-chalkboard-user"></i> Metodología</h2>
+                    <ul class="feature-list">
+                        <li><i class="fa-solid fa-laptop-code"></i><div><strong>Taller Práctico Ágil:</strong><br>Creación en tiempo real de recursos interactivos con herramientas Web 2.0 y 3.0.</div></li>
+                    </ul>
+                </div>
+                <div>
+                    <h2 class="section-title" style="font-size: 1.5rem;"><i class="fa-solid fa-server"></i> Entorno de Aprendizaje</h2>
+                    <ul class="feature-list">
+                        <li><i class="fa-brands fa-google"></i><div><strong>Plataformas Cloud:</strong><br>Uso de cuentas gratuitas en Canva, Genially, Kahoot, y Google Workspace.</div></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div style="text-align: center; margin-top: 40px;">
+                <a href="https://wa.me/593987321024?text=Hola,%20deseo%20inscribirme%20en%20Recursos%20Didácticos%20Interactivos." target="_blank" class="btn-whatsapp">
+                    <i class="fa-brands fa-whatsapp" style="font-size: 1.6rem;"></i> Solicitar Inscripción
+                </a><br>
+                <a href="index.html" class="back-link"><i class="fa-solid fa-arrow-left"></i> Volver a CEFEDEP</a>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
