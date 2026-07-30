@@ -29,10 +29,7 @@
         body { font-family: 'Montserrat', sans-serif; color: var(--dark); background-color: var(--white); overflow-x: hidden; }
 
         /* Mejoras en tipografía y alineación general */
-        p { 
-            line-height: 1.7; 
-            margin-bottom: 15px; 
-        }
+        p { line-height: 1.7; margin-bottom: 15px; }
 
         /* Navegación */
         nav { background: rgba(255, 255, 255, 0.98); padding: 15px 5%; display: flex; justify-content: space-between; align-items: center; position: fixed; width: 100%; top: 0; z-index: 1000; box-shadow: 0 5px 25px rgba(0,0,0,0.1); }
@@ -89,42 +86,13 @@
         .section-header h2 { font-family: 'Playfair Display', serif; font-size: 2.5rem; color: var(--primary); }
         .divider { width: 60px; height: 4px; background: var(--secondary); margin: 15px auto; border-radius: 10px; }
 
-        /* GALERÍA DE IMÁGENES REALES */
         /* GALERÍA DE IMÁGENES REALES MEJORADA */
-        .gallery-grid { 
-            display: grid; 
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); 
-            gap: 20px; 
-        }
-        .gallery-item { 
-            position: relative; 
-            border-radius: 15px; 
-            overflow: hidden; 
-            box-shadow: 0 10px 20px rgba(0,0,0,0.1); 
-            cursor: pointer; 
-        }
-        .gallery-item img { 
-            width: 100%; 
-            height: auto; /* Quitamos la altura fija */
-            aspect-ratio: 4 / 3; /* Relación de aspecto clásica de fotografía. Puedes cambiar a 16/9 si las prefieres más horizontales */
-            object-fit: cover; /* Asegura que la imagen llene el espacio sin deformarse */
-            transition: transform 0.5s ease; 
-            display: block; 
-        }
-        .gallery-item:hover img { 
-            transform: scale(1.08); 
-        }
-        .gallery-overlay { 
-            position: absolute; 
-            bottom: 0; 
-            left: 0; 
-            width: 100%; 
-            background: linear-gradient(transparent, rgba(0,0,0,0.8)); 
-            padding: 30px 20px 20px; 
-            color: white; 
-            font-weight: 700; 
-            font-size: 1.1rem; 
-        }
+        .gallery-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; }
+        .gallery-item { position: relative; border-radius: 15px; overflow: hidden; box-shadow: 0 10px 20px rgba(0,0,0,0.1); cursor: pointer; }
+        .gallery-item img { width: 100%; height: auto; aspect-ratio: 4 / 3; object-fit: cover; transition: transform 0.5s ease; display: block; }
+        .gallery-item:hover img { transform: scale(1.08); }
+        .gallery-overlay { position: absolute; bottom: 0; left: 0; width: 100%; background: linear-gradient(transparent, rgba(0,0,0,0.8)); padding: 30px 20px 20px; color: white; font-weight: 700; font-size: 1.1rem; }
+
         /* REDES SOCIALES SECCIÓN */
         .social-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 30px; margin-top: 30px; }
         .social-card { padding: 30px; border-radius: 20px; color: white; text-align: center; text-decoration: none; transition: 0.3s; display: flex; flex-direction: column; align-items: center; justify-content: center; }
@@ -149,40 +117,14 @@
         .course-info { padding: 30px; }
         .course-info h4 { font-size: 1.3rem; color: var(--primary); margin: 10px 0; font-family: 'Playfair Display', serif; }
         .course-info p { text-align: left; }
+        
         /* Insignias de Modalidades de Estudio */
-        .modalities-container { 
-            display: flex; 
-            justify-content: center; 
-            gap: 15px; 
-            flex-wrap: wrap; 
-            margin: 30px 0 40px; 
-        }
-        .modality-badge { 
-            display: flex; 
-            align-items: center; 
-            gap: 10px; 
-            background: white; 
-            padding: 12px 25px; 
-            border-radius: 50px; 
-            font-size: 0.9rem; 
-            font-weight: 700; 
-            color: var(--primary); 
-            box-shadow: 0 5px 15px rgba(0,0,0,0.05); 
-            border: 1px solid #eee;
-            transition: 0.3s;
-        }
-        .modality-badge:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
-        }
-        .badge-incompany { 
-            background: var(--secondary); 
-            color: white; 
-            border-color: var(--secondary); 
-        }
-        .badge-incompany i {
-            color: white !important;
-        }
+        .modalities-container { display: flex; justify-content: center; gap: 15px; flex-wrap: wrap; margin: 30px 0 40px; }
+        .modality-badge { display: flex; align-items: center; gap: 10px; background: white; padding: 12px 25px; border-radius: 50px; font-size: 0.9rem; font-weight: 700; color: var(--primary); box-shadow: 0 5px 15px rgba(0,0,0,0.05); border: 1px solid #eee; transition: 0.3s; }
+        .modality-badge:hover { transform: translateY(-3px); box-shadow: 0 8px 20px rgba(0,0,0,0.1); }
+        .badge-incompany { background: var(--secondary); color: white; border-color: var(--secondary); }
+        .badge-incompany i { color: white !important; }
+
         /* Tarjetas de Servicios y EHEP */
         .core-services { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; margin-top: 30px; }
         .core-card { background: white; padding: 40px; border-radius: 20px; box-shadow: 0 10px 25px rgba(0,0,0,0.05); text-align: center; }
@@ -200,18 +142,7 @@
         .form-group label { display: block; font-size: 0.8rem; font-weight: 700; margin-bottom: 5px; color: var(--primary); }
         .form-group input, .form-group select { width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 8px; font-family: inherit; }
         
-        /* Estilo profesional para avisos internos del modal */
-        .form-info-box { 
-            background: rgba(107, 122, 90, 0.1); 
-            border-left: 4px solid var(--accent); 
-            padding: 12px 18px; 
-            margin-bottom: 25px; 
-            border-radius: 0 8px 8px 0;
-            font-size: 0.85rem; 
-            line-height: 1.5;
-            text-align: left;
-            color: var(--primary);
-        }
+        .form-info-box { background: rgba(107, 122, 90, 0.1); border-left: 4px solid var(--accent); padding: 12px 18px; margin-bottom: 25px; border-radius: 0 8px 8px 0; font-size: 0.85rem; line-height: 1.5; text-align: left; color: var(--primary); }
 
         /* Footer */
         footer { background: var(--primary); color: white; padding: 50px 10%; text-align: center; }
@@ -222,17 +153,14 @@
         .wa-chat-box { position: absolute; bottom: 80px; right: 0; width: 340px; background: white; border-radius: 15px; box-shadow: 0 15px 35px rgba(0,0,0,0.2); display: none; overflow: hidden; animation: fadeInUp 0.4s ease; }
         @keyframes fadeInUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
 
-        /* Cabecera Alineada */
         .wa-chat-header { background: var(--whatsapp); color: white; padding: 20px; display: flex; align-items: center; justify-content: space-between; }
         .wa-header-info { display: flex; align-items: center; gap: 12px; }
         .wa-close { color: white; cursor: pointer; font-size: 1.8rem; line-height: 1; }
 
-        /* Cuerpo tipo chat */
         .wa-chat-body { background-color: #e5ddd5; padding: 20px; min-height: 120px; }
         .wa-msg { background: white; padding: 12px 16px; border-radius: 0 12px 12px 12px; font-size: 0.9rem; line-height: 1.5; color: #333; text-align: left; box-shadow: 0 1px 2px rgba(0,0,0,0.1); display: inline-block; position: relative; margin-bottom: 10px; }
         .wa-msg::before { content: ""; position: absolute; top: 0; left: -10px; border-width: 0 10px 10px 0; border-style: solid; border-color: transparent white transparent transparent; }
 
-        /* Footer WhatsApp */
         .wa-chat-footer { padding: 15px; background: white; text-align: center; }
         .wa-chat-btn { background: var(--whatsapp); color: white; text-decoration: none; padding: 12px 25px; border-radius: 30px; font-weight: 700; display: inline-flex; align-items: center; gap: 10px; transition: 0.3s; width: 100%; justify-content: center;}
         .wa-chat-btn:hover { background: #1ebe57; transform: translateY(-2px); }
@@ -318,6 +246,9 @@
         <ul class="nav-links">
             <li><a href="#inicio">Inicio</a></li>
             
+            <!-- ENLACE A LA NUEVA PÁGINA "QUIÉNES SOMOS" -->
+            <li><a href="quienes-somos.html">Quiénes Somos</a></li>
+            
             <!-- MENÚ DESPLEGABLE DE CURSOS -->
             <li class="dropdown" id="btn-cursos" onclick="toggleDropdownMobile(event)">
                 <a href="javascript:void(0)" style="cursor: pointer;">Cursos Avalados <i class="fa-solid fa-chevron-down" style="font-size: 0.7rem; margin-left: 3px;"></i></a>
@@ -366,6 +297,37 @@
         </div>        
     </section>
 
+    <!-- SERVICIOS B2B (Consultoría Institucional) -->
+    <section id="servicios-b2b" style="background-color: var(--light);">
+        <div class="section-header">
+            <span class="featured-tag" style="background: var(--accent);">Consultoría Institucional B2B</span>
+            <h3 style="font-family: 'Playfair Display', serif; font-size: 2.5rem; color: var(--primary);">Servicios para la Educación Superior</h3>
+            <div class="divider"></div>
+            <p style="color: #666; max-width: 800px; margin: 15px auto;">Elevando el estándar de Universidades e Institutos Tecnológicos mediante consultoría, acreditación y diseño curricular.</p>
+        </div>
+
+        <div style="background: white; padding: 40px; border-radius: 20px; box-shadow: 0 10px 25px rgba(0,0,0,0.05); border-left: 5px solid var(--secondary);">
+            <ul style="list-style: none; padding-left: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px;">
+                <li style="display: flex; align-items: flex-start; gap: 10px;">
+                    <i class="fa-solid fa-check-circle" style="color: var(--accent); margin-top: 4px;"></i> 
+                    <span><strong>Diagnóstico y Cualificación:</strong> Auditoría inicial y evaluación del estado de los institutos tecnológicos frente a las normativas de educación superior.</span>
+                </li>
+                <li style="display: flex; align-items: flex-start; gap: 10px;">
+                    <i class="fa-solid fa-check-circle" style="color: var(--accent); margin-top: 4px;"></i> 
+                    <span><strong>Diseño de Indicadores:</strong> Estructuración de métricas de calidad y rendimiento adaptadas a las exigencias del organismo acreditador.</span>
+                </li>
+                <li style="display: flex; align-items: flex-start; gap: 10px;">
+                    <i class="fa-solid fa-check-circle" style="color: var(--accent); margin-top: 4px;"></i> 
+                    <span><strong>Simulaciones de Evaluación:</strong> Ejercicios prácticos y simulacros de auditoría para preparar a la junta directiva y al personal operativo.</span>
+                </li>
+                <li style="display: flex; align-items: flex-start; gap: 10px;">
+                    <i class="fa-solid fa-check-circle" style="color: var(--accent); margin-top: 4px;"></i> 
+                    <span><strong>Planes de Mejora Continua:</strong> Implementación de correcciones estratégicas que garantizan el éxito en la acreditación y el aseguramiento de la calidad a largo plazo.</span>
+                </li>
+            </ul>
+        </div>
+    </section>
+
     <!-- GALERÍA DE TRAYECTORIA INSTITUCIONAL -->
     <section id="galeria" style="background: var(--white);">
         <div class="section-header">
@@ -390,7 +352,7 @@
         </div>
     </section>
 
-<!-- TOP CURSOS PROFESIONALES -->
+    <!-- TOP CURSOS PROFESIONALES -->
     <section id="cursos" class="courses-section">
         <div class="section-header">
             <span class="featured-tag" style="background: var(--primary);">Educación Continua</span>
@@ -398,7 +360,6 @@
             <div class="divider"></div>
             <p style="color: #666; font-size: 1.1rem; max-width: 700px; margin: 0 auto;">Potencia tu currículum con nuestras áreas de mayor demanda laboral, adaptadas a tu disponibilidad.</p>
             
-            <!-- NUEVO: Modalidades de Estudio -->
             <div class="modalities-container">
                 <div class="modality-badge">
                     <i class="fa-solid fa-laptop" style="color: var(--accent);"></i> Virtual
@@ -446,7 +407,7 @@
         </div>
     </section>
 
-    <!-- SECCIÓN PREGUNTAS ALTO IMPACTO (B2B) -->
+    <!-- SECCIÓN PREGUNTAS ALTO IMPACTO -->
     <section id="especialidad">
         <div class="featured-banner">
             <span class="featured-tag">Servicios Exclusivos para IES</span>
@@ -464,7 +425,6 @@
             <div class="divider"></div>
         </div>
         <div class="core-services">
-            <!-- Tarjeta EHEP Alineada -->
             <div class="core-card" style="text-align: left; padding: 40px; border-left: 5px solid var(--secondary); background: white; border-radius: 20px; box-shadow: 0 10px 25px rgba(0,0,0,0.05);">
                 <h3 style="color: var(--primary); margin-bottom: 20px; font-family: 'Playfair Display', serif; font-size: 1.8rem;">Plataforma y Simulador</h3>
                 <ul style="list-style: none; padding-left: 0; margin-bottom: 25px;">
@@ -634,50 +594,44 @@
         }
 
         // Script para desplegar el menú de cursos en móviles al hacer clic
-// Script para desplegar el menú de cursos en móviles al hacer clic (Corregido)
-function toggleDropdownMobile(e) {
-    if (window.innerWidth <= 900) {
-        // Verifica si el usuario tocó un enlace de un curso específico
-        if (e.target.closest('.dropdown-menu a')) {
-            return; // Si es un curso, no interrumpe y deja que abra la página
+        function toggleDropdownMobile(e) {
+            if (window.innerWidth <= 900) {
+                // Verifica si el usuario tocó un enlace de un curso específico
+                if (e.target.closest('.dropdown-menu a')) {
+                    return; // Si es un curso, no interrumpe y deja que abra la página
+                }
+                
+                // Si tocó el título principal, despliega u oculta el menú
+                e.preventDefault();
+                const dropdown = document.getElementById('btn-cursos');
+                dropdown.classList.toggle('active');
+            }
         }
-        
-        // Si tocó el título principal, despliega u oculta el menú
-        e.preventDefault();
-        const dropdown = document.getElementById('btn-cursos');
-        dropdown.classList.toggle('active');
-    }
-}
 
-       // Botón "Explorar cursos" y "Ver Especialidades"
-       function abrirMenuCursos() {
-    // Sube suavemente al inicio
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-    
-    // Espera a que termine de subir para abrir el menú
-    setTimeout(() => {
-        if (window.innerWidth <= 900) {
-            // Comportamiento para Celulares
-            document.querySelector('.nav-links').classList.add('active');
-            document.getElementById('btn-cursos').classList.add('active');
-            document.querySelector('.menu-toggle i').classList.replace('fa-bars', 'fa-xmark');
-        } else {
-            // Comportamiento para PC: Fuerza la apertura del menú desplegable
-            const dropdownMenu = document.querySelector('.dropdown-menu');
-            dropdownMenu.style.display = 'block';
+        // Botón "Explorar cursos" y "Ver Especialidades"
+        function abrirMenuCursos() {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
             
-            // Cierra el menú automáticamente si el usuario hace clic en cualquier otro lado de la pantalla
             setTimeout(() => {
-                document.addEventListener('click', function closeDrop(e) {
-                    if (!e.target.closest('#btn-cursos')) {
-                        dropdownMenu.style.display = ''; // Lo vuelve a ocultar
-                        document.removeEventListener('click', closeDrop);
-                    }
-                });
-            }, 100);
+                if (window.innerWidth <= 900) {
+                    document.querySelector('.nav-links').classList.add('active');
+                    document.getElementById('btn-cursos').classList.add('active');
+                    document.querySelector('.menu-toggle i').classList.replace('fa-bars', 'fa-xmark');
+                } else {
+                    const dropdownMenu = document.querySelector('.dropdown-menu');
+                    dropdownMenu.style.display = 'block';
+                    
+                    setTimeout(() => {
+                        document.addEventListener('click', function closeDrop(e) {
+                            if (!e.target.closest('#btn-cursos')) {
+                                dropdownMenu.style.display = ''; 
+                                document.removeEventListener('click', closeDrop);
+                            }
+                        });
+                    }, 100);
+                }
+            }, 600);
         }
-    }, 600);
-}
 
         // Cerrar menú móvil al tocar otro enlace
         document.querySelectorAll('.nav-links a:not(.dropdown-menu a):not(#btn-cursos a)').forEach(link => {
