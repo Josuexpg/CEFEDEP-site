@@ -187,54 +187,67 @@
 </head>
 <body>
 
-<!-- MODAL INSCRIPCIÓN EHEP -->
+<!-- MODAL INSCRIPCIÓN EHEP (DISEÑO CORREGIDO) -->
     <div class="modal-overlay" id="registrationModal">
-        <div class="promo-modal">
-            <span class="close-modal" onclick="closeModal()">&times;</span>
+        <!-- Agregamos max-height y overflow-y para que no se corte en celulares -->
+        <div class="promo-modal" style="max-height: 90vh; overflow-y: auto;">
             
-            <!-- Cabecera reducida para mejor visualización -->
-            <div class="modal-header-img" style="height: 100px; padding: 15px;">
+            <!-- Botón de cerrar ajustado para que no estorbe -->
+            <span class="close-modal" onclick="closeModal()" style="color: var(--primary); background: white; border-radius: 50%; width: 30px; height: 30px; display: flex; align-items: center; justify-content: center; box-shadow: 0 2px 5px rgba(0,0,0,0.2); top: 10px; right: 10px; z-index: 20;">&times;</span>
+            
+            <div class="modal-header-img" style="height: auto; padding: 25px 20px 15px;">
                 <div>
                     <h3 style="font-family: 'Playfair Display'; font-size: 1.4rem; margin-bottom: 5px;">Examen EHEP 2026</h3>
-                    <p style="font-size: 0.85rem; font-weight: 600; color: var(--secondary);">¡Inscripciones Abiertas!</p>
+                    <p style="font-size: 0.8rem; font-weight: 600; color: var(--secondary); margin-bottom: 0;">¡Inscripciones Abiertas!</p>
                 </div>
             </div>
             
-            <div class="modal-body" style="padding: 20px 30px;">
-                <div class="form-info-box" style="margin-bottom: 15px;"><strong>Incluye:</strong> 10h clases, Plataforma Classroom y Simulador exclusivo con IA.</div>
+            <div class="modal-body" style="padding: 20px;">
+                <div class="form-info-box" style="margin-bottom: 15px; padding: 10px 15px; font-size: 0.8rem;">
+                    <strong>Incluye:</strong> 10h clases, Plataforma Classroom y Simulador con IA.
+                </div>
                 
                 <form id="ehepForm">
-                    <div class="form-group"><label>Nombre Completo</label><input type="text" id="formName" required></div>
+                    <div class="form-group" style="margin-bottom: 12px;">
+                        <label style="margin-bottom: 3px;">Nombre Completo</label>
+                        <input type="text" id="formName" required style="padding: 10px;">
+                    </div>
                     
-                    <div class="form-group"><label>Carrera</label>
-                        <select id="formCourse" required>
-                            <option value="">Seleccione</option>
+                    <div class="form-group" style="margin-bottom: 12px;">
+                        <label style="margin-bottom: 3px;">Carrera</label>
+                        <select id="formCourse" required style="padding: 10px;">
+                            <option value="">Seleccione su área</option>
                             <option value="Medicina">Medicina</option>
                             <option value="Enfermería">Enfermería</option>
                             <option value="Odontología">Odontología</option>
                         </select>
                     </div>
                     
-                    <div class="form-group"><label>WhatsApp</label><input type="tel" id="formPhone" required></div>
+                    <div class="form-group" style="margin-bottom: 12px;">
+                        <label style="margin-bottom: 3px;">Número de Contacto</label>
+                        <input type="tel" id="formPhone" required style="padding: 10px;">
+                    </div>
                     
-                    <div class="form-group"><label>Correo (Gmail)</label><input type="email" id="formEmail" required><small id="emailError" style="color: red; display: none;">Debe ser @gmail.com.</small></div>
+                    <div class="form-group" style="margin-bottom: 12px;">
+                        <label style="margin-bottom: 3px;">Correo Electrónico</label>
+                        <input type="email" id="formEmail" required style="padding: 10px;">
+                        <small id="emailError" style="color: red; display: none; font-size: 0.7rem; margin-top: 3px;">Debe ser @gmail.com.</small>
+                    </div>
                     
-                    <!-- NUEVO: Selector de método de pago -->
-                    <div class="form-group">
-                        <label>Método de Pago</label>
-                        <select id="formPaymentMethod" required>
+                    <div class="form-group" style="margin-bottom: 20px;">
+                        <label style="margin-bottom: 3px; color: var(--secondary);">Método de Pago</label>
+                        <select id="formPaymentMethod" required style="padding: 10px; border: 1px solid var(--secondary); background-color: #fdfaf3;">
                             <option value="">¿Cómo deseas pagar?</option>
-                            <option value="tarjeta">Tarjeta (Inscripción Inmediata)</option>
-                            <option value="transferencia">Transferencia a Produbanco</option>
+                            <option value="tarjeta">💳 Tarjeta (Inscripción Inmediata)</option>
+                            <option value="transferencia">🏦 Transferencia Bancaria</option>
                         </select>
                     </div>
 
-                    <button type="submit" class="btn-main" style="width: 100%; border-radius: 10px; padding: 15px;">Completar Inscripción</button>
+                    <button type="submit" class="btn-main" style="width: 100%; border-radius: 8px; padding: 12px; font-size: 0.95rem;">Completar Inscripción</button>
                 </form>
             </div>
         </div>
     </div>
-
     <!-- MODAL FIREBASE -->
     <div class="modal-overlay" id="authModal">
         <div class="promo-modal">
