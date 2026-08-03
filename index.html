@@ -187,28 +187,49 @@
 </head>
 <body>
 
-    <!-- MODAL INSCRIPCIÓN EHEP -->
+<!-- MODAL INSCRIPCIÓN EHEP -->
     <div class="modal-overlay" id="registrationModal">
         <div class="promo-modal">
             <span class="close-modal" onclick="closeModal()">&times;</span>
-            <div class="modal-header-img">
+            
+            <!-- Cabecera reducida para mejor visualización -->
+            <div class="modal-header-img" style="height: 100px; padding: 15px;">
                 <div>
-                    <h3 style="font-family: 'Playfair Display'; font-size: 1.8rem;">Examen EHEP 2026</h3>
-                    <p style="font-size: 0.9rem; font-weight: 600; color: var(--secondary);">¡Inscripciones Abiertas!</p>
+                    <h3 style="font-family: 'Playfair Display'; font-size: 1.4rem; margin-bottom: 5px;">Examen EHEP 2026</h3>
+                    <p style="font-size: 0.85rem; font-weight: 600; color: var(--secondary);">¡Inscripciones Abiertas!</p>
                 </div>
             </div>
-            <div class="modal-body">
-                <div class="form-info-box"><strong>Incluye:</strong> 10h clases, Plataforma Classroom y Simulador exclusivo con IA.</div>
+            
+            <div class="modal-body" style="padding: 20px 30px;">
+                <div class="form-info-box" style="margin-bottom: 15px;"><strong>Incluye:</strong> 10h clases, Plataforma Classroom y Simulador exclusivo con IA.</div>
+                
                 <form id="ehepForm">
                     <div class="form-group"><label>Nombre Completo</label><input type="text" id="formName" required></div>
+                    
                     <div class="form-group"><label>Carrera</label>
                         <select id="formCourse" required>
-                            <option value="">Seleccione</option><option value="Medicina">Medicina</option><option value="Enfermería">Enfermería</option><option value="Odontología">Odontología</option>
+                            <option value="">Seleccione</option>
+                            <option value="Medicina">Medicina</option>
+                            <option value="Enfermería">Enfermería</option>
+                            <option value="Odontología">Odontología</option>
                         </select>
                     </div>
+                    
                     <div class="form-group"><label>WhatsApp</label><input type="tel" id="formPhone" required></div>
+                    
                     <div class="form-group"><label>Correo (Gmail)</label><input type="email" id="formEmail" required><small id="emailError" style="color: red; display: none;">Debe ser @gmail.com.</small></div>
-                    <button type="submit" class="btn-main" style="width: 100%; border-radius: 10px;">Completar Inscripción</button>
+                    
+                    <!-- NUEVO: Selector de método de pago -->
+                    <div class="form-group">
+                        <label>Método de Pago</label>
+                        <select id="formPaymentMethod" required>
+                            <option value="">¿Cómo deseas pagar?</option>
+                            <option value="tarjeta">Tarjeta (Inscripción Inmediata)</option>
+                            <option value="transferencia">Transferencia a Produbanco</option>
+                        </select>
+                    </div>
+
+                    <button type="submit" class="btn-main" style="width: 100%; border-radius: 10px; padding: 15px;">Completar Inscripción</button>
                 </form>
             </div>
         </div>
@@ -561,23 +582,75 @@
             }
         });
 
-        // FORMULARIO EHEP
+// FORMULARIO EHEP
         function openModal() { document.getElementById('registrationModal').style.display = 'flex'; }
         function closeModal() { document.getElementById('registrationModal').style.display = 'none'; }
+        
+        // --- A PARTIR DE AQUÍ EMPIEZA LA NUEVA AUTOMATIZACIÓN ---
         document.getElementById('ehepForm').addEventListener('submit', function(e) {
             e.preventDefault();
+            
+            // 1. Capturamos los datos
             const name = document.getElementById('formName').value;
-            const course = document.getElementById('formCourse').value;
+            const courseSelect = document.getElementById('formCourse').value;
+            const course = "Preparación Examen EHEP " + courseSelect; 
             const phone = document.getElementById('formPhone').value;
             const email = document.getElementById('formEmail').value;
+            const paymentMethod = document.getElementById('formPaymentMethod').value;
             const emailError = document.getElementById('emailError');
+            const btnSubmit = this.querySelector('button[type="submit"]');
 
-            if (!email.includes('@gmail.com')) { emailError.style.display = 'block'; return; } 
-            else { emailError.style.display = 'none'; }
+            if (!email.includes('@gmail.com')) { 
+                emailError.style.display = 'block'; 
+                return; 
+            } else { 
+                emailError.style.display = 'none'; 
+            }
 
-            const text = `Hola CEFEDEP, soy *${name}*. Deseo inscribirme al EHEP para *${course}*.\n- Correo: ${email}\n- Celular: ${phone}\n_Solicito datos de pago._`;
-            window.open(`https://wa.me/593987321024?text=${encodeURIComponent(text)}`, '_blank');
-            closeModal();
+            const originalText = btnSubmit.innerText;
+            btnSubmit.innerText = "Procesando...";
+            btnSubmit.disabled = true;
+
+            // 2. Empaquetamos los datos
+            const payload = {
+                nombre: name,
+                email: email,
+                curso: course,
+                telefono: phone,
+                metodoPago: paymentMethod
+            };
+
+            // >>> PEGA AQUÍ TU ENLACE DE GOOGLE APPS SCRIPT <<<
+            const webhookUrl = "https://script.google.com/macros/s/TU_ENLACE_AQUI/exec";
+
+            // 3. Enviamos a Google Sheets (y de ahí a Firebase)
+            fetch(webhookUrl, {
+                method: 'POST',
+                mode: 'no-cors',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(payload)
+            })
+            .then(() => {
+                // 4. Redirección según método de pago
+                if (paymentMethod === "transferencia") {
+                    const text = `Hola CEFEDEP, soy *${name}*. Me registré al EHEP de *${courseSelect}*.\n_Solicito la cuenta de Produbanco para hacer mi transferencia._`;
+                    window.open(`https://wa.me/593987321024?text=${encodeURIComponent(text)}`, '_blank');
+                } else if (paymentMethod === "tarjeta") {
+                    const linkPayPhone = "https://payp.hn/tu-enlace-de-cobro"; // Cambia esto por tu link real de PayPhone/Kushki
+                    window.open(linkPayPhone, '_blank');
+                }
+                
+                closeModal();
+                btnSubmit.innerText = originalText;
+                btnSubmit.disabled = false;
+                document.getElementById('ehepForm').reset();
+            })
+            .catch(error => {
+                alert("Error de conexión, pero te atenderemos por WhatsApp.");
+                window.open(`https://wa.me/593987321024?text=Hola, tuve un problema en la web. Mi nombre es ${name}.`, '_blank');
+                btnSubmit.innerText = originalText;
+                btnSubmit.disabled = false;
+            });
         });
 
         // WHATSAPP WIDGET
