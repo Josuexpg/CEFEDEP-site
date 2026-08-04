@@ -653,14 +653,13 @@
             // 3. Enviamos a Google Sheets (Se va con el estado Pendiente)
             fetch(webhookUrl, {
                 method: 'POST',
-                mode: 'no-cors',
-                headers: { 'Content-Type': 'application/json' },
+                // ELIMINAMOS mode: 'no-cors'
+                headers: { 'Content-Type': 'text/plain;charset=utf-8' }, // CLAVE: text/plain permite saltar CORS
                 body: JSON.stringify(payload)
             })
-            .then(() => {
+            .then(response => {
                 // 4. LÓGICA DE PAGOS
                 if (paymentMethod === "transferencia") {
-                    // Si elige transferencia o efectivo, lo mandamos a WhatsApp
                     const text = `Hola CEFEDEP, soy *${name}*. Me registré al EHEP de *${courseSelect}*.\n_Deseo realizar mi pago mediante transferencia o efectivo en ventanilla._`;
                     window.open(`https://wa.me/593987321024?text=${encodeURIComponent(text)}`, '_blank');
                     closeModal();
@@ -670,11 +669,9 @@
                     
                 } else if (paymentMethod === "tarjeta") {
                     try {
-                        // Ocultamos el formulario y mostramos el contenedor
                         document.getElementById('ehepForm').style.display = 'none';
                         document.getElementById('payphone-wrapper').style.display = 'block';
-
-                        // INICIAMOS LA CAJITA PAYPHONE 2.0
+            
                         const ppb = new PPaymentButtonBox({                            
                             token: 'yYr16kF76YWm67nihKoYTiNuP778roAIuSz_iBSRB-yid2JDES4nijIzG0Zw4O-tWhGNkB4azmnzrGIKsTxfE-lXivINg2_1mCwvrRTeoBo49xxOwiBZ0jPrt8TAvZmg-vOuArJasVEzzuXJyfnwRTFsDZ1VOS0e4v4aoSlS_SwQSlG_wHZ43VNhml7LTbT8ubOp23VYhy5D43VLoZDvaNJR2sTSG6Hnygy7YiN2B48bsQPgFeH-EHZ3vllp80Jjtnj0GD6VdHC4NIqQ2XoV2FiTyOLJVyqhliDf3gzFqmHShwLY18WHq2-8J-hlp5faiJap5MmpHrMuA2PdpbKfOew1TbY',
                             amount: 4000,
@@ -687,9 +684,9 @@
                             currency: 'USD',
                             clientTransactionId: myTransactionId,
                             backgroundColor: "#334235",
-                            responseUrl: "https://cefedep.com/" // <-- AGREGA ESTA LÍNEA (Redirige al cliente al aprobar)
+                            responseUrl: "https://cefedep.com/" 
                         }).render('pp-button');
-
+            
                         btnSubmit.innerText = originalText;
                         btnSubmit.disabled = false;
                         
@@ -708,28 +705,24 @@
             
         }); 
 
-                // --- AUTOMATIZACIÓN AUTOMÁTICA POST-PAGO ---
+        // --- AUTOMATIZACIÓN AUTOMÁTICA POST-PAGO ---
         window.addEventListener('DOMContentLoaded', () => {
             const urlParams = new URLSearchParams(window.location.search);
             const clientTransactionId = urlParams.get('clientTransactionId') || urlParams.get('id');
             
-            // Si la URL detecta que el cliente viene de pagar en PayPhone
             if (clientTransactionId) {
                 const webhookUrl = "https://script.google.com/macros/s/AKfycbxFWIU7c4Gz549edBTMVXrLypDHFLDbjdzDEXQpUUq15KvV3ejgUHghFqXLwfqpuKyq/exec";
                 
-                // Enviamos la confirmación a Google Apps Script automáticamente
                 fetch(webhookUrl, {
                     method: 'POST',
-                    mode: 'no-cors',
-                    headers: { 'Content-Type': 'application/json' },
+                    // ELIMINAMOS mode: 'no-cors'
+                    headers: { 'Content-Type': 'text/plain;charset=utf-8' },
                     body: JSON.stringify({
                         clientTransactionId: clientTransactionId,
                         transactionStatus: "Approved"
                     })
                 }).then(() => {
-                    // Notificamos al alumno en pantalla
                     alert("🎉 ¡Pago confirmado con éxito!\n\nHemos activado tu cuenta en el Simulador y te enviamos las credenciales de acceso a tu correo electrónico.");
-                    // Limpiamos los parámetros de la URL
                     window.history.replaceState({}, document.title, window.location.pathname);
                 }).catch(err => {
                     console.error("Error al procesar la automatización:", err);
