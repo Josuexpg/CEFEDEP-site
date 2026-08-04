@@ -650,7 +650,7 @@
                     window.open(`https://wa.me/593987321024?text=${encodeURIComponent(text)}`, '_blank');
                 } else if (paymentMethod === "tarjeta") {
                     const linkPayPhone = "https://ppls.me/yar1UTQQbxmfD1q2cinaNA"; // Cambia esto por tu link real de PayPhone/Kushki
-                    window.open(linkPayPhone, '_blank');
+                    window.location.href = linkPayPhone;
                 }
                 
                 closeModal();
