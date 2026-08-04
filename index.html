@@ -665,30 +665,36 @@
                     document.getElementById('ehepForm').reset();
                 } else if (paymentMethod === "tarjeta") {
                     
-                    // 4. OCULTAMOS EL FORMULARIO Y MOSTRAMOS PAYPHONE
-                    document.getElementById('ehepForm').style.display = 'none';
-                    document.getElementById('payphone-wrapper').style.display = 'block';
+                    // DETECTOR DE ERRORES ACTIVADO
+                    try {
+                        document.getElementById('ehepForm').style.display = 'none';
+                        document.getElementById('payphone-wrapper').style.display = 'block';
 
-                    // 5. INVOCAMOS EL BOTÓN OFICIAL (Aquí pones tu Token de Pruebas)
-                    payphone.Button({
-                        token: "yYr16kF76YWm67nihKoYTiNuP778roAIuSz_iBSRB-yid2JDES4nijIzG0Zw4O-tWhGNkB4azmnzrGIKsTxfE-lXivINg2_1mCwvrRTeoBo49xxOwiBZ0jPrt8TAvZmg-vOuArJasVEzzuXJyfnwRTFsDZ1VOS0e4v4aoSlS_SwQSlG_wHZ43VNhml7LTbT8ubOp23VYhy5D43VLoZDvaNJR2sTSG6Hnygy7YiN2B48bsQPgFeH-EHZ3vllp80Jjtnj0GD6VdHC4NIqQ2XoV2FiTyOLJVyqhliDf3gzFqmHShwLY18WHq2-8J-hlp5faiJap5MmpHrMuA2PdpbKfOew1TbY",
-                        btnHorizontal: true,
-                        btnDark: true,
-                        amount: 4000, // $40.00 expresado en centavos
-                        amountWithoutTax: 5000,
-                        clientTransactionId: myTransactionId, // <-- El mismo ID para PayPhone
-                        currency: "USD",
-                        responseUrl: "https://cefedep.com/" 
-                    }).render("#pp-button");
+                        payphone.Button({
+                            token: "AQUÍ_PEGA_TU_TOKEN_DE_PRUEBAS",
+                            btnHorizontal: true,
+                            btnDark: true,
+                            amount: 5000, 
+                            amountWithoutTax: 5000,
+                            clientTransactionId: myTransactionId, 
+                            currency: "USD",
+                            responseUrl: "https://cefedep.com/" 
+                        }).render("#pp-button");
 
-                    btnSubmit.innerText = originalText;
-                    btnSubmit.disabled = false;
+                        btnSubmit.innerText = originalText;
+                        btnSubmit.disabled = false;
+                        
+                    } catch (err) {
+                        // Si falta el div o el script de PayPhone, saldrá esto:
+                        alert("⚠️ Error al dibujar la caja de pago: " + err.message);
+                        btnSubmit.innerText = originalText;
+                        btnSubmit.disabled = false;
+                    }
                 }
             })
             .catch(error => {
-                console.error("Error de red:", error);
-                alert("Error de conexión, pero te atenderemos por WhatsApp.");
-                window.open(`https://wa.me/593987321024?text=Hola, tuve un problema en la web. Mi nombre es ${name}.`, '_blank');
+                // Si falla el internet o Google, saldrá esto:
+                alert("⚠️ Fallo en el envío a Google: " + error.message);
                 btnSubmit.innerText = originalText;
                 btnSubmit.disabled = false;
             });
