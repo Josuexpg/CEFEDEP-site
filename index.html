@@ -242,15 +242,9 @@
                             <option value="transferencia">🏦 Transferencia Bancaria</option>
                         </select>
                     </div>
+
                     <button type="submit" class="btn-main" style="width: 100%; border-radius: 8px; padding: 12px; font-size: 0.95rem;">Completar Inscripción</button>
                 </form>
-
-                <!-- NUEVO CONTENEDOR DE PAYPHONE -->
-                <div id="payphone-wrapper" style="display:none; text-align: center; margin-top: 20px;">
-                    <h4 style="margin-bottom: 15px; color: var(--primary);">Completa tu pago seguro</h4>
-                    <div id="pp-button"></div>
-                </div>
-                
             </div>
         </div>
     </div>
@@ -549,8 +543,7 @@
         <div class="wa-float-btn" onclick="toggleWaChat()"><i class="fa-brands fa-whatsapp"></i></div>
     </div>
 
-<!-- LIBRERÍAS DE PAYPHONE Y FIREBASE -->
-    <script src="https://pay.payphonetodoesposible.com/api/button/v2/payphone-payment-button.js"></script>
+    <!-- LIBRERÍAS DE FIREBASE -->
     <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
 
@@ -604,19 +597,8 @@
 
 // FORMULARIO EHEP
         function openModal() { document.getElementById('registrationModal').style.display = 'flex'; }
-        function closeModal() { 
-            document.getElementById('registrationModal').style.display = 'none'; 
-            
-            // Restaurar la vista por si vuelven a abrir el modal
-            document.getElementById('ehepForm').style.display = 'block';
-            document.getElementById('ehepForm').reset();
-            
-            const pw = document.getElementById('payphone-wrapper');
-            if(pw) pw.style.display = 'none';
-            
-            const pb = document.getElementById('pp-button');
-            if(pb) pb.innerHTML = '';
-        }     
+        function closeModal() { document.getElementById('registrationModal').style.display = 'none'; }
+        
         // --- A PARTIR DE AQUÍ EMPIEZA LA NUEVA AUTOMATIZACIÓN ---
         document.getElementById('ehepForm').addEventListener('submit', function(e) {
             e.preventDefault();
@@ -662,35 +644,19 @@
                 body: JSON.stringify(payload)
             })
             .then(() => {
-                // 4. Redirección o Mostrar Caja de Pago
+                // 4. Redirección según método de pago
                 if (paymentMethod === "transferencia") {
                     const text = `Hola CEFEDEP, soy *${name}*. Me registré al EHEP de *${courseSelect}*.\n_Solicito la cuenta de Produbanco para hacer mi transferencia._`;
                     window.open(`https://wa.me/593987321024?text=${encodeURIComponent(text)}`, '_blank');
-                    closeModal();
-                    btnSubmit.innerText = originalText;
-                    btnSubmit.disabled = false;
                 } else if (paymentMethod === "tarjeta") {
-                    
-                    // Ocultamos el formulario y mostramos el contenedor de PayPhone
-                    document.getElementById('ehepForm').style.display = 'none';
-                    document.getElementById('payphone-wrapper').style.display = 'block';
-
-                    // Inicializamos la caja de pago de PayPhone
-                    payphone.Button({
-                        token: "AyYr16kF76YWm67nihKoYTiNuP778roAIuSz_iBSRB-yid2JDES4nijIzG0Zw4O-tWhGNkB4azmnzrGIKsTxfE-lXivINg2_1mCwvrRTeoBo49xxOwiBZ0jPrt8TAvZmg-vOuArJasVEzzuXJyfnwRTFsDZ1VOS0e4v4aoSlS_SwQSlG_wHZ43VNhml7LTbT8ubOp23VYhy5D43VLoZDvaNJR2sTSG6Hnygy7YiN2B48bsQPgFeH-EHZ3vllp80Jjtnj0GD6VdHC4NIqQ2XoV2FiTyOLJVyqhliDf3gzFqmHShwLY18WHq2-8J-hlp5faiJap5MmpHrMuA2PdpbKfOew1TbY", // ¡Asegúrate de pegar el de Pruebas/Sandbox!
-                        btnHorizontal: true,
-                        btnDark: true,
-                        amount: 5000, // $50.00 (el valor se debe poner en centavos)
-                        amountWithoutTax: 5000,
-                        clientTransactionId: "EHEP-" + Date.now(),
-                        currency: "USD",
-                        responseUrl: "https://cefedep.com/" // A dónde ir si el pago es exitoso
-                    }).render("#pp-button");
-
-                    // Restauramos el botón por si regresan
-                    btnSubmit.innerText = originalText;
-                    btnSubmit.disabled = false;
+                    const linkPayPhone = "https://ppls.me/dzKRL8eCVaVfG6Op7Bw"; // Cambia esto por tu link real de PayPhone/Kushki
+                    window.location.href = linkPayPhone;
                 }
+                
+                closeModal();
+                btnSubmit.innerText = originalText;
+                btnSubmit.disabled = false;
+                document.getElementById('ehepForm').reset();
             })
             .catch(error => {
                 alert("Error de conexión, pero te atenderemos por WhatsApp.");
