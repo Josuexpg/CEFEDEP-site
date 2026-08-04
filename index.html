@@ -676,18 +676,18 @@
 
                         // INICIAMOS LA CAJITA PAYPHONE 2.0
                         const ppb = new PPaymentButtonBox({                            
-                            token: 'yYr16kF76YWm67nihKoYTiNuP778roAIuSz_iBSRB-yid2JDES4nijIzG0Zw4O-tWhGNkB4azmnzrGIKsTxfE-lXivINg2_1mCwvrRTeoBo49xxOwiBZ0jPrt8TAvZmg-vOuArJasVEzzuXJyfnwRTFsDZ1VOS0e4v4aoSlS_SwQSlG_wHZ43VNhml7LTbT8ubOp23VYhy5D43VLoZDvaNJR2sTSG6Hnygy7YiN2B48bsQPgFeH-EHZ3vllp80Jjtnj0GD6VdHC4NIqQ2XoV2FiTyOLJVyqhliDf3gzFqmHShwLY18WHq2-8J-hlp5faiJap5MmpHrMuA2PdpbKfOew1TbY', // ¡Tu Token del panel!
-                            amount: 5000,             // 50 dólares (en centavos)
-                            amountWithoutTax: 5000,   // 50 dólares (en centavos)
+                            token: 'yYr16kF76YWm67nihKoYTiNuP778roAIuSz_iBSRB-yid2JDES4nijIzG0Zw4O-tWhGNkB4azmnzrGIKsTxfE-lXivINg2_1mCwvrRTeoBo49xxOwiBZ0jPrt8TAvZmg-vOuArJasVEzzuXJyfnwRTFsDZ1VOS0e4v4aoSlS_SwQSlG_wHZ43VNhml7LTbT8ubOp23VYhy5D43VLoZDvaNJR2sTSG6Hnygy7YiN2B48bsQPgFeH-EHZ3vllp80Jjtnj0GD6VdHC4NIqQ2XoV2FiTyOLJVyqhliDf3gzFqmHShwLY18WHq2-8J-hlp5faiJap5MmpHrMuA2PdpbKfOew1TbY',
+                            amount: 4000,
+                            amountWithoutTax: 4000,
                             amountWithTax: 0,
                             tax: 0,                                        
                             service: 0,
                             tip: 0,
                             reference: "Inscripción " + courseSelect,
                             currency: 'USD',
-                            clientTransactionId: myTransactionId, // El ID mágico para Google
-                            backgroundColor: "#334235"            // Verde oficial de CEFEDEP
-                            // storeId: "TU_STORE_ID_AQUI"        // (Descomenta esta línea solo si PayPhone te dio un StoreID)
+                            clientTransactionId: myTransactionId,
+                            backgroundColor: "#334235",
+                            responseUrl: "https://cefedep.com/" // <-- AGREGA ESTA LÍNEA (Redirige al cliente al aprobar)
                         }).render('pp-button');
 
                         btnSubmit.innerText = originalText;
@@ -706,8 +706,36 @@
                 btnSubmit.disabled = false;
             });
             
-        }); // <-- ESTA ES LA LLAVE MÁGICA QUE TE FALTABA CERRAR
+        }); 
 
+                // --- AUTOMATIZACIÓN AUTOMÁTICA POST-PAGO ---
+        window.addEventListener('DOMContentLoaded', () => {
+            const urlParams = new URLSearchParams(window.location.search);
+            const clientTransactionId = urlParams.get('clientTransactionId') || urlParams.get('id');
+            
+            // Si la URL detecta que el cliente viene de pagar en PayPhone
+            if (clientTransactionId) {
+                const webhookUrl = "https://script.google.com/macros/s/AKfycbxFWIU7c4Gz549edBTMVXrLypDHFLDbjdzDEXQpUUq15KvV3ejgUHghFqXLwfqpuKyq/exec";
+                
+                // Enviamos la confirmación a Google Apps Script automáticamente
+                fetch(webhookUrl, {
+                    method: 'POST',
+                    mode: 'no-cors',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        clientTransactionId: clientTransactionId,
+                        transactionStatus: "Approved"
+                    })
+                }).then(() => {
+                    // Notificamos al alumno en pantalla
+                    alert("🎉 ¡Pago confirmado con éxito!\n\nHemos activado tu cuenta en el Simulador y te enviamos las credenciales de acceso a tu correo electrónico.");
+                    // Limpiamos los parámetros de la URL
+                    window.history.replaceState({}, document.title, window.location.pathname);
+                }).catch(err => {
+                    console.error("Error al procesar la automatización:", err);
+                });
+            }
+        });
         // WHATSAPP WIDGET
         setTimeout(() => { document.getElementById('waChatBox').style.display = 'block'; }, 5000);
         function toggleWaChat() { let cb = document.getElementById('waChatBox'); cb.style.display = (cb.style.display === 'none' || cb.style.display === '') ? 'block' : 'none'; }
