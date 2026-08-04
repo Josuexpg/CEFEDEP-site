@@ -243,8 +243,15 @@
                         </select>
                     </div>
 
-                    <button type="submit" class="btn-main" style="width: 100%; border-radius: 8px; padding: 12px; font-size: 0.95rem;">Completar Inscripción</button>
+                <button type="submit" class="btn-main" style="width: 100%; border-radius: 8px; padding: 12px; font-size: 0.95rem;">Completar Inscripción</button>
                 </form>
+
+                <!-- NUEVO: CONTENEDOR DE LA CAJA DE PAGO (Inicia oculto) -->
+                <div id="payphone-wrapper" style="display:none; text-align: center; margin-top: 20px;">
+                    <h4 style="margin-bottom: 15px; color: var(--primary);">Completa tu pago seguro</h4>
+                    <div id="pp-button"></div>
+                </div>
+
             </div>
         </div>
     </div>
@@ -543,6 +550,9 @@
         <div class="wa-float-btn" onclick="toggleWaChat()"><i class="fa-brands fa-whatsapp"></i></div>
     </div>
 
+    <!-- LIBRERÍA DE PAYPHONE -->
+    <script src="https://pay.payphonetodoesposible.com/api/button/v2/payphone-payment-button.js"></script>
+
     <!-- LIBRERÍAS DE FIREBASE -->
     <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
@@ -603,7 +613,6 @@
         document.getElementById('ehepForm').addEventListener('submit', function(e) {
             e.preventDefault();
             
-            // 1. Capturamos los datos
             const name = document.getElementById('formName').value;
             const courseSelect = document.getElementById('formCourse').value;
             const course = "Preparación Examen EHEP " + courseSelect; 
@@ -624,19 +633,22 @@
             btnSubmit.innerText = "Procesando...";
             btnSubmit.disabled = true;
 
+            // 1. CREAMOS EL ID ÚNICO PARA AMBOS SISTEMAS
+            const myTransactionId = "EHEP-" + Date.now();
+
             // 2. Empaquetamos los datos
             const payload = {
                 nombre: name,
                 email: email,
                 curso: course,
                 telefono: phone,
-                metodoPago: paymentMethod
+                metodoPago: paymentMethod,
+                idTransaccion: myTransactionId // <-- Se va para tu Google Sheet
             };
 
-            // >>> PEGA AQUÍ TU ENLACE DE GOOGLE APPS SCRIPT <<<
             const webhookUrl = "https://script.google.com/macros/s/AKfycbwAV6IHZvwwdGvdivFf3Q6YEIFRrHEAfS7itdhDYOU0ju5wjUUZ1oHwkvtwexnkNlg/exec";
 
-            // 3. Enviamos a Google Sheets (y de ahí a Firebase)
+            // 3. Enviamos a Google Sheets
             fetch(webhookUrl, {
                 method: 'POST',
                 mode: 'no-cors',
@@ -644,21 +656,37 @@
                 body: JSON.stringify(payload)
             })
             .then(() => {
-                // 4. Redirección según método de pago
                 if (paymentMethod === "transferencia") {
                     const text = `Hola CEFEDEP, soy *${name}*. Me registré al EHEP de *${courseSelect}*.\n_Solicito la cuenta de Produbanco para hacer mi transferencia._`;
                     window.open(`https://wa.me/593987321024?text=${encodeURIComponent(text)}`, '_blank');
+                    closeModal();
+                    btnSubmit.innerText = originalText;
+                    btnSubmit.disabled = false;
+                    document.getElementById('ehepForm').reset();
                 } else if (paymentMethod === "tarjeta") {
-                    const linkPayPhone = "https://ppls.me/dzKRL8eCVaVfG6Op7Bw"; // Cambia esto por tu link real de PayPhone/Kushki
-                    window.location.href = linkPayPhone;
+                    
+                    // 4. OCULTAMOS EL FORMULARIO Y MOSTRAMOS PAYPHONE
+                    document.getElementById('ehepForm').style.display = 'none';
+                    document.getElementById('payphone-wrapper').style.display = 'block';
+
+                    // 5. INVOCAMOS EL BOTÓN OFICIAL (Aquí pones tu Token de Pruebas)
+                    payphone.Button({
+                        token: "yYr16kF76YWm67nihKoYTiNuP778roAIuSz_iBSRB-yid2JDES4nijIzG0Zw4O-tWhGNkB4azmnzrGIKsTxfE-lXivINg2_1mCwvrRTeoBo49xxOwiBZ0jPrt8TAvZmg-vOuArJasVEzzuXJyfnwRTFsDZ1VOS0e4v4aoSlS_SwQSlG_wHZ43VNhml7LTbT8ubOp23VYhy5D43VLoZDvaNJR2sTSG6Hnygy7YiN2B48bsQPgFeH-EHZ3vllp80Jjtnj0GD6VdHC4NIqQ2XoV2FiTyOLJVyqhliDf3gzFqmHShwLY18WHq2-8J-hlp5faiJap5MmpHrMuA2PdpbKfOew1TbY",
+                        btnHorizontal: true,
+                        btnDark: true,
+                        amount: 4000, // $40.00 expresado en centavos
+                        amountWithoutTax: 5000,
+                        clientTransactionId: myTransactionId, // <-- El mismo ID para PayPhone
+                        currency: "USD",
+                        responseUrl: "https://cefedep.com/" 
+                    }).render("#pp-button");
+
+                    btnSubmit.innerText = originalText;
+                    btnSubmit.disabled = false;
                 }
-                
-                closeModal();
-                btnSubmit.innerText = originalText;
-                btnSubmit.disabled = false;
-                document.getElementById('ehepForm').reset();
             })
             .catch(error => {
+                console.error("Error de red:", error);
                 alert("Error de conexión, pero te atenderemos por WhatsApp.");
                 window.open(`https://wa.me/593987321024?text=Hola, tuve un problema en la web. Mi nombre es ${name}.`, '_blank');
                 btnSubmit.innerText = originalText;
