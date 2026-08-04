@@ -203,8 +203,9 @@
             </div>
             
             <div class="modal-body" style="padding: 20px;">
+                <!-- AQUÍ MODIFIQUÉ EL TEXTO COMO PEDISTE -->
                 <div class="form-info-box" style="margin-bottom: 15px; padding: 10px 15px; font-size: 0.8rem;">
-                    <strong>Incluye:</strong> 10h clases, Plataforma Classroom y Simulador con IA.
+                    <strong>Incluye:</strong> Simulador con tarjetas de repaso, tiempos y número de preguntas configurable.
                 </div>
                 
                 <form id="ehepForm">
@@ -704,6 +705,9 @@
                 btnSubmit.innerText = originalText;
                 btnSubmit.disabled = false;
             });
+            
+        }); // <-- ESTA ES LA LLAVE MÁGICA QUE TE FALTABA CERRAR
+
         // WHATSAPP WIDGET
         setTimeout(() => { document.getElementById('waChatBox').style.display = 'block'; }, 5000);
         function toggleWaChat() { let cb = document.getElementById('waChatBox'); cb.style.display = (cb.style.display === 'none' || cb.style.display === '') ? 'block' : 'none'; }
