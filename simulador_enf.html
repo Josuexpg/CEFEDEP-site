@@ -232,6 +232,12 @@
             if (!user) {
                 window.location.href = "index.html";
             } else {
+                // Bloqueador anti-trampas para Enfermería
+                if (user.displayName && !user.displayName.includes("Enfermería") && !user.displayName.includes("Enfermeria")) {
+                    alert("Acceso denegado: Tu suscripción no incluye el simulador de Enfermería.");
+                    window.location.href = "index.html";
+                    return;
+                }
                 const userName = user.email.split('@')[0];
                 document.getElementById('user-welcome').innerText = userName.toUpperCase();
                 createWatermarks(userName.toUpperCase());
