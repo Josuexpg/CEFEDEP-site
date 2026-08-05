@@ -603,7 +603,7 @@
         
                 // Discriminamos qué botón mostrar según el curso que guardó Apps Script
                 if (cursoAsignado.includes("Medicina")) {
-                    botonSimulador = `<a href="simulador.html" class="login-btn" style="background: var(--primary); color: white !important; border-color: var(--primary); font-size: 0.75rem;">MEDICINA</a>`;
+                    botonSimulador = `<a href="simulador_med.html" class="login-btn" style="background: var(--primary); color: white !important; border-color: var(--primary); font-size: 0.75rem;">MEDICINA</a>`;
                 } else if (cursoAsignado.includes("Enfermería") || cursoAsignado.includes("Enfermeria")) {
                     botonSimulador = `<a href="simulador_enf.html" class="login-btn" style="background: #2b7a78; color: white !important; border-color: #2b7a78; font-size: 0.75rem;">ENFERMERÍA</a>`;
                 } else if (cursoAsignado.includes("Odontología") || cursoAsignado.includes("Odontologia")) {
@@ -611,7 +611,7 @@
                 } else {
                     // Por si es una cuenta de prueba antigua que no tiene curso asignado, mostramos ambos
                     botonSimulador = `
-                        <a href="simulador.html" class="login-btn" style="font-size: 0.75rem;">MEDICINA</a>
+                        <a href="simulador_med.html" class="login-btn" style="font-size: 0.75rem;">MEDICINA</a>
                         <a href="simulador_enf.html" class="login-btn" style="font-size: 0.75rem;">ENFERMERÍA</a>
                     `;
                 }
