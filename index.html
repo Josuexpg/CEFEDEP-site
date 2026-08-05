@@ -597,10 +597,30 @@
         auth.onAuthStateChanged(user => {
             const menuContainer = document.getElementById('dynamic-menu');
             if (user) {
-                menuContainer.innerHTML = `
-                    <a href="simulador.html" class="login-btn" style="background: var(--primary); color: white !important; border-color: var(--primary); font-size: 0.75rem;">MEDICINA</a>
-                    <a href="simulador_enf.html" class="login-btn" style="background: #2b7a78; color: white !important; border-color: #2b7a78; font-size: 0.75rem;">ENFERMERÍA</a>
-                    <a href="#" onclick="auth.signOut()" style="color: #ff4757; text-decoration: none; font-size: 0.8rem; font-weight: 700; margin-left: 10px;"><i class="fa-solid fa-right-from-bracket"></i> SALIR</a>
+                // Obtenemos el nombre del curso (o vacío si es una cuenta vieja)
+                let cursoAsignado = user.displayName || ""; 
+                let botonSimulador = "";
+        
+                // Discriminamos qué botón mostrar según el curso que guardó Apps Script
+                if (cursoAsignado.includes("Medicina")) {
+                    botonSimulador = `<a href="simulador.html" class="login-btn" style="background: var(--primary); color: white !important; border-color: var(--primary); font-size: 0.75rem;">MEDICINA</a>`;
+                } else if (cursoAsignado.includes("Enfermería") || cursoAsignado.includes("Enfermeria")) {
+                    botonSimulador = `<a href="simulador_enf.html" class="login-btn" style="background: #2b7a78; color: white !important; border-color: #2b7a78; font-size: 0.75rem;">ENFERMERÍA</a>`;
+                } else if (cursoAsignado.includes("Odontología") || cursoAsignado.includes("Odontologia")) {
+                    botonSimulador = `<a href="simulador_odo.html" class="login-btn" style="background: #bca05b; color: white !important; border-color: #bca05b; font-size: 0.75rem;">ODONTOLOGÍA</a>`;
+                } else {
+                    // Por si es una cuenta de prueba antigua que no tiene curso asignado, mostramos ambos
+                    botonSimulador = `
+                        <a href="simulador.html" class="login-btn" style="font-size: 0.75rem;">MEDICINA</a>
+                        <a href="simulador_enf.html" class="login-btn" style="font-size: 0.75rem;">ENFERMERÍA</a>
+                    `;
+                }
+        
+                // Imprimimos el botón correcto + el botón de SALIR
+                menuContainer.innerHTML = botonSimulador + `
+                    <a href="#" onclick="auth.signOut()" style="color: #ff4757; text-decoration: none; font-size: 0.8rem; font-weight: 700; margin-left: 10px;">
+                        <i class="fa-solid fa-right-from-bracket"></i> SALIR
+                    </a>
                 `;
             } else {
                 menuContainer.innerHTML = `<a href="#" onclick="openAuthModal()" class="login-btn">INICIAR SESIÓN EHEP</a>`;
