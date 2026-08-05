@@ -230,8 +230,14 @@
         // PROTECCIÓN Y SEGURIDAD FIREBASE
         firebase.auth().onAuthStateChanged(user => {
             if (!user) {
-                window.location.href = "index.html";
+                window.location.href = "index.html"; // No está logueado
             } else {
+                // Bloqueador anti-trampas: Si tiene un curso y NO es medicina, lo expulsa.
+                if (user.displayName && !user.displayName.includes("Medicina")) {
+                    alert("Acceso denegado: Tu suscripción no incluye el simulador de Medicina.");
+                    window.location.href = "index.html";
+                    return;
+                }
                 const userName = user.email.split('@')[0];
                 document.getElementById('user-welcome').innerText = userName.toUpperCase();
                 createWatermarks(userName.toUpperCase());
