@@ -4,803 +4,2217 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CEFEDEP ECUADOR | Consultoría Educativa Superior</title>
-    
-    <!-- Ruta actualizada: img/ -->
+
     <link rel="icon" type="image/png" href="img/LOGO_CEFEDEP.png">
-    
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700;800&family=Playfair+Display:wght@700;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Playfair+Display:wght@700;800;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
+
     <style>
+        /* =========================================================
+           VARIABLES
+        ========================================================= */
         :root {
-            --primary: #334235; 
-            --secondary: #bca05b; 
-            --accent: #6b7a5a; 
-            --light: #f9faf8;
+            --primary: #334235;
+            --primary-dark: #263328;
+            --secondary: #bca05b;
+            --secondary-dark: #9d8445;
+            --accent: #6b7a5a;
+            --light: #f5f7f3;
+            --light-2: #eef2ec;
             --white: #ffffff;
-            --dark: #1a1a1a;
+            --dark: #172019;
+            --gray: #667067;
+            --border: #e5e9e4;
             --whatsapp: #25D366;
             --facebook: #1877F2;
             --instagram: #E1306C;
-            --tiktok: #000000;
+            --shadow-sm: 0 5px 20px rgba(20,35,25,.06);
+            --shadow: 0 15px 40px rgba(20,35,25,.09);
+            --shadow-lg: 0 25px 60px rgba(20,35,25,.14);
+            --radius: 20px;
         }
 
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        html { scroll-behavior: smooth; }
-        body { font-family: 'Montserrat', sans-serif; color: var(--dark); background-color: var(--white); overflow-x: hidden; }
-
-        p { line-height: 1.7; margin-bottom: 15px; }
-
-        nav { background: rgba(255, 255, 255, 0.98); padding: 15px 5%; display: flex; justify-content: space-between; align-items: center; position: fixed; width: 100%; top: 0; z-index: 1000; box-shadow: 0 5px 25px rgba(0,0,0,0.1); }
-        .brand { display: flex; align-items: center; text-decoration: none; }
-        .brand img { height: 55px; margin-right: 15px; }
-        .brand-text { display: flex; flex-direction: column; }
-        .brand-name { font-family: 'Playfair Display', serif; font-size: 1.5rem; font-weight: 900; color: var(--primary); line-height: 1; }
-        .brand-sub { font-size: 0.7rem; letter-spacing: 3px; color: var(--secondary); font-weight: 700; text-transform: uppercase; }
-
-        .nav-links { display: flex; list-style: none; gap: 20px; align-items: center; margin-bottom: 0; }
-        .nav-links a { text-decoration: none; color: var(--primary); font-weight: 700; font-size: 0.85rem; text-transform: uppercase; transition: 0.3s; }
-        .nav-links a:hover { color: var(--secondary); }
-        .login-btn { color: var(--secondary) !important; border: 1px solid var(--secondary); padding: 6px 16px; border-radius: 20px; cursor: pointer; display: inline-block; text-align: center; }
-        .login-btn:hover { background: var(--secondary); color: white !important; }
-
-        #dynamic-menu { display: flex; align-items: center; gap: 10px; }
-
-        .dropdown { position: relative; display: inline-block; }
-        .dropdown-menu { 
-            display: none; position: absolute; background-color: white; 
-            min-width: 380px; max-height: 75vh; overflow-y: auto; 
-            box-shadow: 0 10px 25px rgba(0,0,0,0.1); border-radius: 12px; 
-            z-index: 2000; top: 100%; left: -50px; padding: 10px 0; 
-            border-top: 3px solid var(--secondary); 
+        /* =========================================================
+           RESET
+        ========================================================= */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
         }
-        .dropdown-menu::-webkit-scrollbar { width: 6px; }
-        .dropdown-menu::-webkit-scrollbar-thumb { background: #ddd; border-radius: 10px; }
-        .dropdown-category { font-size: 0.75rem; font-weight: 800; color: var(--secondary); text-transform: uppercase; letter-spacing: 1px; padding: 15px 20px 5px; background: #fdfdfd; border-top: 1px solid #eee; margin-top: 5px; }
-        .dropdown-menu li:first-child .dropdown-category { border-top: none; margin-top: 0; padding-top: 10px; }
+
+        html {
+            scroll-behavior: smooth;
+            scroll-padding-top: 100px;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            color: var(--dark);
+            background: var(--white);
+            overflow-x: hidden;
+        }
+
+        img { max-width: 100%; }
+        a { color: inherit; }
+        p { line-height: 1.7; }
+
+        /* =========================================================
+           UTILIDADES
+        ========================================================= */
+        .container {
+            width: min(1180px, 90%);
+            margin: auto;
+        }
+
+        .section { padding: 80px 0; }
+        .section.compact { padding: 60px 0; }
+
+        .section-header {
+            text-align: center;
+            max-width: 850px;
+            margin: 0 auto 45px;
+        }
+
+        .eyebrow {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--secondary-dark);
+            font-size: .78rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            margin-bottom: 12px;
+        }
+
+        .eyebrow::before {
+            content: "";
+            width: 28px;
+            height: 2px;
+            background: var(--secondary);
+        }
+
+        .section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2rem, 4vw, 3rem);
+            line-height: 1.1;
+            color: var(--primary);
+            margin-bottom: 15px;
+        }
+
+        .section-description {
+            color: var(--gray);
+            font-size: 1rem;
+            max-width: 760px;
+            margin: auto;
+        }
+
+        .divider {
+            width: 55px;
+            height: 4px;
+            background: var(--secondary);
+            margin: 18px auto;
+            border-radius: 10px;
+        }
+
+        .tag {
+            display: inline-flex;
+            align-items: center;
+            gap: 7px;
+            background: var(--secondary);
+            color: white;
+            padding: 7px 13px;
+            border-radius: 6px;
+            font-size: .72rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: .5px;
+        }
+
+        /* =========================================================
+           BOTONES
+        ========================================================= */
+        .btn-main {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            background: var(--secondary);
+            color: white;
+            min-height: 54px;
+            padding: 0 27px;
+            border: none;
+            border-radius: 12px;
+            text-decoration: none;
+            font-weight: 800;
+            font-size: .88rem;
+            letter-spacing: .4px;
+            cursor: pointer;
+            box-shadow: 0 10px 25px rgba(188,160,91,.28);
+            transition: transform .25s ease, background .25s ease, box-shadow .25s ease;
+        }
+
+        .btn-main:hover {
+            transform: translateY(-3px);
+            background: var(--secondary-dark);
+            box-shadow: 0 15px 30px rgba(188,160,91,.35);
+        }
+
+        .btn-primary {
+            background: var(--primary);
+            box-shadow: 0 10px 25px rgba(51,66,53,.22);
+        }
+
+        .btn-primary:hover {
+            background: var(--primary-dark);
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: white;
+            border: 2px solid rgba(255,255,255,.85);
+            box-shadow: none;
+        }
+
+        .btn-outline:hover {
+            background: white;
+            color: var(--primary);
+        }
+
+        .btn-outline-dark {
+            background: transparent;
+            color: var(--primary);
+            border: 2px solid var(--primary);
+            box-shadow: none;
+        }
+
+        .btn-outline-dark:hover {
+            background: var(--primary);
+            color: white;
+        }
+
+        /* =========================================================
+           NAVBAR
+        ========================================================= */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            background: rgba(255,255,255,.96);
+            backdrop-filter: blur(15px);
+            border-bottom: 1px solid rgba(0,0,0,.06);
+            box-shadow: 0 5px 25px rgba(0,0,0,.06);
+            padding: 12px 4%;
+        }
+
+        .nav-inner {
+            width: min(1250px, 100%);
+            margin: auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 25px;
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+            flex-shrink: 0;
+        }
+
+        .brand img {
+            height: 54px;
+            margin-right: 12px;
+        }
+
+        .brand-text {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .brand-name {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.45rem;
+            font-weight: 900;
+            color: var(--primary);
+            line-height: 1;
+        }
+
+        .brand-sub {
+            font-size: .62rem;
+            letter-spacing: 3px;
+            color: var(--secondary-dark);
+            font-weight: 800;
+            text-transform: uppercase;
+            margin-top: 4px;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 17px;
+            align-items: center;
+        }
+
+        .nav-links > li { position: relative; }
+
+        .nav-links > li > a {
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 700;
+            font-size: .76rem;
+            text-transform: uppercase;
+            transition: .25s;
+        }
+
+        .nav-links > li > a:hover {
+            color: var(--secondary-dark);
+        }
+
+        .login-btn {
+            color: var(--secondary-dark) !important;
+            border: 1px solid var(--secondary);
+            padding: 8px 14px;
+            border-radius: 20px;
+            cursor: pointer;
+            display: inline-flex !important;
+            justify-content: center;
+            text-align: center;
+        }
+
+        .login-btn:hover {
+            background: var(--secondary);
+            color: white !important;
+        }
+
+        .menu-toggle {
+            display: none;
+            font-size: 1.7rem;
+            color: var(--primary);
+            cursor: pointer;
+        }
+
+        /* =========================================================
+           DROPDOWN
+        ========================================================= */
+        .dropdown-menu {
+            display: none;
+            position: absolute;
+            top: calc(100% + 16px);
+            left: -120px;
+            width: 400px;
+            max-height: 70vh;
+            overflow-y: auto;
+            background: white;
+            border-radius: 15px;
+            box-shadow: var(--shadow-lg);
+            border-top: 3px solid var(--secondary);
+            padding: 8px 0;
+            z-index: 2000;
+        }
+
+        .dropdown:hover .dropdown-menu {
+            display: block;
+            animation: fadeIn .2s ease;
+        }
+
         .dropdown-menu li { list-style: none; }
-        .dropdown-menu li a { color: var(--primary) !important; padding: 10px 20px; display: flex; align-items: flex-start; gap: 10px; text-transform: none !important; font-weight: 600 !important; font-size: 0.8rem !important; line-height: 1.3; transition: 0.3s background; }
-        .dropdown-menu li a:hover { background-color: var(--light); color: var(--secondary) !important; padding-left: 25px; }
-        .dropdown-menu li a i { margin-top: 2px; font-size: 0.9rem; width: 15px; text-align: center; }
-        
-        @media (min-width: 901px) {
-            .dropdown:hover .dropdown-menu { display: block; animation: fadeIn 0.3s ease; }
+
+        .dropdown-category {
+            color: var(--secondary-dark);
+            background: #fafbf9;
+            font-size: .68rem;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            padding: 15px 20px 7px;
+            border-top: 1px solid #edf0ec;
         }
 
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+        .dropdown-menu li:first-child .dropdown-category { border-top: none; }
 
-        .hero { height: 80vh; background: linear-gradient(rgba(51, 66, 53, 0.8), rgba(51, 66, 53, 0.6)), url('https://images.unsplash.com/photo-1524178232363-1fb2b075b655?auto=format&fit=crop&w=1950&q=80'); background-size: cover; background-position: center; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; color: var(--white); padding: 0 10%; margin-top: 85px; }
-        .hero h1 { font-family: 'Playfair Display', serif; font-size: 3.5rem; margin-bottom: 1rem; line-height: 1.1; }
-        .hero p { font-size: 1.2rem; max-width: 800px; margin-bottom: 2.5rem; font-weight: 300; }
-        
-        .btn-main { background: var(--secondary); color: white; padding: 18px 30px; text-decoration: none; border-radius: 50px; font-weight: 800; text-transform: uppercase; letter-spacing: 1px; transition: 0.4s; box-shadow: 0 10px 30px rgba(188, 160, 91, 0.4); display: inline-block; cursor: pointer; border: none; font-size: 0.9rem;}
-        .btn-main:hover { transform: translateY(-3px); background: var(--white); color: var(--primary); }
-        .btn-outline { background: transparent; border: 2px solid white; box-shadow: none; }
-        .btn-outline:hover { background: white; color: var(--primary); border-color: white; }
+        .dropdown-menu li a {
+            display: flex;
+            align-items: flex-start;
+            gap: 11px;
+            padding: 10px 20px;
+            color: var(--primary) !important;
+            text-decoration: none;
+            text-transform: none !important;
+            font-size: .79rem !important;
+            font-weight: 600 !important;
+            line-height: 1.35;
+            transition: .2s;
+        }
 
-        section { padding: 50px 10%; }
-        .section-header { text-align: center; margin-bottom: 35px; }
-        .section-header h2 { font-family: 'Playfair Display', serif; font-size: 2.5rem; color: var(--primary); }
-        .divider { width: 60px; height: 4px; background: var(--secondary); margin: 15px auto; border-radius: 10px; }
+        .dropdown-menu li a:hover {
+            background: var(--light);
+            color: var(--secondary-dark) !important;
+            padding-left: 25px;
+        }
 
-        .gallery-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; }
-        .gallery-item { position: relative; border-radius: 15px; overflow: hidden; box-shadow: 0 10px 20px rgba(0,0,0,0.1); cursor: pointer; }
-        .gallery-item img { width: 100%; height: auto; aspect-ratio: 4 / 3; object-fit: cover; transition: transform 0.5s ease; display: block; }
-        .gallery-item:hover img { transform: scale(1.08); }
-        .gallery-overlay { position: absolute; bottom: 0; left: 0; width: 100%; background: linear-gradient(transparent, rgba(0,0,0,0.8)); padding: 30px 20px 20px; color: white; font-weight: 700; font-size: 1.1rem; }
+        .dropdown-menu li a i {
+            width: 17px;
+            margin-top: 2px;
+            text-align: center;
+        }
 
-        .social-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 30px; margin-top: 30px; }
-        .social-card { padding: 30px; border-radius: 20px; color: white; text-align: center; text-decoration: none; transition: 0.3s; display: flex; flex-direction: column; align-items: center; justify-content: center; }
-        .social-card:hover { transform: translateY(-10px); box-shadow: 0 15px 30px rgba(0,0,0,0.2); }
-        .social-card i { font-size: 3.5rem; margin-bottom: 15px; }
-        .bg-facebook { background: linear-gradient(45deg, #1877F2, #0e5a1f); }
-        .bg-instagram { background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888); }
-        .bg-tiktok { background: linear-gradient(45deg, #000000, #25f4ee); color: white;}
+        /* =========================================================
+           HERO
+        ========================================================= */
+        .hero {
+            min-height: 720px;
+            margin-top: 78px;
+            background: linear-gradient(100deg, rgba(30,45,34,.92), rgba(51,66,53,.76), rgba(51,66,53,.55)), url('https://images.unsplash.com/photo-1524178232363-1fb2b075b655?auto=format&fit=crop&w=1950&q=80');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            display: flex;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+        }
 
-        /* Ruta actualizada en el CSS: url('img/preguntas.jpg') */
-        .featured-banner { background: linear-gradient(rgba(26, 26, 26, 0.85), rgba(26, 26, 26, 0.85)), url('img/preguntas.jpg'); background-size: cover; background-position: center; background-attachment: fixed; border-radius: 30px; padding: 70px; color: white; box-shadow: 0 20px 40px rgba(0,0,0,0.3); border-left: 8px solid var(--secondary); }
-        .featured-tag { background: var(--secondary); color: white; padding: 6px 15px; border-radius: 4px; font-size: 0.75rem; font-weight: 800; text-transform: uppercase; margin-bottom: 20px; display: inline-block; }
-        .featured-banner h3 { font-family: 'Playfair Display', serif; font-size: 2.5rem; margin-bottom: 20px; color: var(--secondary); }
-        .featured-banner p { font-size: 1.1rem; line-height: 1.6; margin-bottom: 25px; max-width: 900px; }
+        .hero::after {
+            content: "";
+            position: absolute;
+            right: -120px;
+            bottom: -180px;
+            width: 500px;
+            height: 500px;
+            border: 1px solid rgba(255,255,255,.12);
+            border-radius: 50%;
+        }
 
-        .courses-section { background: var(--light); }
-        .courses-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
-        .course-card { background: white; border-radius: 20px; overflow: hidden; box-shadow: 0 10px 25px rgba(0,0,0,0.05); transition: 0.3s; border: 1px solid transparent;}
-        .course-card:hover { transform: translateY(-8px); border-color: var(--secondary); box-shadow: 0 15px 35px rgba(188, 160, 91, 0.15); }
-        .course-img { width: 100%; height: 220px; object-fit: cover; }
-        .course-info { padding: 30px; }
-        .course-info h4 { font-size: 1.3rem; color: var(--primary); margin: 10px 0; font-family: 'Playfair Display', serif; }
-        .course-info p { text-align: left; }
-        
-        .modalities-container { display: flex; justify-content: center; gap: 15px; flex-wrap: wrap; margin: 30px 0 40px; }
-        .modality-badge { display: flex; align-items: center; gap: 10px; background: white; padding: 12px 25px; border-radius: 50px; font-size: 0.9rem; font-weight: 700; color: var(--primary); box-shadow: 0 5px 15px rgba(0,0,0,0.05); border: 1px solid #eee; transition: 0.3s; }
-        .modality-badge:hover { transform: translateY(-3px); box-shadow: 0 8px 20px rgba(0,0,0,0.1); }
-        .badge-incompany { background: var(--secondary); color: white; border-color: var(--secondary); }
-        .badge-incompany i { color: white !important; }
+        .hero-content {
+            width: min(1180px, 90%);
+            margin: auto;
+            position: relative;
+            z-index: 2;
+        }
 
-        .core-services { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; margin-top: 30px; }
-        .core-card { background: white; padding: 40px; border-radius: 20px; box-shadow: 0 10px 25px rgba(0,0,0,0.05); text-align: center; }
-        .core-icon { font-size: 3rem; color: var(--secondary); margin-bottom: 20px; }
+        .hero-copy { max-width: 780px; }
 
-        .oculto-temporalmente { display: none !important; }
-        .modal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); z-index: 3000; display: none; align-items: center; justify-content: center; backdrop-filter: blur(5px); }
-        .promo-modal { background: var(--white); width: 90%; max-width: 500px; border-radius: 20px; position: relative; overflow: hidden; animation: zoomIn 0.3s ease; }
-        @keyframes zoomIn { from { transform: scale(0.8); opacity: 0; } to { transform: scale(1); opacity: 1; } }
-        .modal-header-img { width: 100%; height: 180px; background: linear-gradient(45deg, var(--primary), var(--accent)); display: flex; align-items: center; justify-content: center; color: white; text-align: center; padding: 20px; position: relative; }
-        .close-modal { position: absolute; top: 15px; right: 20px; color: white; font-size: 1.5rem; cursor: pointer; z-index: 10; }
-        .modal-body { padding: 30px; }
-        .form-group { margin-bottom: 15px; }
-        .form-group label { display: block; font-size: 0.8rem; font-weight: 700; margin-bottom: 5px; color: var(--primary); }
-        .form-group input, .form-group select { width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 8px; font-family: inherit; }
-        
-        .form-info-box { background: rgba(107, 122, 90, 0.1); border-left: 4px solid var(--accent); padding: 12px 18px; margin-bottom: 25px; border-radius: 0 8px 8px 0; font-size: 0.85rem; line-height: 1.5; text-align: left; color: var(--primary); }
+        .hero-kicker {
+            display: inline-flex;
+            align-items: center;
+            gap: 9px;
+            padding: 8px 13px;
+            background: rgba(255,255,255,.11);
+            border: 1px solid rgba(255,255,255,.2);
+            border-radius: 50px;
+            font-size: .75rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 20px;
+        }
 
-        footer { background: var(--primary); color: white; padding: 50px 10%; text-align: center; }
-        .footer-logo { height: 80px; background: white; padding: 10px 20px; border-radius: 12px; margin-bottom: 20px; }
+        .hero h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2.6rem, 5.5vw, 4.7rem);
+            line-height: 1.02;
+            margin-bottom: 20px;
+        }
 
-        .wa-widget-container { position: fixed; bottom: 30px; right: 30px; z-index: 2000; }
-        .wa-chat-box { position: absolute; bottom: 80px; right: 0; width: 340px; background: white; border-radius: 15px; box-shadow: 0 15px 35px rgba(0,0,0,0.2); display: none; overflow: hidden; animation: fadeInUp 0.4s ease; }
-        @keyframes fadeInUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+        .hero h1 span { color: #d5bd7c; }
 
-        .wa-chat-header { background: var(--whatsapp); color: white; padding: 20px; display: flex; align-items: center; justify-content: space-between; }
-        .wa-header-info { display: flex; align-items: center; gap: 12px; }
-        .wa-close { color: white; cursor: pointer; font-size: 1.8rem; line-height: 1; }
+        .hero p {
+            max-width: 730px;
+            font-size: 1.1rem;
+            color: rgba(255,255,255,.9);
+            margin-bottom: 30px;
+        }
 
-        .wa-chat-body { background-color: #e5ddd5; padding: 20px; min-height: 120px; }
-        .wa-msg { background: white; padding: 12px 16px; border-radius: 0 12px 12px 12px; font-size: 0.9rem; line-height: 1.5; color: #333; text-align: left; box-shadow: 0 1px 2px rgba(0,0,0,0.1); display: inline-block; position: relative; margin-bottom: 10px; }
-        .wa-msg::before { content: ""; position: absolute; top: 0; left: -10px; border-width: 0 10px 10px 0; border-style: solid; border-color: transparent white transparent transparent; }
+        .hero-actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 13px;
+        }
 
-        .wa-chat-footer { padding: 15px; background: white; text-align: center; }
-        .wa-chat-btn { background: var(--whatsapp); color: white; text-decoration: none; padding: 12px 25px; border-radius: 30px; font-weight: 700; display: inline-flex; align-items: center; gap: 10px; transition: 0.3s; width: 100%; justify-content: center;}
-        .wa-chat-btn:hover { background: #1ebe57; transform: translateY(-2px); }
-        
-        .wa-float-btn { width: 60px; height: 60px; background: var(--whatsapp); color: white; border-radius: 50%; display: flex; justify-content: center; align-items: center; font-size: 30px; cursor: pointer; box-shadow: 0 5px 15px rgba(0,0,0,0.3); transition: 0.3s; }
-        .wa-float-btn:hover { transform: scale(1.1); }
+        /* =========================================================
+           QUICK ACCESS
+        ========================================================= */
+        .quick-access {
+            position: relative;
+            z-index: 20;
+            margin-top: -65px;
+        }
 
-        .menu-toggle { display: none; font-size: 1.8rem; color: var(--primary); cursor: pointer; }
+        .quick-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 18px;
+        }
 
-        @media (max-width: 900px) { 
-            .hero h1 { font-size: 2.2rem; } 
-            .featured-banner { padding: 40px 30px; }
+        .quick-card {
+            min-height: 145px;
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            background: white;
+            padding: 25px;
+            border-radius: 18px;
+            text-decoration: none;
+            box-shadow: var(--shadow);
+            border: 1px solid rgba(0,0,0,.04);
+            transition: .25s;
+        }
+
+        .quick-card:hover {
+            transform: translateY(-7px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .quick-icon {
+            width: 60px;
+            height: 60px;
+            flex-shrink: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 16px;
+            background: var(--light);
+            color: var(--primary);
+            font-size: 1.55rem;
+        }
+
+        .quick-card:nth-child(2) .quick-icon {
+            background: #faf5e9;
+            color: var(--secondary-dark);
+        }
+
+        .quick-card:nth-child(3) .quick-icon {
+            background: #edf2ed;
+            color: var(--accent);
+        }
+
+        .quick-card h3 {
+            color: var(--primary);
+            font-size: 1rem;
+            margin-bottom: 5px;
+        }
+
+        .quick-card p {
+            color: var(--gray);
+            font-size: .82rem;
+        }
+
+        .quick-arrow {
+            margin-left: auto;
+            color: var(--secondary);
+        }
+
+        /* =========================================================
+           METRICAS
+        ========================================================= */
+        .metrics-section {
+            padding: 65px 0 75px;
+            background: white;
+        }
+
+        .metrics-title {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .metrics-title h2 {
+            font-family: 'Playfair Display', serif;
+            color: var(--primary);
+            font-size: 1.8rem;
+        }
+
+        .metrics-title p {
+            color: var(--gray);
+            margin-top: 5px;
+            font-size: .9rem;
+        }
+
+        .metrics-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 18px;
+        }
+
+        .metric-card {
+            background: var(--light);
+            border: 1px solid var(--border);
+            border-radius: 18px;
+            padding: 27px 22px;
+            text-align: center;
+            position: relative;
+            transition: .25s;
+        }
+
+        .metric-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow);
+            background: white;
+        }
+
+        .metric-icon {
+            width: 50px;
+            height: 50px;
+            margin: 0 auto 13px;
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--secondary-dark);
+            background: #faf5e8;
+            font-size: 1.25rem;
+        }
+
+        .metric-number {
+            font-size: 2.3rem;
+            font-weight: 900;
+            color: var(--primary);
+            line-height: 1;
+            margin-bottom: 8px;
+        }
+
+        .metric-label {
+            font-size: .78rem;
+            line-height: 1.4;
+            font-weight: 700;
+            color: var(--gray);
+        }
+
+        /* =========================================================
+           SERVICIOS B2B
+        ========================================================= */
+        .b2b-section { background: var(--light); }
+
+        .b2b-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 18px;
+        }
+
+        .b2b-card {
+            background: white;
+            border-radius: 18px;
+            padding: 28px;
+            border: 1px solid var(--border);
+            box-shadow: var(--shadow-sm);
+            display: flex;
+            gap: 18px;
+            transition: .25s;
+        }
+
+        .b2b-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow);
+            border-color: rgba(188,160,91,.35);
+        }
+
+        .b2b-icon {
+            width: 54px;
+            height: 54px;
+            flex-shrink: 0;
+            border-radius: 15px;
+            background: #eef3ed;
+            color: var(--primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.25rem;
+        }
+
+        .b2b-card h3 {
+            color: var(--primary);
+            font-size: 1.15rem;
+            margin-bottom: 9px;
+        }
+
+        .b2b-card p {
+            color: var(--gray);
+            font-size: .93rem;
+            line-height: 1.7;
+        }
+
+        /* =========================================================
+           EHEP
+        ========================================================= */
+        .ehep-section { background: white; }
+
+        .ehep-layout {
+            display: grid;
+            grid-template-columns: 1.15fr .85fr;
+            gap: 22px;
+            align-items: stretch;
+        }
+
+        .ehep-main {
+            background: linear-gradient(135deg, var(--primary), #465d49);
+            color: white;
+            padding: 42px;
+            border-radius: 22px;
+            position: relative;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+        }
+
+        .ehep-main::after {
+            content: "\f0f3";
+            font-family: "Font Awesome 6 Free";
+            font-weight: 900;
+            position: absolute;
+            right: 35px;
+            bottom: 15px;
+            font-size: 9rem;
+            color: rgba(255,255,255,.05);
+        }
+
+        .ehep-main h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2rem, 4vw, 3rem);
+            line-height: 1.05;
+            margin-bottom: 15px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .ehep-main > p {
+            color: rgba(255,255,255,.85);
+            max-width: 680px;
+            margin-bottom: 25px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .ehep-list {
+            list-style: none;
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 13px;
+            margin-bottom: 30px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .ehep-list li {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            font-size: .88rem;
+            color: rgba(255,255,255,.92);
+        }
+
+        .ehep-list i {
+            color: #d8c27e;
+            margin-top: 4px;
+        }
+
+        .ehep-side {
+            background: var(--light);
+            border-radius: 22px;
+            padding: 38px;
+            border: 1px solid var(--border);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .ehep-side-icon {
+            width: 65px;
+            height: 65px;
+            border-radius: 18px;
+            background: white;
+            color: var(--secondary-dark);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.7rem;
+            box-shadow: var(--shadow-sm);
+            margin-bottom: 20px;
+        }
+
+        .ehep-side h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            color: var(--primary);
+            margin-bottom: 10px;
+        }
+
+        .ehep-side p {
+            color: var(--gray);
+            font-size: .92rem;
+            margin-bottom: 22px;
+        }
+
+        /* =========================================================
+           GALERIA
+        ========================================================= */
+        .gallery-section { background: var(--light); }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: 1.2fr 1fr 1fr;
+            gap: 17px;
+        }
+
+        .gallery-item {
+            position: relative;
+            border-radius: 18px;
+            overflow: hidden;
+            min-height: 310px;
+            box-shadow: var(--shadow-sm);
+            cursor: pointer;
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            transition: transform .6s ease;
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.06);
+        }
+
+        .gallery-overlay {
+            position: absolute;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            padding: 70px 20px 20px;
+            background: linear-gradient(transparent, rgba(0,0,0,.82));
+            color: white;
+            font-weight: 800;
+            font-size: 1rem;
+        }
+
+        /* =========================================================
+           CURSOS
+        ========================================================= */
+        .courses-section { background: white; }
+
+        .courses-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+
+        .course-card {
+            background: white;
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: var(--shadow-sm);
+            transition: .25s;
+        }
+
+        .course-card:hover {
+            transform: translateY(-7px);
+            box-shadow: var(--shadow);
+            border-color: rgba(188,160,91,.4);
+        }
+
+        .course-img {
+            width: 100%;
+            height: 220px;
+            object-fit: cover;
+            display: block;
+        }
+
+        .course-info { padding: 25px; }
+
+        .course-info h3 {
+            font-family: 'Playfair Display', serif;
+            color: var(--primary);
+            font-size: 1.35rem;
+            line-height: 1.2;
+            margin: 12px 0;
+        }
+
+        .course-info p {
+            color: var(--gray);
+            font-size: .9rem;
+            margin-bottom: 18px;
+        }
+
+        .course-link {
+            color: var(--primary);
+            text-decoration: none;
+            font-size: .84rem;
+            font-weight: 800;
+        }
+
+        .course-link:hover {
+            color: var(--secondary-dark);
+        }
+
+        /* =========================================================
+           PREGUNTAS
+        ========================================================= */
+        .featured-section { padding: 70px 0; }
+
+        .featured-banner {
+            background: linear-gradient(rgba(26,26,26,.88), rgba(26,26,26,.88)), url('img/preguntas.jpg');
+            background-size: cover;
+            background-position: center;
+            border-radius: 24px;
+            padding: 55px;
+            color: white;
+            border-left: 7px solid var(--secondary);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .featured-banner h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2rem, 4vw, 3rem);
+            color: #d8bd73;
+            margin: 15px 0;
+        }
+
+        .featured-banner p {
+            max-width: 850px;
+            color: rgba(255,255,255,.85);
+            font-size: 1rem;
+            margin-bottom: 22px;
+        }
+
+        /* =========================================================
+           REDES
+        ========================================================= */
+        .social-section { background: var(--light); }
+
+        .social-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 18px;
+        }
+
+        .social-card {
+            min-height: 210px;
+            border-radius: 20px;
+            color: white;
+            text-decoration: none;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 30px;
+            transition: .3s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .social-card::after {
+            content: "";
+            position: absolute;
+            width: 160px;
+            height: 160px;
+            border: 1px solid rgba(255,255,255,.15);
+            border-radius: 50%;
+            right: -50px;
+            bottom: -70px;
+        }
+
+        .social-card:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .social-card i {
+            font-size: 3rem;
+            margin-bottom: 15px;
+        }
+
+        .social-card h3 {
+            font-size: 1.2rem;
+            margin-bottom: 4px;
+        }
+
+        .social-card p {
+            font-size: .82rem;
+            opacity: .9;
+        }
+
+        .bg-facebook { background: linear-gradient(135deg,#1877F2,#1459b8); }
+        .bg-instagram { background: linear-gradient(135deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888); }
+        .bg-tiktok { background: linear-gradient(135deg,#050505,#151515); }
+
+        /* =========================================================
+           FOOTER
+        ========================================================= */
+        footer {
+            background: var(--primary-dark);
+            color: white;
+            padding: 60px 0 35px;
+            text-align: center;
+        }
+
+        .footer-logo {
+            height: 75px;
+            background: white;
+            padding: 10px 20px;
+            border-radius: 12px;
+            margin-bottom: 18px;
+        }
+
+        footer p {
+            color: rgba(255,255,255,.7);
+            font-size: .85rem;
+        }
+
+        /* =========================================================
+           WHATSAPP
+        ========================================================= */
+        .wa-widget-container {
+            position: fixed;
+            bottom: 25px;
+            right: 25px;
+            z-index: 2500;
+        }
+
+        .wa-chat-box {
+            position: absolute;
+            bottom: 78px;
+            right: 0;
+            width: 340px;
+            background: white;
+            border-radius: 18px;
+            box-shadow: var(--shadow-lg);
+            display: none;
+            overflow: hidden;
+            animation: fadeInUp .3s ease;
+        }
+
+        .wa-chat-header {
+            background: var(--whatsapp);
+            color: white;
+            padding: 18px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .wa-header-info {
+            display: flex;
+            align-items: center;
+            gap: 11px;
+        }
+
+        .wa-close {
+            color: white;
+            cursor: pointer;
+            font-size: 1.7rem;
+        }
+
+        .wa-chat-body {
+            background: #e5ddd5;
+            padding: 20px;
+            min-height: 125px;
+        }
+
+        .wa-msg {
+            background: white;
+            padding: 12px 15px;
+            border-radius: 0 12px 12px 12px;
+            font-size: .87rem;
+            line-height: 1.5;
+            color: #333;
+            display: inline-block;
+            box-shadow: 0 1px 2px rgba(0,0,0,.1);
+        }
+
+        .wa-chat-footer { padding: 14px; }
+
+        .wa-chat-btn {
+            background: var(--whatsapp);
+            color: white;
+            text-decoration: none;
+            padding: 12px 20px;
+            border-radius: 30px;
+            font-weight: 800;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .wa-float-btn {
+            width: 62px;
+            height: 62px;
+            background: var(--whatsapp);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 30px;
+            cursor: pointer;
+            box-shadow: 0 7px 20px rgba(0,0,0,.25);
+            transition: .25s;
+        }
+
+        .wa-float-btn:hover { transform: scale(1.08); }
+
+        /* =========================================================
+           MODALES
+        ========================================================= */
+        .modal-overlay {
+            position: fixed;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,.78);
+            z-index: 3000;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            backdrop-filter: blur(5px);
+        }
+
+        .promo-modal {
+            background: white;
+            width: 100%;
+            max-width: 510px;
+            border-radius: 20px;
+            position: relative;
+            overflow: hidden;
+            animation: zoomIn .3s ease;
+        }
+
+        .modal-header-img {
+            width: 100%;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 25px;
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            color: var(--primary);
+            background: white;
+            border-radius: 50%;
+            width: 30px;
+            height: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 2px 5px rgba(0,0,0,.2);
+            cursor: pointer;
+            z-index: 20;
+            font-size: 1.4rem;
+        }
+
+        .modal-body { padding: 25px; }
+
+        .form-group { margin-bottom: 14px; }
+
+        .form-group label {
+            display: block;
+            font-size: .78rem;
+            font-weight: 800;
+            color: var(--primary);
+            margin-bottom: 5px;
+        }
+
+        .form-group input,
+        .form-group select {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-family: inherit;
+            outline: none;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus {
+            border-color: var(--secondary);
+            box-shadow: 0 0 0 3px rgba(188,160,91,.1);
+        }
+
+        .form-info-box {
+            background: rgba(107,122,90,.1);
+            border-left: 4px solid var(--accent);
+            padding: 12px 15px;
+            margin-bottom: 20px;
+            border-radius: 0 8px 8px 0;
+            font-size: .82rem;
+            line-height: 1.5;
+            color: var(--primary);
+        }
+
+        /* =========================================================
+           ANIMACIONES
+        ========================================================= */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(8px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(15px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes zoomIn {
+            from { transform: scale(.85); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
+        }
+
+        /* =========================================================
+           RESPONSIVE
+        ========================================================= */
+        @media (max-width: 1050px) {
+            .nav-links { gap: 10px; }
+            .nav-links > li > a { font-size: .7rem; }
+            .metrics-grid { grid-template-columns: repeat(2,1fr); }
+            .courses-grid { grid-template-columns: repeat(2,1fr); }
+            .courses-grid .course-card:last-child {
+                grid-column: span 2;
+                max-width: 50%;
+                margin: auto;
+            }
+        }
+
+        @media (max-width: 900px) {
+            .nav-inner { width: 100%; }
             .menu-toggle { display: block; }
-            .nav-links { display: none; flex-direction: column; position: absolute; top: 85px; left: 0; width: 100%; background: rgba(255, 255, 255, 0.98); padding: 20px 0; box-shadow: 0 10px 15px rgba(0,0,0,0.1); text-align: left; gap: 0; }
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 78px;
+                left: 0;
+                width: 100%;
+                background: rgba(255,255,255,.98);
+                backdrop-filter: blur(10px);
+                padding: 12px 0 20px;
+                box-shadow: 0 15px 25px rgba(0,0,0,.1);
+                flex-direction: column;
+                gap: 0;
+                max-height: calc(100vh - 78px);
+                overflow-y: auto;
+            }
             .nav-links.active { display: flex; }
-            .nav-links > li { width: 100%; padding: 10px 20px; border-bottom: 1px solid #f0f0f0; }
-            .nav-links > li:last-child { border-bottom: none; text-align: center; padding-top: 20px; }
-            
-            .dropdown-menu { position: static; box-shadow: none; border: none; background: #f4f6f4; width: 100%; margin-top: 10px; border-radius: 8px; display: none; }
+            .nav-links > li {
+                width: 100%;
+                padding: 12px 22px;
+                border-bottom: 1px solid #f0f2ef;
+            }
+            .nav-links > li > a {
+                width: 100%;
+                justify-content: space-between;
+                font-size: .8rem;
+            }
+            .dropdown-menu {
+                position: static;
+                width: 100%;
+                max-height: 60vh;
+                box-shadow: none;
+                border-top: none;
+                margin-top: 10px;
+                background: #f5f7f4;
+            }
             .dropdown.active .dropdown-menu { display: block; }
+            .hero { min-height: 650px; }
+            .hero h1 { font-size: 3rem; }
+            .quick-grid { grid-template-columns: 1fr; }
+            .quick-card { min-height: 110px; }
+            .ehep-layout { grid-template-columns: 1fr; }
+            .ehep-list { grid-template-columns: 1fr; }
+            .gallery-grid { grid-template-columns: 1fr 1fr; }
+            .gallery-item:first-child { grid-column: span 2; }
+            .b2b-grid { grid-template-columns: 1fr; }
+            .social-grid { grid-template-columns: 1fr; }
+        }
+
+        @media (max-width: 650px) {
+            .section { padding: 60px 0; }
+            .brand img { height: 45px; }
+            .brand-name { font-size: 1.2rem; }
+            .brand-sub { font-size: .55rem; }
+            .hero { margin-top: 70px; min-height: 670px; }
+            .hero h1 { font-size: 2.55rem; }
+            .hero p { font-size: .98rem; }
+            .hero-actions { flex-direction: column; }
+            .hero-actions .btn-main { width: 100%; }
+            .quick-access { margin-top: -35px; }
+            .metrics-grid { grid-template-columns: 1fr 1fr; }
+            .metric-card { padding: 22px 12px; }
+            .metric-number { font-size: 1.9rem; }
+            .metric-label { font-size: .7rem; }
+            .b2b-card { padding: 22px; }
+            .courses-grid { grid-template-columns: 1fr; }
+            .courses-grid .course-card:last-child {
+                grid-column: auto;
+                max-width: none;
+            }
+            .gallery-grid { grid-template-columns: 1fr; }
+            .gallery-item:first-child { grid-column: auto; }
+            .gallery-item { min-height: 270px; }
+            .featured-banner { padding: 35px 25px; }
+            .ehep-main, .ehep-side { padding: 30px 25px; }
+            .wa-chat-box { width: calc(100vw - 35px); right: -10px; }
+            .wa-widget-container { right: 18px; bottom: 18px; }
+        }
+
+        @media (max-width: 430px) {
+            .metrics-grid { grid-template-columns: 1fr; }
+            .hero h1 { font-size: 2.25rem; }
+            .section-title { font-size: 2rem; }
         }
     </style>
 </head>
+
 <body>
 
-    <!-- MODAL INSCRIPCIÓN EHEP -->
-    <div class="modal-overlay" id="registrationModal">
-        <div class="promo-modal" style="max-height: 90vh; overflow-y: auto;">
-            <span class="close-modal" onclick="closeModal()" style="color: var(--primary); background: white; border-radius: 50%; width: 30px; height: 30px; display: flex; align-items: center; justify-content: center; box-shadow: 0 2px 5px rgba(0,0,0,0.2); top: 10px; right: 10px; z-index: 20;">&times;</span>
-            
-            <div class="modal-header-img" style="height: auto; padding: 25px 20px 15px;">
-                <div>
-                    <h3 style="font-family: 'Playfair Display'; font-size: 1.4rem; margin-bottom: 5px;">Examen EHEP 2026</h3>
-                    <p style="font-size: 0.8rem; font-weight: 600; color: var(--secondary); margin-bottom: 0;">¡Inscripciones Abiertas!</p>
-                </div>
+<!-- =========================================================
+     MODAL INSCRIPCIÓN EHEP
+========================================================= -->
+<div class="modal-overlay" id="registrationModal">
+    <div class="promo-modal" style="max-height:90vh;overflow-y:auto;">
+        <span class="close-modal" onclick="closeModal()">&times;</span>
+        <div class="modal-header-img">
+            <div>
+                <h3 style="font-family:'Playfair Display';font-size:1.5rem;">Examen EHEP 2026</h3>
+                <p style="font-size:.8rem;font-weight:700;color:#d8bd73;">¡Inscripciones abiertas!</p>
             </div>
-            
-            <div class="modal-body" style="padding: 20px;">
-                <div class="form-info-box" style="margin-bottom: 15px; padding: 12px 15px; font-size: 0.85rem;">
-                    <strong><i class="fa-solid fa-circle-info"></i> Pasos para acceder:</strong><br>
-                    1. Completa tus datos y elige tu método de pago ($30.00).<br>
-                    2. Si pagas con tarjeta, el sistema te enviará <b>inmediatamente</b> las credenciales de acceso a tu correo electrónico.
-                </div>
-                
-                <form id="ehepForm">
-                    <div class="form-group" style="margin-bottom: 12px;">
-                        <label style="margin-bottom: 3px;">Nombre Completo</label>
-                        <input type="text" id="formName" required style="padding: 10px;">
-                    </div>
-                    
-                    <div class="form-group" style="margin-bottom: 12px;">
-                        <label style="margin-bottom: 3px;">Carrera</label>
-                        <select id="formCourse" required style="padding: 10px;">
-                            <option value="">Seleccione su área</option>
-                            <option value="Medicina">Medicina</option>
-                            <option value="Enfermería">Enfermería</option>
-                            <!-- <option value="Odontología">Odontología</option> -->
-                        </select>
-                    </div>
-                    
-                    <div class="form-group" style="margin-bottom: 12px;">
-                        <label style="margin-bottom: 3px;">Número de Contacto</label>
-                        <input type="tel" id="formPhone" required style="padding: 10px;">
-                    </div>
-                    
-                    <div class="form-group" style="margin-bottom: 12px;">
-                        <label style="margin-bottom: 3px;">Correo Electrónico</label>
-                        <input type="email" id="formEmail" required style="padding: 10px;">
-                        <small id="emailError" style="color: red; display: none; font-size: 0.7rem; margin-top: 3px;">Debe ser @gmail.com.</small>
-                    </div>
-                    
-                    <div class="form-group" style="margin-bottom: 20px;">
-                        <label style="margin-bottom: 3px; color: var(--secondary);">Método de Pago</label>
-                        <select id="formPaymentMethod" required style="padding: 10px; border: 1px solid var(--secondary); background-color: #fdfaf3;">
-                            <option value="">¿Cómo deseas pagar?</option>
-                            <option value="tarjeta">💳 Tarjeta (Inscripción Inmediata)</option>
-                            <option value="transferencia">🏦 Transferencia Bancaria</option>
-                        </select>
-                    </div>
+        </div>
 
-                <button type="submit" class="btn-main" style="width: 100%; border-radius: 8px; padding: 12px; font-size: 0.95rem;">Completar Inscripción</button>
-                </form>
+        <div class="modal-body">
+            <div class="form-info-box">
+                <strong><i class="fa-solid fa-circle-info"></i> Pasos para acceder:</strong>
+                <br>
+                1. Completa tus datos y elige tu método de pago ($30.00).
+                <br>
+                2. Si pagas con tarjeta, el sistema te enviará <b>inmediatamente</b> las credenciales de acceso a tu correo.
+            </div>
 
-                <div id="payphone-wrapper" style="display:none; text-align: center; margin-top: 20px;">
-                    <h4 style="margin-bottom: 15px; color: var(--primary);">Completa tu pago seguro</h4>
-                    <div id="pp-button"></div>
+            <form id="ehepForm">
+                <div class="form-group">
+                    <label>Nombre Completo</label>
+                    <input type="text" id="formName" required>
                 </div>
 
+                <div class="form-group">
+                    <label>Carrera</label>
+                    <select id="formCourse" required>
+                        <option value="">Seleccione su área</option>
+                        <option value="Medicina">Medicina</option>
+                        <option value="Enfermería">Enfermería</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label>Número de Contacto</label>
+                    <input type="tel" id="formPhone" required>
+                </div>
+
+                <div class="form-group">
+                    <label>Correo Electrónico</label>
+                    <input type="email" id="formEmail" required>
+                    <small id="emailError" style="color:red;display:none;font-size:.7rem;">Debe ser @gmail.com.</small>
+                </div>
+
+                <div class="form-group">
+                    <label style="color:var(--secondary-dark);">Método de Pago</label>
+                    <select id="formPaymentMethod" required>
+                        <option value="">¿Cómo deseas pagar?</option>
+                        <option value="tarjeta">💳 Tarjeta (Inscripción Inmediata)</option>
+                        <option value="transferencia">🏦 Transferencia Bancaria</option>
+                    </select>
+                </div>
+
+                <button type="submit" class="btn-main" style="width:100%;border-radius:9px;">
+                    Completar Inscripción
+                </button>
+            </form>
+
+            <div id="payphone-wrapper" style="display:none;text-align:center;margin-top:20px;">
+                <h4 style="margin-bottom:15px;color:var(--primary);">Completa tu pago seguro</h4>
+                <div id="pp-button"></div>
             </div>
         </div>
     </div>
+</div>
 
-    <!-- MODAL FIREBASE -->
-    <div class="modal-overlay" id="authModal">
-        <div class="promo-modal">
-            <span class="close-modal" onclick="closeAuthModal()">&times;</span>
-            <div class="modal-header-img" style="height: 100px;">
-                <h3 style="font-family: 'Playfair Display'; font-size: 1.5rem;">Simuladores Médicos</h3>
+<!-- =========================================================
+     MODAL FIREBASE
+========================================================= -->
+<div class="modal-overlay" id="authModal">
+    <div class="promo-modal">
+        <span class="close-modal" onclick="closeAuthModal()">&times;</span>
+        <div class="modal-header-img" style="height:110px;">
+            <h3 style="font-family:'Playfair Display';font-size:1.5rem;">Simuladores Médicos</h3>
+        </div>
+
+        <div class="modal-body">
+            <div class="form-group">
+                <label>Correo Electrónico</label>
+                <input type="email" id="authEmail">
             </div>
-            <div class="modal-body">
-                <div class="form-group"><label>Correo Electrónico</label><input type="email" id="authEmail"></div>
-                <div class="form-group"><label>Contraseña</label><input type="password" id="authPassword"></div>
-                <p id="authError" style="color: red; font-size: 0.8rem; display: none; margin-bottom: 10px;"></p>
-                <button class="btn-main" onclick="loginFirebase()" style="width: 100%; border-radius: 10px; margin-bottom: 10px;">Ingresar</button>
-                <button class="btn-main btn-outline" onclick="registerFirebase()" style="width: 100%; border-radius: 10px; color: var(--primary); border-color: var(--primary);">Crear Cuenta</button>
+
+            <div class="form-group">
+                <label>Contraseña</label>
+                <input type="password" id="authPassword">
             </div>
+
+            <p id="authError" style="color:red;font-size:.8rem;display:none;margin-bottom:10px;"></p>
+
+            <button class="btn-main" onclick="loginFirebase()" style="width:100%;margin-bottom:10px;">
+                Ingresar
+            </button>
+
+            <button class="btn-main btn-outline-dark" onclick="registerFirebase()" style="width:100%;">
+                Crear Cuenta
+            </button>
         </div>
     </div>
+</div>
 
-    <!-- MENÚ SUPERIOR -->
-    <nav>
+<!-- =========================================================
+     NAVBAR
+========================================================= -->
+<nav>
+    <div class="nav-inner">
         <a href="#inicio" class="brand">
-            <!-- Ruta actualizada: img/ -->
             <img src="img/LOGO_CEFEDEP.png" alt="Logo CEFEDEP">
             <div class="brand-text">
                 <span class="brand-name">CEFEDEP</span>
                 <span class="brand-sub">ECUADOR</span>
             </div>
         </a>
+
         <div class="menu-toggle" onclick="toggleMobileMenu()">
             <i class="fa-solid fa-bars"></i>
         </div>
+
         <ul class="nav-links">
             <li><a href="#inicio">Inicio</a></li>
             <li><a href="quienes-somos.html">Quiénes Somos</a></li>
-            
-            <!-- MENÚ DESPLEGABLE DE CURSOS -->
-            <li class="dropdown" id="btn-cursos" onclick="toggleDropdownMobile(event)">
-                <a href="javascript:void(0)" style="cursor: pointer;">Cursos Avalados <i class="fa-solid fa-chevron-down" style="font-size: 0.7rem; margin-left: 3px;"></i></a>
-                <ul class="dropdown-menu">
-                    <!-- ÁREA DE SALUD -->
-                    <li><div class="dropdown-category">Área de Salud</div></li>
-                    <!-- Rutas actualizadas: cursos/salud/ -->
-                    <li><a href="cursos/salud/curso_farmacia.html" target="_blank"><i class="fa-solid fa-pills" style="color: var(--accent);"></i> Auxiliar en Farmacia</a></li>
-                    <li><a href="cursos/salud/curso_enfermeria.html" target="_blank"><i class="fa-solid fa-user-nurse" style="color: var(--accent);"></i> Auxiliar en Enfermería</a></li>
-                    <li><a href="cursos/salud/curso_salud_ocupacional.html" target="_blank"><i class="fa-solid fa-helmet-safety" style="color: var(--accent);"></i> Salud Ocupacional y Ergonomía</a></li>
-                    <li><a href="cursos/salud/curso_primeros_auxilios.html" target="_blank"><i class="fa-solid fa-kit-medical" style="color: var(--accent);"></i> Primeros Auxilios Básicos</a></li>
-                    
-                    <!-- ÁREA HUMANA -->
-                    <li><div class="dropdown-category">Área Humana y Educación</div></li>
-                    <!-- Rutas actualizadas: cursos/humana/ -->
-                    <li><a href="cursos/humana/curso_asistencia_juridica.html" target="_blank"><i class="fa-solid fa-scale-balanced" style="color: var(--secondary);"></i> Asistencia Jurídica</a></li>
-                    <li><a href="cursos/humana/curso_asistencia_parvularia.html" target="_blank"><i class="fa-solid fa-children" style="color: var(--secondary);"></i> Asistencia Parvularia</a></li>
-                    <li><a href="cursos/humana/curso_cosmeticos.html" target="_blank"><i class="fa-solid fa-flask" style="color: var(--secondary);"></i> Cosmética Artesanal</a></li>
-                    <li><a href="cursos/humana/curso_tramites_judiciales.html" target="_blank"><i class="fa-solid fa-file-signature" style="color: var(--secondary);"></i> Trámites Judiciales</a></li>
-                    <li><a href="cursos/humana/curso_recursos_didacticos.html" target="_blank"><i class="fa-solid fa-laptop-code" style="color: var(--secondary);"></i> Recursos Didácticos Digitales</a></li>
-                    <li><a href="cursos/humana/curso_apoyo_pedagogico.html" target="_blank"><i class="fa-solid fa-puzzle-piece" style="color: var(--secondary);"></i> Estrategias Parvularia</a></li>
-                    <li><a href="cursos/humana/curso_proyectos_educativos.html" target="_blank"><i class="fa-solid fa-lightbulb" style="color: var(--secondary);"></i> Proyectos Curriculares (IES)</a></li>
-                    <li><a href="cursos/humana/curso_facilitacion_grupos.html" target="_blank"><i class="fa-solid fa-users-rays" style="color: var(--secondary);"></i> Facilitación Corporativa</a></li>
-                    <li><a href="cursos/humana/curso_evaluacion_desempeno.html" target="_blank"><i class="fa-solid fa-clipboard-check" style="color: var(--secondary);"></i> Instrumentos de Evaluación</a></li>
 
-                    <!-- TECNOLOGÍA -->
-                    <li><div class="dropdown-category">Ingeniería y Tecnología</div></li>
-                    <!-- Rutas actualizadas: cursos/tecnologia/ -->
-                    <li><a href="cursos/tecnologia/curso_python_automatizacion.html" target="_blank"><i class="fa-brands fa-python" style="color: #306998;"></i> Automatización con Python e IA</a></li>
-                    <li><a href="cursos/tecnologia/curso_python_basica.html" target="_blank"><i class="fa-brands fa-python" style="color: #306998;"></i> Programación Básica Python</a></li>
-                    <li><a href="cursos/tecnologia/curso_python_datos.html" target="_blank"><i class="fa-solid fa-chart-pie" style="color: #306998;"></i> Visualización de Datos Python</a></li>
-                    <li><a href="cursos/tecnologia/curso_python_vision.html" target="_blank"><i class="fa-solid fa-eye" style="color: #306998;"></i> Visión por Computadora Python</a></li>
-                    <li><a href="cursos/tecnologia/curso_desarrollo_web.html" target="_blank"><i class="fa-solid fa-code" style="color: #306998;"></i> Desarrollo Web</a></li>
-                    <li><a href="cursos/tecnologia/curso_cloud_computing.html" target="_blank"><i class="fa-solid fa-cloud" style="color: #306998;"></i> Cloud Computing</a></li>
+            <!-- CURSOS -->
+            <li class="dropdown" id="btn-cursos" onclick="toggleDropdownMobile(event)">
+                <a href="javascript:void(0)">Cursos Avalados <i class="fa-solid fa-chevron-down"></i></a>
+                <ul class="dropdown-menu">
+                    <li>
+                        <div class="dropdown-category">Área de Salud</div>
+                    </li>
+                    <li>
+                        <a href="cursos/salud/curso_farmacia.html" target="_blank">
+                            <i class="fa-solid fa-pills" style="color:var(--accent)"></i> Auxiliar en Farmacia
+                        </a>
+                    </li>
+                    <li>
+                        <a href="cursos/salud/curso_enfermeria.html" target="_blank">
+                            <i class="fa-solid fa-user-nurse" style="color:var(--accent)"></i> Auxiliar en Enfermería
+                        </a>
+                    </li>
+                    <li>
+                        <a href="cursos/salud/curso_salud_ocupacional.html" target="_blank">
+                            <i class="fa-solid fa-helmet-safety" style="color:var(--accent)"></i> Salud Ocupacional y Ergonomía
+                        </a>
+                    </li>
+                    <li>
+                        <a href="cursos/salud/curso_primeros_auxilios.html" target="_blank">
+                            <i class="fa-solid fa-kit-medical" style="color:var(--accent)"></i> Primeros Auxilios Básicos
+                        </a>
+                    </li>
+
+                    <li>
+                        <div class="dropdown-category">Área Humana y Educación</div>
+                    </li>
+                    <li>
+                        <a href="cursos/humana/curso_asistencia_juridica.html" target="_blank">
+                            <i class="fa-solid fa-scale-balanced"></i> Asistencia Jurídica
+                        </a>
+                    </li>
+                    <li>
+                        <a href="cursos/humana/curso_asistencia_parvularia.html" target="_blank">
+                            <i class="fa-solid fa-children"></i> Asistencia Parvularia
+                        </a>
+                    </li>
+                    <li>
+                        <a href="cursos/humana/curso_cosmeticos.html" target="_blank">
+                            <i class="fa-solid fa-flask"></i> Cosmética Artesanal
+                        </a>
+                    </li>
+                    <li>
+                        <a href="cursos/humana/curso_tramites_judiciales.html" target="_blank">
+                            <i class="fa-solid fa-file-signature"></i> Trámites Judiciales
+                        </a>
+                    </li>
+                    <li>
+                        <a href="cursos/humana/curso_recursos_didacticos.html" target="_blank">
+                            <i class="fa-solid fa-laptop-code"></i> Recursos Didácticos Digitales
+                        </a>
+                    </li>
+                    <li>
+                        <a href="cursos/humana/curso_apoyo_pedagogico.html" target="_blank">
+                            <i class="fa-solid fa-puzzle-piece"></i> Estrategias Parvularia
+                        </a>
+                    </li>
+                    <li>
+                        <a href="cursos/humana/curso_proyectos_educativos.html" target="_blank">
+                            <i class="fa-solid fa-lightbulb"></i> Proyectos Curriculares (IES)
+                        </a>
+                    </li>
+                    <li>
+                        <a href="cursos/humana/curso_facilitacion_grupos.html" target="_blank">
+                            <i class="fa-solid fa-users-rays"></i> Facilitación Corporativa
+                        </a>
+                    </li>
+                    <li>
+                        <a href="cursos/humana/curso_evaluacion_desempeno.html" target="_blank">
+                            <i class="fa-solid fa-clipboard-check"></i> Instrumentos de Evaluación
+                        </a>
+                    </li>
+
+                    <li>
+                        <div class="dropdown-category">Ingeniería y Tecnología</div>
+                    </li>
+                    <li>
+                        <a href="cursos/tecnologia/curso_python_automatizacion.html" target="_blank">
+                            <i class="fa-brands fa-python"></i> Automatización con Python e IA
+                        </a>
+                    </li>
+                    <li>
+                        <a href="cursos/tecnologia/curso_python_basica.html" target="_blank">
+                            <i class="fa-brands fa-python"></i> Programación Básica Python
+                        </a>
+                    </li>
+                    <li>
+                        <a href="cursos/tecnologia/curso_python_datos.html" target="_blank">
+                            <i class="fa-solid fa-chart-pie"></i> Visualización de Datos Python
+                        </a>
+                    </li>
+                    <li>
+                        <a href="cursos/tecnologia/curso_python_vision.html" target="_blank">
+                            <i class="fa-solid fa-eye"></i> Visión por Computadora Python
+                        </a>
+                    </li>
+                    <li>
+                        <a href="cursos/tecnologia/curso_desarrollo_web.html" target="_blank">
+                            <i class="fa-solid fa-code"></i> Desarrollo Web
+                        </a>
+                    </li>
+                    <li>
+                        <a href="cursos/tecnologia/curso_cloud_computing.html" target="_blank">
+                            <i class="fa-solid fa-cloud"></i> Cloud Computing
+                        </a>
+                    </li>
                 </ul>
             </li>
 
-            <li><a href="#inscripcion" style="color: var(--secondary);">Simulador EHEP</a></li>
-            <li><a href="#galeria">Galería</a></li>
-            <li><a href="#redes">Redes</a></li>
-            
+            <li><a href="#inscripcion" style="color:var(--secondary-dark)">Preparación EHEP</a></li>
+            <li><a href="#galeria">Trayectoria</a></li>
+            <li><a href="#redes">Comunidad</a></li>
+
             <li id="dynamic-menu">
-                <a href="#" onclick="openAuthModal()" class="login-btn">INICIAR SESIÓN EHEP</a>
+                <a href="#" onclick="openAuthModal();return false;" class="login-btn">INICIAR SESIÓN</a>
             </li>
         </ul>
-    </nav>
+    </div>
+</nav>
 
-    <section class="hero" id="inicio">
-        <h1>Liderazgo en Consultoría Educativa Superior</h1>
-        <p>Acompañamos a instituciones y profesionales hacia la acreditación, el éxito en exámenes nacionales y la excelencia académica integral.</p>
-        <div style="display: flex; gap: 20px; flex-wrap: wrap; justify-content: center; margin-top: 20px;">
-            <a href="javascript:void(0)" onclick="openModal()" class="btn-main">Simulador EHEP 2026</a>
-            <a href="#cursos" class="btn-main btn-outline">Ver Catálogo de Cursos</a>
-        </div>        
-    </section>
-
-    <!-- SERVICIOS B2B -->
-    <section id="servicios-b2b" style="background-color: var(--light);">
-        <div class="section-header">
-            <span class="featured-tag" style="background: var(--accent);">Consultoría Institucional B2B</span>
-            <h3 style="font-family: 'Playfair Display', serif; font-size: 2.5rem; color: var(--primary);">Servicios para la Educación Superior</h3>
-            <div class="divider"></div>
-            <p style="color: #666; max-width: 800px; margin: 15px auto;">Elevando el estándar de Universidades e Institutos Tecnológicos mediante consultoría, acreditación y diseño curricular.</p>
+<!-- =========================================================
+     HERO
+========================================================= -->
+<section class="hero" id="inicio">
+    <div class="hero-content">
+        <div class="hero-copy">
+            <div class="hero-kicker">
+                <i class="fa-solid fa-graduation-cap"></i> Educación superior · Formación · Tecnología
+            </div>
+            <h1>Formación que impulsa <span>tu futuro profesional.</span></h1>
+            <p>Preparamos profesionales, fortalecemos instituciones y desarrollamos soluciones educativas para enfrentar los nuevos desafíos de la educación superior.</p>
+            <div class="hero-actions">
+                <a href="javascript:void(0)" onclick="openModal()" class="btn-main">Preparación EHEP 2026 <i class="fa-solid fa-arrow-right"></i></a>
+                <a href="#cursos" class="btn-main btn-outline">Explorar cursos <i class="fa-solid fa-book-open"></i></a>
+            </div>
         </div>
+    </div>
+</section>
 
-        <div style="background: white; padding: 40px; border-radius: 20px; box-shadow: 0 10px 25px rgba(0,0,0,0.05); border-left: 5px solid var(--secondary);">
-            <ul style="list-style: none; padding-left: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px;">
-                <li style="display: flex; align-items: flex-start; gap: 10px;">
-                    <i class="fa-solid fa-check-circle" style="color: var(--accent); margin-top: 4px;"></i> 
-                    <span><strong>Diagnóstico y Cualificación:</strong> Auditoría inicial y evaluación del estado de los institutos tecnológicos frente a las normativas de educación superior.</span>
-                </li>
-                <li style="display: flex; align-items: flex-start; gap: 10px;">
-                    <i class="fa-solid fa-check-circle" style="color: var(--accent); margin-top: 4px;"></i> 
-                    <span><strong>Diseño de Indicadores:</strong> Estructuración de métricas de calidad y rendimiento adaptadas a las exigencias del organismo acreditador.</span>
-                </li>
-                <li style="display: flex; align-items: flex-start; gap: 10px;">
-                    <i class="fa-solid fa-check-circle" style="color: var(--accent); margin-top: 4px;"></i> 
-                    <span><strong>Simulaciones de Evaluación:</strong> Ejercicios prácticos y simulacros de auditoría para preparar a la junta directiva y al personal operativo.</span>
-                </li>
-                <li style="display: flex; align-items: flex-start; gap: 10px;">
-                    <i class="fa-solid fa-check-circle" style="color: var(--accent); margin-top: 4px;"></i> 
-                    <span><strong>Planes de Mejora Continua:</strong> Implementación de correcciones estratégicas que garantizan el éxito en la acreditación y el aseguramiento de la calidad a largo plazo.</span>
-                </li>
-            </ul>
+<!-- =========================================================
+     ACCESOS PRINCIPALES
+========================================================= -->
+<section class="quick-access">
+    <div class="container">
+        <div class="quick-grid">
+            <a href="#inscripcion" class="quick-card">
+                <div class="quick-icon"><i class="fa-solid fa-stethoscope"></i></div>
+                <div>
+                    <h3>Preparación EHEP</h3>
+                    <p>Simuladores y banco de preguntas</p>
+                </div>
+                <div class="quick-arrow"><i class="fa-solid fa-arrow-right"></i></div>
+            </a>
+            <a href="#cursos" class="quick-card">
+                <div class="quick-icon"><i class="fa-solid fa-book-open-reader"></i></div>
+                <div>
+                    <h3>Cursos profesionales</h3>
+                    <p>Salud, educación y tecnología</p>
+                </div>
+                <div class="quick-arrow"><i class="fa-solid fa-arrow-right"></i></div>
+            </a>
+            <a href="#servicios-b2b" class="quick-card">
+                <div class="quick-icon"><i class="fa-solid fa-building-columns"></i></div>
+                <div>
+                    <h3>Soluciones para IES</h3>
+                    <p>Consultoría y capacitación institucional</p>
+                </div>
+                <div class="quick-arrow"><i class="fa-solid fa-arrow-right"></i></div>
+            </a>
         </div>
-    </section>
+    </div>
+</section>
 
-    <!-- GALERÍA -->
-    <section id="galeria" style="background: var(--white);">
+<!-- =========================================================
+     METRICAS
+========================================================= -->
+<section class="metrics-section">
+    <div class="container">
+        <div class="metrics-title">
+            <h2>Resultados que respaldan nuestra experiencia</h2>
+            <p>Formación y acompañamiento para profesionales e instituciones.</p>
+        </div>
+        <div class="metrics-grid">
+            <div class="metric-card">
+                <div class="metric-icon"><i class="fa-solid fa-building-columns"></i></div>
+                <div class="metric-number">3</div>
+                <div class="metric-label">Institutos tecnológicos asesorados en su creación</div>
+            </div>
+            <div class="metric-card">
+                <div class="metric-icon"><i class="fa-solid fa-clipboard-question"></i></div>
+                <div class="metric-number">+1.000</div>
+                <div class="metric-label">Preguntas para preparación EHEP</div>
+            </div>
+            <div class="metric-card">
+                <div class="metric-icon"><i class="fa-solid fa-layer-group"></i></div>
+                <div class="metric-number">3</div>
+                <div class="metric-label">Áreas principales de formación</div>
+            </div>
+            <div class="metric-card">
+                <div class="metric-icon"><i class="fa-solid fa-clock"></i></div>
+                <div class="metric-number">24/7</div>
+                <div class="metric-label">Disponibilidad de plataforma</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- =========================================================
+     SERVICIOS B2B
+========================================================= -->
+<section class="section b2b-section" id="servicios-b2b">
+    <div class="container">
         <div class="section-header">
-            <span class="featured-tag">Nuestra Trayectoria</span>
-            <h2>Transformando la Educación</h2>
+            <div class="eyebrow">Consultoría Institucional B2B</div>
+            <h2 class="section-title">Soluciones para la Educación Superior</h2>
             <div class="divider"></div>
-            <p style="color: #666; font-size: 1.1rem;">Impactamos a profesionales e instituciones de todo el Ecuador con certificaciones y capacitaciones de altísima calidad.</p>
+            <p class="section-description">Acompañamos a universidades e institutos tecnológicos en procesos de creación, evaluación, calidad, acreditación y mejora institucional.</p>
+        </div>
+        <div class="b2b-grid">
+            <div class="b2b-card">
+                <div class="b2b-icon"><i class="fa-solid fa-magnifying-glass-chart"></i></div>
+                <div>
+                    <h3>Diagnóstico y cualificación institucional</h3>
+                    <p>Evaluamos el estado institucional, identificamos brechas y establecemos una hoja de ruta frente a las exigencias de la educación superior.</p>
+                </div>
+            </div>
+            <div class="b2b-card">
+                <div class="b2b-icon"><i class="fa-solid fa-chart-line"></i></div>
+                <div>
+                    <h3>Diseño de indicadores de calidad</h3>
+                    <p>Diseñamos indicadores y sistemas de seguimiento para medir resultados, desempeño y cumplimiento institucional.</p>
+                </div>
+            </div>
+            <div class="b2b-card">
+                <div class="b2b-icon"><i class="fa-solid fa-clipboard-check"></i></div>
+                <div>
+                    <h3>Simulaciones de evaluación</h3>
+                    <p>Realizamos simulaciones de evaluación y auditoría para preparar a directivos, docentes y equipos administrativos.</p>
+                </div>
+            </div>
+            <div class="b2b-card">
+                <div class="b2b-icon"><i class="fa-solid fa-arrows-rotate"></i></div>
+                <div>
+                    <h3>Planes de mejora continua</h3>
+                    <p>Convertimos los hallazgos en acciones concretas mediante planes de mejora, seguimiento y acompañamiento estratégico.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- =========================================================
+     EHEP
+========================================================= -->
+<section class="section ehep-section" id="inscripcion">
+    <div class="container">
+        <div class="section-header">
+            <div class="eyebrow">Preparación profesional 2026</div>
+            <h2 class="section-title">Prepárate para el EHEP con tecnología y práctica</h2>
+            <div class="divider"></div>
+            <p class="section-description">Una plataforma diseñada para practicar, medir tu progreso y llegar mejor preparado al examen.</p>
+        </div>
+        <div class="ehep-layout">
+            <div class="ehep-main">
+                <span class="tag"><i class="fa-solid fa-bolt"></i> Plataforma EHEP</span>
+                <h2>Simuladores y banco de preguntas</h2>
+                <p>Entrena con una experiencia de estudio enfocada en práctica, simulación y revisión de conocimientos.</p>
+                <ul class="ehep-list">
+                    <li><i class="fa-solid fa-check"></i> <span>Banco de +1.000 preguntas</span></li>
+                    <li><i class="fa-solid fa-check"></i> <span>Simulacros configurables</span></li>
+                    <li><i class="fa-solid fa-check"></i> <span>Casos y reactivos estructurados</span></li>
+                    <li><i class="fa-solid fa-check"></i> <span>Flashcards de repaso</span></li>
+                    <li><i class="fa-solid fa-check"></i> <span>Herramientas digitales</span></li>
+                    <li><i class="fa-solid fa-check"></i> <span>Acceso 24/7</span></li>
+                </ul>
+                <button onclick="openModal()" class="btn-main">Quiero inscribirme <i class="fa-solid fa-arrow-right"></i></button>
+            </div>
+            <div class="ehep-side">
+                <div class="ehep-side-icon"><i class="fa-solid fa-laptop-medical"></i></div>
+                <h3>¿Ya estás inscrito?</h3>
+                <p>Ingresa directamente a tu simulador y continúa tu preparación.</p>
+                <button onclick="openAuthModal()" class="btn-main btn-primary">Entrar al simulador <i class="fa-solid fa-right-to-bracket"></i></button>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- =========================================================
+     CURSOS
+========================================================= -->
+<section class="section courses-section" id="cursos">
+    <div class="container">
+        <div class="section-header">
+            <div class="eyebrow">Educación continua</div>
+            <h2 class="section-title">Cursos profesionales</h2>
+            <div class="divider"></div>
+            <p class="section-description">Formación práctica en áreas de alta demanda para profesionales y personas que buscan desarrollar nuevas competencias.</p>
+        </div>
+        <div class="courses-grid">
+            <div class="course-card">
+                <img src="img/curso_salud.jpg" class="course-img" alt="Área de Salud">
+                <div class="course-info">
+                    <span class="tag" style="background:var(--accent)">Salud</span>
+                    <h3>Auxiliares en Farmacia y Enfermería</h3>
+                    <p>Formación técnica en atención, manejo seguro de pacientes, farmacología y procedimientos.</p>
+                    <a href="#" onclick="abrirMenuCursos();return false;" class="course-link">Ver especialidades <i class="fa-solid fa-arrow-right"></i></a>
+                </div>
+            </div>
+            <div class="course-card">
+                <img src="img/curso_humana.jpg" class="course-img" alt="Área Humana">
+                <div class="course-info">
+                    <span class="tag">Educación</span>
+                    <h3>Asistencia Jurídica y Parvularia</h3>
+                    <p>Programas orientados a educación, primera infancia, gestión jurídica y desarrollo profesional.</p>
+                    <a href="#" onclick="abrirMenuCursos();return false;" class="course-link">Ver especialidades <i class="fa-solid fa-arrow-right"></i></a>
+                </div>
+            </div>
+            <div class="course-card">
+                <img src="img/curso_tecnologia.jpg" class="course-img" alt="Área Tecnología">
+                <div class="course-info">
+                    <span class="tag" style="background:#306998">Tecnología</span>
+                    <h3>Python, IA y Desarrollo</h3>
+                    <p>Automatización, análisis de datos, visión por computadora, desarrollo web y computación en la nube.</p>
+                    <a href="#" onclick="abrirMenuCursos();return false;" class="course-link">Ver especialidades <i class="fa-solid fa-arrow-right"></i></a>
+                </div>
+            </div>
+        </div>
+        <div style="text-align:center;margin-top:30px;">
+            <button class="btn-main btn-primary" onclick="abrirMenuCursos()">Explorar todos los cursos <i class="fa-solid fa-arrow-right"></i></button>
+        </div>
+    </div>
+</section>
+
+<!-- =========================================================
+     PREGUNTAS ALTO IMPACTO
+========================================================= -->
+<section class="featured-section">
+    <div class="container">
+        <div class="featured-banner">
+            <span class="tag"><i class="fa-solid fa-building-columns"></i> Servicios exclusivos para IES</span>
+            <h2>Elaboración de preguntas de alto impacto</h2>
+            <p>Capacitamos a facultades y docentes universitarios en la creación técnica de reactivos de alta complejidad, alineados a los estándares nacionales.</p>
+            <a href="https://wa.me/593987321024?text=Deseo%20más%20información%20sobre%20el%20Curso%20de%20Preguntas%20para%20Universidades" target="_blank" class="btn-main">
+                Solicitar propuesta institucional <i class="fa-brands fa-whatsapp"></i>
+            </a>
+        </div>
+    </div>
+</section>
+
+<!-- =========================================================
+     GALERIA
+========================================================= -->
+<section class="section gallery-section" id="galeria">
+    <div class="container">
+        <div class="section-header">
+            <div class="eyebrow">Nuestra trayectoria</div>
+            <h2 class="section-title">Transformando la educación</h2>
+            <div class="divider"></div>
+            <p class="section-description">Acompañamos a profesionales e instituciones mediante formación, consultoría y soluciones educativas.</p>
         </div>
         <div class="gallery-grid">
             <div class="gallery-item">
-                <!-- Ruta actualizada: img/ -->
                 <img src="img/galeria_diplomas.jpeg" alt="Entrega de Diplomas">
-                <div class="gallery-overlay">Entrega de Certificaciones Avaladas</div>
+                <div class="gallery-overlay">Entrega de certificaciones avaladas</div>
             </div>
             <div class="gallery-item">
-                <!-- Ruta actualizada: img/ -->
                 <img src="img/galeria_universidad.png" alt="Capacitación Universitaria">
-                <div class="gallery-overlay">Capacitación a Docentes Universitarios</div>
+                <div class="gallery-overlay">Capacitación a docentes universitarios</div>
             </div>
             <div class="gallery-item">
-                <!-- Ruta actualizada: img/ -->
                 <img src="img/galeria_artes.png" alt="Trabajo Institucional">
-                <div class="gallery-overlay">Innovación y Excelencia Institucional</div>
+                <div class="gallery-overlay">Innovación y excelencia institucional</div>
             </div>
         </div>
-    </section>
+    </div>
+</section>
 
-    <!-- TOP CURSOS -->
-    <section id="cursos" class="courses-section">
+<!-- =========================================================
+     REDES
+========================================================= -->
+<section class="section social-section" id="redes">
+    <div class="container">
         <div class="section-header">
-            <span class="featured-tag" style="background: var(--primary);">Educación Continua</span>
-            <h2>Programas Destacados</h2>
+            <div class="eyebrow">Comunidad CEFEDEP</div>
+            <h2 class="section-title">Aprende, descubre y mantente conectado</h2>
             <div class="divider"></div>
-            <p style="color: #666; font-size: 1.1rem; max-width: 700px; margin: 0 auto;">Potencia tu currículum con nuestras áreas de mayor demanda laboral, adaptadas a tu disponibilidad.</p>
-            
-            <div class="modalities-container">
-                <div class="modality-badge">
-                    <i class="fa-solid fa-laptop" style="color: var(--accent);"></i> Virtual
-                </div>
-                <div class="modality-badge">
-                    <i class="fa-solid fa-chalkboard-user" style="color: var(--accent);"></i> Híbrida
-                </div>
-                <div class="modality-badge badge-incompany">
-                    <i class="fa-solid fa-building-user"></i> Modalidad In-Company (Corporativa)
-                </div>
-            </div>
-        </div>
-
-        <div class="courses-grid">
-            <div class="course-card">
-                <!-- Ruta actualizada: img/ -->
-                <img src="img/curso_salud.jpg" class="course-img" alt="Área de Salud">
-                <div class="course-info">
-                    <span class="featured-tag" style="background: var(--accent); margin-bottom: 0;">Área de la Salud</span>
-                    <h4>Auxiliares en Farmacia y Enfermería</h4>
-                    <p style="color: #666; font-size: 0.95rem; margin-bottom: 15px;">Formación técnica avalada para el manejo seguro de pacientes, normativa ARCSA y farmacología.</p>
-                    <a href="#" onclick="abrirMenuCursos(); return false;" style="color: var(--primary); font-weight: 800; text-decoration: none;">Ver Especialidades <i class="fa-solid fa-arrow-right"></i></a>   
-                </div>
-            </div>
-            <div class="course-card">
-                <!-- Ruta actualizada: img/ -->
-                <img src="img/curso_humana.jpg" class="course-img" alt="Área Humana">
-                <div class="course-info">
-                    <span class="featured-tag" style="background: var(--secondary); margin-bottom: 0;">Derecho y Educación</span>
-                    <h4>Asistencia Jurídica y Parvularia</h4>
-                    <p style="color: #666; font-size: 0.95rem; margin-bottom: 15px;">Apoya la gestión de trámites notariales o domina la estimulación pedagógica en la primera infancia.</p>
-                    <a href="#" onclick="abrirMenuCursos(); return false;" style="color: var(--primary); font-weight: 800; text-decoration: none;">Ver Especialidades <i class="fa-solid fa-arrow-right"></i></a>
-                </div>
-            </div>
-            <div class="course-card">
-                <!-- Ruta actualizada: img/ -->
-                <img src="img/curso_tecnologia.jpg" class="course-img" alt="Área Tecnología">
-                <div class="course-info">
-                    <span class="featured-tag" style="background: #306998; margin-bottom: 0;">Ingeniería y Sistemas</span>
-                    <h4>Programación en Python y Desarrollo</h4>
-                    <p style="color: #666; font-size: 0.95rem; margin-bottom: 15px;">Domina el lenguaje del futuro: Automatización, Visión por Computadora y Análisis de Datos con IA.</p>
-                    <a href="#" onclick="abrirMenuCursos(); return false;" style="color: var(--primary); font-weight: 800; text-decoration: none;">Ver Especialidades <i class="fa-solid fa-arrow-right"></i></a>
-                </div>
-            </div>
-        </div>
-        <div style="text-align: center; margin-top: 40px;">
-            <button class="btn-main" onclick="abrirMenuCursos()">Explorar todos los cursos aquí</button>
-        </div>
-    </section>
-
-    <!-- SECCIÓN PREGUNTAS ALTO IMPACTO -->
-    <section id="especialidad">
-        <div class="featured-banner">
-            <span class="featured-tag">Servicios Exclusivos para IES</span>
-            <h3>Elaboración de Preguntas de Alto Impacto</h3>
-            <p>Capacitamos a facultades y docentes universitarios en la creación técnica de reactivos de alta complejidad, alineados estrictamente a los estándares nacionales (EHEP).</p>
-            <a href="https://wa.me/593987321024?text=Deseo%20más%20información%20sobre%20el%20Curso%20de%20Preguntas%20para%20Universidades" target="_blank" class="btn-main" style="margin-top: 15px;">Solicitar Propuesta Institucional</a>
-        </div>
-    </section>
-
-    <!-- SECCIÓN EHEP -->
-    <section id="inscripcion" style="background-color: var(--white); border-bottom: 1px solid #eee;">
-        <div class="section-header">
-            <span class="featured-tag">Médicos / Enfermeros / Odontólogos</span>
-            <h2>Preparación Examen EHEP 2026</h2>
-            <div class="divider"></div>
-        </div>
-        <div class="core-services">
-                    <div class="core-card" style="text-align: left; padding: 40px; border-left: 5px solid var(--secondary); background: white; border-radius: 20px; box-shadow: 0 10px 25px rgba(0,0,0,0.05);">
-                        <h3 style="color: var(--primary); margin-bottom: 20px; font-family: 'Playfair Display', serif; font-size: 1.8rem;">Plataforma y Simulador EHEP</h3>
-                        <ul style="list-style: none; padding-left: 0; margin-bottom: 25px;">
-                            <li style="margin-bottom: 15px; display: flex; align-items: flex-start; gap: 10px; line-height: 1.5;">
-                                <i class="fa-solid fa-check-circle" style="color: var(--accent); margin-top: 4px;"></i> 
-                                <span><strong>Banco de +1,000 Preguntas Reales:</strong> Practica con reactivos y casos clínicos estructurados bajo el estándar de los exámenes oficiales.</span>
-                            </li>
-                            <li style="margin-bottom: 15px; display: flex; align-items: flex-start; gap: 10px; line-height: 1.5;">
-                                <i class="fa-solid fa-check-circle" style="color: var(--accent); margin-top: 4px;"></i> 
-                                <span><strong>Simulacros a tu Medida:</strong> Configura el tiempo límite y la cantidad de preguntas según tu ritmo de estudio.</span>
-                            </li>
-                            <li style="margin-bottom: 15px; display: flex; align-items: flex-start; gap: 10px; line-height: 1.5;">
-                                <i class="fa-solid fa-check-circle" style="color: var(--accent); margin-top: 4px;"></i> 
-                                <span><strong>Tarjetas de Repaso (Flashcards):</strong> Optimiza la retención de conceptos clave a largo plazo.</span>
-                            </li>
-                            <li style="margin-bottom: 15px; display: flex; align-items: flex-start; gap: 10px; line-height: 1.5;">
-                                <i class="fa-solid fa-check-circle" style="color: var(--accent); margin-top: 4px;"></i> 
-                                <span><strong>Tecnología Inteligente:</strong> Acceso exclusivo a herramientas de IA diseñadas para potenciar tu preparación.</span>
-                            </li>      
-                        </ul>
-                        <button onclick="openModal()" class="btn-main" style="width: 100%;">Quiero Inscribirme</button>
-                    </div>
-            
-            <div class="core-card" style="background: var(--light);">
-                <i class="fa-solid fa-laptop-medical core-icon"></i>
-                <h3 style="font-family: 'Playfair Display', serif; font-size: 1.8rem; color: var(--primary);">Usuarios Registrados</h3>
-                <p style="margin-top: 15px; text-align: center;">Si ya estás inscrito en el simulador, accede directamente a la plataforma con tus credenciales.</p>
-                <button onclick="openAuthModal()" class="btn-main btn-outline" style="margin-top: 20px; color: var(--primary); border-color: var(--primary); width: 100%;">Entrar al Simulador</button>
-            </div>
-        </div>
-    </section>
-
-    <!-- REDES SOCIALES -->
-    <section id="redes" style="background-color: var(--light);">
-        <div class="section-header">
-            <span class="featured-tag">Comunidad CEFEDEP</span>
-            <h2>Síguenos en Redes Sociales</h2>
-            <div class="divider"></div>
-            <p style="color: #666; font-size: 1.1rem;">Únete a miles de profesionales y descubre contenido de valor, testimonios y promociones diarias.</p>
+            <p class="section-description">Contenido educativo, novedades, promociones, testimonios y actualidad de nuestra comunidad.</p>
         </div>
         <div class="social-grid">
             <a href="https://www.tiktok.com/@cefedep.ecuador?_r=1&_t=ZS-98OQk4LKbNy" target="_blank" class="social-card bg-tiktok">
                 <i class="fa-brands fa-tiktok"></i>
                 <h3>TikTok</h3>
-                <p style="font-size: 0.9rem; margin-top: 5px;">Tips rápidos y el día a día</p>
+                <p>Tips rápidos y contenido educativo</p>
             </a>
             <a href="https://www.instagram.com/cefedep_ecuador" target="_blank" class="social-card bg-instagram">
                 <i class="fa-brands fa-instagram"></i>
                 <h3>Instagram</h3>
-                <p style="font-size: 0.9rem; margin-top: 5px;">Fotos, Reels y eventos</p>
+                <p>Reels, eventos y novedades</p>
             </a>
             <a href="https://www.facebook.com/cefedep/" target="_blank" class="social-card bg-facebook">
                 <i class="fa-brands fa-facebook-f"></i>
                 <h3>Facebook</h3>
-                <p style="font-size: 0.9rem; margin-top: 5px;">Noticias y comunidad oficial</p>
+                <p>Noticias y comunidad oficial</p>
             </a>
         </div>
-    </section>
+    </div>
+</section>
 
-    <footer>
-        <!-- Ruta actualizada: img/ -->
+<!-- =========================================================
+     FOOTER
+========================================================= -->
+<footer>
+    <div class="container">
         <img src="img/LOGO_CEFEDEP.png" alt="CEFEDEP" class="footer-logo">
-        <p>&copy; 2026 CEFEDEP ECUADOR. Soluciones para el éxito académico.</p>
-        <p style="font-size: 0.8rem; margin-top: 10px;">Contacto Directo: +593 98 732 1024 | info@cefedep.com</p>
-    </footer>
+        <p>© 2026 CEFEDEP ECUADOR. Soluciones para el éxito académico.</p>
+        <p style="margin-top:8px;font-size:.78rem;">Contacto Directo: +593 98 732 1024 | info@cefedep.com</p>
+    </div>
+</footer>
 
-    <!-- WIDGET WHATSAPP -->
-    <div class="wa-widget-container">
-        <div class="wa-chat-box" id="waChatBox">
-            <div class="wa-chat-header">
-                <div class="wa-header-info">
-                    <i class="fa-brands fa-whatsapp" style="font-size: 1.8rem;"></i>
-                    <div>
-                        <div style="font-weight: 800; line-height: 1.2; font-size: 1rem;">Atención CEFEDEP</div>
-                        <div style="font-size: 0.75rem; opacity: 0.9;">En línea ahora</div>
-                    </div>
+<!-- =========================================================
+     WHATSAPP
+========================================================= -->
+<div class="wa-widget-container">
+    <div class="wa-chat-box" id="waChatBox">
+        <div class="wa-chat-header">
+            <div class="wa-header-info">
+                <i class="fa-brands fa-whatsapp" style="font-size:1.8rem"></i>
+                <div>
+                    <div style="font-weight:800;font-size:1rem;">Atención CEFEDEP</div>
+                    <div style="font-size:.72rem;opacity:.9;">En línea ahora</div>
                 </div>
-                <span class="wa-close" onclick="closeWaChat()">&times;</span>
             </div>
-            <div class="wa-chat-body">
-                <div class="wa-msg">¡Hola! 👋 Bienvenido a CEFEDEP ECUADOR.<br><br>¿Cómo podemos ayudarte hoy?</div>
-            </div>
-            <div class="wa-chat-footer">
-                <a href="https://wa.me/593987321024" target="_blank" class="wa-chat-btn">Abrir Chat <i class="fa-solid fa-paper-plane"></i></a>
+            <span class="wa-close" onclick="closeWaChat()">&times;</span>
+        </div>
+        <div class="wa-chat-body">
+            <div class="wa-msg">
+                ¡Hola! 👋 Bienvenido a CEFEDEP ECUADOR.<br><br>¿Cómo podemos ayudarte hoy?
             </div>
         </div>
-        <div class="wa-float-btn" onclick="toggleWaChat()"><i class="fa-brands fa-whatsapp"></i></div>
+        <div class="wa-chat-footer">
+            <a href="https://wa.me/593987321024" target="_blank" class="wa-chat-btn">
+                Abrir Chat <i class="fa-solid fa-paper-plane"></i>
+            </a>
+        </div>
     </div>
+    <div class="wa-float-btn" onclick="toggleWaChat()">
+        <i class="fa-brands fa-whatsapp"></i>
+    </div>
+</div>
 
-  <!-- LIBRERÍAS CAJITA DE PAGOS PAYPHONE V2.0 -->
-  <link rel="stylesheet" href="https://cdn.payphonetodoesposible.com/box/v2.0/payphone-payment-box.css">
-  <script type="module" src="https://cdn.payphonetodoesposible.com/box/v2.0/payphone-payment-box.js"></script>
+<!-- =========================================================
+     PAYPHONE
+========================================================= -->
+<link rel="stylesheet" href="https://cdn.payphonetodoesposible.com/box/v2.0/payphone-payment-box.css">
+<script type="module" src="https://cdn.payphonetodoesposible.com/box/v2.0/payphone-payment-box.js"></script>
 
-    <!-- LIBRERÍAS DE FIREBASE -->
-    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
+<!-- =========================================================
+     FIREBASE
+========================================================= -->
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
 
-    <script>
-        // CONFIGURACIÓN DE FIREBASE
-        const firebaseConfig = {
-            apiKey: "AIzaSyDM8QEUh_FnvbGdcINHzsxUWkWGQQigSmo",
-            authDomain: "cefedep-ecuador.firebaseapp.com",
-            projectId: "cefedep-ecuador",
-            storageBucket: "cefedep-ecuador.firebasestorage.app",
-            messagingSenderId: "722072935685",
-            appId: "1:722072935685:web:8e1fd0139eff6eaab02b6c",
-            measurementId: "G-9GX5GQ1YDL"
-        };
-        firebase.initializeApp(firebaseConfig);
-        const auth = firebase.auth();
+<script>
+    /* =========================================================
+       FIREBASE
+    ========================================================= */
+    const firebaseConfig = {
+        apiKey: "AIzaSyDM8QEUh_FnvbGdcINHzsxUWkWGQQigSmo",
+        authDomain: "cefedep-ecuador.firebaseapp.com",
+        projectId: "cefedep-ecuador",
+        storageBucket: "cefedep-ecuador.firebasestorage.app",
+        messagingSenderId: "722072935685",
+        appId: "1:722072935685:web:8e1fd0139eff6eaab02b6c",
+        measurementId: "G-9GX5GQ1YDL"
+    };
 
-        // CONTROL DEL MODAL FIREBASE
-        function openAuthModal() { document.getElementById('authModal').style.display = 'flex'; }
-        function closeAuthModal() { document.getElementById('authModal').style.display = 'none'; document.getElementById('authError').style.display = 'none'; }
-        
-        function loginFirebase() {
-            const email = document.getElementById('authEmail').value;
-            const pass = document.getElementById('authPassword').value;
-            const errBox = document.getElementById('authError');
-            auth.signInWithEmailAndPassword(email, pass).then(() => { closeAuthModal(); }).catch(err => {
-                errBox.style.display = 'block'; errBox.innerText = "Error: Correo o contraseña incorrectos.";
+    firebase.initializeApp(firebaseConfig);
+    const auth = firebase.auth();
+
+    /* =========================================================
+       AUTH MODAL
+    ========================================================= */
+    function openAuthModal() {
+        document.getElementById("authModal").style.display = "flex";
+    }
+
+    function closeAuthModal() {
+        document.getElementById("authModal").style.display = "none";
+        document.getElementById("authError").style.display = "none";
+    }
+
+    function loginFirebase() {
+        const email = document.getElementById("authEmail").value;
+        const pass = document.getElementById("authPassword").value;
+        const errBox = document.getElementById("authError");
+
+        auth.signInWithEmailAndPassword(email, pass)
+            .then(() => {
+                closeAuthModal();
+            })
+            .catch(() => {
+                errBox.style.display = "block";
+                errBox.innerText = "Error: Correo o contraseña incorrectos.";
             });
-        }
-        function registerFirebase() {
-            const email = document.getElementById('authEmail').value;
-            const pass = document.getElementById('authPassword').value;
-            const errBox = document.getElementById('authError');
-            auth.createUserWithEmailAndPassword(email, pass).then(() => { closeAuthModal(); }).catch(err => {
-                errBox.style.display = 'block'; errBox.innerText = "Error al crear cuenta. Mínimo 6 caracteres.";
-            });
-        }
+    }
 
-        auth.onAuthStateChanged(user => {
-            const menuContainer = document.getElementById('dynamic-menu');
-            if (user) {
-                let cursoAsignado = user.displayName || ""; 
-                let botonSimulador = "";
-        
-                // Rutas de simuladores actualizadas: simuladores/
-                if (cursoAsignado.includes("Medicina")) {
-                    botonSimulador = `<a href="simuladores/simulador_med.html" class="login-btn" style="background: var(--primary); color: white !important; border-color: var(--primary); font-size: 0.75rem;">MEDICINA</a>`;
-                } else if (cursoAsignado.includes("Enfermería") || cursoAsignado.includes("Enfermeria")) {
-                    botonSimulador = `<a href="simuladores/simulador_enf.html" class="login-btn" style="background: #2b7a78; color: white !important; border-color: #2b7a78; font-size: 0.75rem;">ENFERMERÍA</a>`;
-                } else if (cursoAsignado.includes("Odontología") || cursoAsignado.includes("Odontologia")) {
-                    botonSimulador = `<a href="simuladores/simulador_odo.html" class="login-btn" style="background: #bca05b; color: white !important; border-color: #bca05b; font-size: 0.75rem;">ODONTOLOGÍA</a>`;
-                } else {
-                    botonSimulador = `
-                        <a href="simuladores/simulador_med.html" class="login-btn" style="font-size: 0.75rem;">MEDICINA</a>
-                        <a href="simuladores/simulador_enf.html" class="login-btn" style="font-size: 0.75rem;">ENFERMERÍA</a>
-                    `;
-                }
-        
-                menuContainer.innerHTML = botonSimulador + `
-                    <a href="#" onclick="auth.signOut()" style="color: #ff4757; text-decoration: none; font-size: 0.8rem; font-weight: 700; margin-left: 10px;">
-                        <i class="fa-solid fa-right-from-bracket"></i> SALIR
+    function registerFirebase() {
+        const email = document.getElementById("authEmail").value;
+        const pass = document.getElementById("authPassword").value;
+        const errBox = document.getElementById("authError");
+
+        auth.createUserWithEmailAndPassword(email, pass)
+            .then(() => {
+                closeAuthModal();
+            })
+            .catch(() => {
+                errBox.style.display = "block";
+                errBox.innerText = "Error al crear cuenta. Mínimo 6 caracteres.";
+            });
+    }
+
+    /* =========================================================
+       ESTADO DE AUTENTICACIÓN
+    ========================================================= */
+    auth.onAuthStateChanged(user => {
+        const menuContainer = document.getElementById("dynamic-menu");
+
+        if (user) {
+            let cursoAsignado = user.displayName || "";
+            let botonSimulador = "";
+
+            if (cursoAsignado.includes("Medicina")) {
+                botonSimulador = `
+                    <a href="simuladores/simulador_med.html" class="login-btn" style="background:var(--primary); color:white!important; border-color:var(--primary); font-size:.72rem;">
+                        MEDICINA
+                    </a>
+                `;
+            } else if (cursoAsignado.includes("Enfermería") || cursoAsignado.includes("Enfermeria")) {
+                botonSimulador = `
+                    <a href="simuladores/simulador_enf.html" class="login-btn" style="background:#2b7a78; color:white!important; border-color:#2b7a78; font-size:.72rem;">
+                        ENFERMERÍA
+                    </a>
+                `;
+            } else if (cursoAsignado.includes("Odontología") || cursoAsignado.includes("Odontologia")) {
+                botonSimulador = `
+                    <a href="simuladores/simulador_odo.html" class="login-btn" style="background:#bca05b; color:white!important; border-color:#bca05b; font-size:.72rem;">
+                        ODONTOLOGÍA
                     </a>
                 `;
             } else {
-                menuContainer.innerHTML = `<a href="#" onclick="openAuthModal()" class="login-btn">INICIAR SESIÓN EHEP</a>`;
-            }
-        });
-
-        // FORMULARIO EHEP
-        function openModal() { document.getElementById('registrationModal').style.display = 'flex'; }
-        function closeModal() { document.getElementById('registrationModal').style.display = 'none'; }
-        
-        document.getElementById('ehepForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            const name = document.getElementById('formName').value;
-            const courseSelect = document.getElementById('formCourse').value;
-            const course = "Preparación Examen EHEP " + courseSelect; 
-            const phone = document.getElementById('formPhone').value;
-            const email = document.getElementById('formEmail').value;
-            const paymentMethod = document.getElementById('formPaymentMethod').value;
-            const emailError = document.getElementById('emailError');
-            const btnSubmit = this.querySelector('button[type="submit"]');
-
-            if (!email.includes('@gmail.com')) { 
-                emailError.style.display = 'block'; 
-                return; 
-            } else { 
-                emailError.style.display = 'none'; 
+                botonSimulador = `
+                    <a href="simuladores/simulador_med.html" class="login-btn" style="font-size:.72rem;">MEDICINA</a>
+                    <a href="simuladores/simulador_enf.html" class="login-btn" style="font-size:.72rem;">ENFERMERÍA</a>
+                `;
             }
 
-            const originalText = btnSubmit.innerText;
-            btnSubmit.innerText = "Procesando...";
-            btnSubmit.disabled = true;
+            menuContainer.innerHTML = botonSimulador + `
+                <a href="#" onclick="auth.signOut();return false;" style="color:#ff4757; text-decoration:none; font-size:.75rem; font-weight:700; margin-left:8px;">
+                    <i class="fa-solid fa-right-from-bracket"></i> SALIR
+                </a>
+            `;
+        } else {
+            menuContainer.innerHTML = `
+                <a href="#" onclick="openAuthModal();return false;" class="login-btn">
+                    INICIAR SESIÓN
+                </a>
+            `;
+        }
+    });
 
-            const myTransactionId = "EHEP-" + Date.now();
+    /* =========================================================
+       MODAL EHEP
+    ========================================================= */
+    function openModal() {
+        document.getElementById("registrationModal").style.display = "flex";
+    }
 
-            const payload = {
-                nombre: name,
-                email: email,
-                curso: course,
-                telefono: phone,
-                metodoPago: paymentMethod,
-                idTransaccion: myTransactionId 
-            };
+    function closeModal() {
+        document.getElementById("registrationModal").style.display = "none";
+    }
 
-            const webhookUrl = "https://script.google.com/macros/s/AKfycbxFWIU7c4Gz549edBTMVXrLypDHFLDbjdzDEXQpUUq15KvV3ejgUHghFqXLwfqpuKyq/exec";
+    /* =========================================================
+       FORMULARIO EHEP
+    ========================================================= */
+    document.getElementById("ehepForm").addEventListener("submit", function(e) {
+        e.preventDefault();
 
-            fetch(webhookUrl, {
-                method: 'POST',
-                headers: { 'Content-Type': 'text/plain;charset=utf-8' },
-                body: JSON.stringify(payload)
-            })
-            .then(response => {
-                if (paymentMethod === "transferencia") {
-                    const text = `Hola CEFEDEP, soy *${name}*. Me registré al EHEP de *${courseSelect}*.\n_Deseo realizar mi pago mediante transferencia o efectivo en ventanilla._`;
-                    window.open(`https://wa.me/593987321024?text=${encodeURIComponent(text)}`, '_blank');
-                    closeModal();
-                    btnSubmit.innerText = originalText;
-                    btnSubmit.disabled = false;
-                    document.getElementById('ehepForm').reset();
-                    
-                } else if (paymentMethod === "tarjeta") {
-                    try {
-                        document.getElementById('ehepForm').style.display = 'none';
-                        document.getElementById('payphone-wrapper').style.display = 'block';
-            
-                        const ppb = new PPaymentButtonBox({                            
-                            token: 'yYr16kF76YWm67nihKoYTiNuP778roAIuSz_iBSRB-yid2JDES4nijIzG0Zw4O-tWhGNkB4azmnzrGIKsTxfE-lXivINg2_1mCwvrRTeoBo49xxOwiBZ0jPrt8TAvZmg-vOuArJasVEzzuXJyfnwRTFsDZ1VOS0e4v4aoSlS_SwQSlG_wHZ43VNhml7LTbT8ubOp23VYhy5D43VLoZDvaNJR2sTSG6Hnygy7YiN2B48bsQPgFeH-EHZ3vllp80Jjtnj0GD6VdHC4NIqQ2XoV2FiTyOLJVyqhliDf3gzFqmHShwLY18WHq2-8J-hlp5faiJap5MmpHrMuA2PdpbKfOew1TbY',
-                            amount: 3000,
-                            amountWithoutTax: 3000,
-                            amountWithTax: 0,
-                            tax: 0,                                        
-                            service: 0,
-                            tip: 0,
-                            reference: "Inscripción " + courseSelect,
-                            currency: 'USD',
-                            clientTransactionId: myTransactionId,
-                            backgroundColor: "#334235",
-                            responseUrl: "https://cefedep.com/" 
-                        }).render('pp-button');
-            
-                        btnSubmit.innerText = originalText;
-                        btnSubmit.disabled = false;
-                        
-                    } catch (err) {
-                        alert("⚠️ Error al dibujar la caja de pago: " + err.message);
-                        btnSubmit.innerText = originalText;
-                        btnSubmit.disabled = false;
-                    }
-                }
-            })
-            .catch(error => {
-                alert("⚠️ Fallo en el envío de datos: " + error.message);
+        const name = document.getElementById("formName").value;
+        const courseSelect = document.getElementById("formCourse").value;
+        const course = "Preparación Examen EHEP " + courseSelect;
+        const phone = document.getElementById("formPhone").value;
+        const email = document.getElementById("formEmail").value;
+        const paymentMethod = document.getElementById("formPaymentMethod").value;
+        const emailError = document.getElementById("emailError");
+        const btnSubmit = this.querySelector('button[type="submit"]');
+
+        if (!email.includes("@gmail.com")) {
+            emailError.style.display = "block";
+            return;
+        } else {
+            emailError.style.display = "none";
+        }
+
+        const originalText = btnSubmit.innerText;
+        btnSubmit.innerText = "Procesando...";
+        btnSubmit.disabled = true;
+
+        const myTransactionId = "EHEP-" + Date.now();
+
+        const payload = {
+            nombre: name,
+            email: email,
+            curso: course,
+            telefono: phone,
+            metodoPago: paymentMethod,
+            idTransaccion: myTransactionId
+        };
+
+        const webhookUrl = "https://script.google.com/macros/s/AKfycbxFWIU7c4Gz549edBTMVXrLypDHFLDbjdzDEXQpUUq15KvV3ejgUHghFqXLwfqpuKyq/exec";
+
+        fetch(webhookUrl, {
+            method: "POST",
+            headers: {
+                "Content-Type": "text/plain;charset=utf-8"
+            },
+            body: JSON.stringify(payload)
+        })
+        .then(() => {
+            if (paymentMethod === "transferencia") {
+                const text = `Hola CEFEDEP, soy *${name}*. Me registré al EHEP de *${courseSelect}*.\n_Deseo realizar mi pago mediante transferencia o efectivo en ventanilla._`;
+                window.open(`https://wa.me/593987321024?text=${encodeURIComponent(text)}`, "_blank");
+                closeModal();
                 btnSubmit.innerText = originalText;
                 btnSubmit.disabled = false;
-            });
-            
-        }); 
+                document.getElementById("ehepForm").reset();
+            } else if (paymentMethod === "tarjeta") {
+                try {
+                    document.getElementById("ehepForm").style.display = "none";
+                    document.getElementById("payphone-wrapper").style.display = "block";
 
-        // AUTOMATIZACIÓN AUTOMÁTICA POST-PAGO
-        window.addEventListener('DOMContentLoaded', () => {
-            const urlParams = new URLSearchParams(window.location.search);
-            const clientTransactionId = urlParams.get('clientTransactionId') || urlParams.get('id');
-            
-            if (clientTransactionId) {
-                const webhookUrl = "https://script.google.com/macros/s/AKfycbxFWIU7c4Gz549edBTMVXrLypDHFLDbjdzDEXQpUUq15KvV3ejgUHghFqXLwfqpuKyq/exec";
-                
-                fetch(webhookUrl, {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'text/plain;charset=utf-8' },
-                    body: JSON.stringify({
-                        clientTransactionId: clientTransactionId,
-                        transactionStatus: "Approved"
-                    })
-                }).then(() => {
-                    alert("🎉 ¡Pago confirmado con éxito!\n\nHemos activado tu cuenta en el Simulador y te enviamos las credenciales de acceso a tu correo electrónico.");
-                    window.history.replaceState({}, document.title, window.location.pathname);
-                }).catch(err => {
-                    console.error("Error al procesar la automatización:", err);
-                });
+                    const ppb = new PPaymentButtonBox({
+                        token: "yYr16kF76YWm67nihKoYTiNuP778roAIuSz_iBSRB-yid2JDES4nijIzG0Zw4O-tWhGNkB4azmnzrGIKsTxfE-lXivINg2_1mCwvrRTeoBo49xxOwiBZ0jPrt8TAvZmg-vOuArJasVEzzuXJyfnwRTFsDZ1VOS0e4v4aoSlS_SwQSlG_wHZ43VNhml7LTbT8ubOp23VYhy5D43VLoZDvaNJR2sTSG6Hnygy7YiN2B48bsQPgFeH-EHZ3vllp80Jjtnj0GD6VdHC4NIqQ2oV2FiTyOLJVyqhliDf3gzFqmHShwLY18WHq2-8J-hlp5faiJap5MmpHrMuA2PdpbKfOew1TbY",
+                        amount: 3000,
+                        amountWithoutTax: 3000,
+                        amountWithTax: 0,
+                        tax: 0,
+                        service: 0,
+                        tip: 0,
+                        reference: "Inscripción " + courseSelect,
+                        currency: "USD",
+                        clientTransactionId: myTransactionId,
+                        backgroundColor: "#334235",
+                        responseUrl: "https://cefedep.com/"
+                    }).render("pp-button");
+
+                    btnSubmit.innerText = originalText;
+                    btnSubmit.disabled = false;
+                } catch(err) {
+                    alert("⚠️ Error al dibujar la caja de pago: " + err.message);
+                    btnSubmit.innerText = originalText;
+                    btnSubmit.disabled = false;
+                }
             }
+        })
+        .catch(error => {
+            alert("⚠️ Fallo en el envío de datos: " + error.message);
+            btnSubmit.innerText = originalText;
+            btnSubmit.disabled = false;
         });
+    });
 
-        // WHATSAPP WIDGET
-        setTimeout(() => { document.getElementById('waChatBox').style.display = 'block'; }, 5000);
-        function toggleWaChat() { let cb = document.getElementById('waChatBox'); cb.style.display = (cb.style.display === 'none' || cb.style.display === '') ? 'block' : 'none'; }
-        function closeWaChat() { document.getElementById('waChatBox').style.display = 'none'; }
+    /* =========================================================
+       AUTOMATIZACIÓN POST-PAGO
+    ========================================================= */
+    window.addEventListener("DOMContentLoaded", () => {
+        const urlParams = new URLSearchParams(window.location.search);
+        const clientTransactionId = urlParams.get("clientTransactionId") || urlParams.get("id");
 
-        // MENÚ MÓVIL Y DROPDOWN
-        function toggleMobileMenu() {
-            const navLinks = document.querySelector('.nav-links');
-            navLinks.classList.toggle('active');
-            const icon = document.querySelector('.menu-toggle i');
-            icon.classList.replace(navLinks.classList.contains('active') ? 'fa-bars' : 'fa-xmark', navLinks.classList.contains('active') ? 'fa-xmark' : 'fa-bars');
+        if (!clientTransactionId) {
+            return;
         }
 
-        function toggleDropdownMobile(e) {
+        const webhookUrl = "https://script.google.com/macros/s/AKfycbxFWIU7c4Gz549edBTMVXrLypDHFLDbjdzDEXQpUUq15KvV3ejgUHghFqXLwfqpuKyq/exec";
+
+        fetch(webhookUrl, {
+            method: "POST",
+            headers: {
+                "Content-Type": "text/plain;charset=utf-8"
+            },
+            body: JSON.stringify({
+                clientTransactionId: clientTransactionId,
+                transactionStatus: "Approved"
+            })
+        })
+        .then(() => {
+            alert("🎉 ¡Pago confirmado con éxito!\n\nHemos activado tu cuenta en el Simulador y te enviamos las credenciales de acceso a tu correo electrónico.");
+            window.history.replaceState({}, document.title, window.location.pathname);
+        })
+        .catch(err => {
+            console.error("Error al procesar automatización:", err);
+        });
+    });
+
+    /* =========================================================
+       WHATSAPP
+    ========================================================= */
+    setTimeout(() => {
+        document.getElementById("waChatBox").style.display = "block";
+    }, 5000);
+
+    function toggleWaChat() {
+        const cb = document.getElementById("waChatBox");
+        cb.style.display = cb.style.display === "none" || cb.style.display === "" ? "block" : "none";
+    }
+
+    function closeWaChat() {
+        document.getElementById("waChatBox").style.display = "none";
+    }
+
+    /* =========================================================
+       MENU MOVIL
+    ========================================================= */
+    function toggleMobileMenu() {
+        const navLinks = document.querySelector(".nav-links");
+        navLinks.classList.toggle("active");
+
+        const icon = document.querySelector(".menu-toggle i");
+        if (navLinks.classList.contains("active")) {
+            icon.classList.remove("fa-bars");
+            icon.classList.add("fa-xmark");
+        } else {
+            icon.classList.remove("fa-xmark");
+            icon.classList.add("fa-bars");
+        }
+    }
+
+    /* =========================================================
+       DROPDOWN MOVIL
+    ========================================================= */
+    function toggleDropdownMobile(e) {
+        if (window.innerWidth <= 900) {
+            if (e.target.closest(".dropdown-menu a")) {
+                return;
+            }
+            e.preventDefault();
+            const dropdown = document.getElementById("btn-cursos");
+            dropdown.classList.toggle("active");
+        }
+    }
+
+    /* =========================================================
+       ABRIR MENU CURSOS
+    ========================================================= */
+    function abrirMenuCursos() {
+        window.scrollTo({
+            top: 0,
+            behavior: "smooth"
+        });
+
+        setTimeout(() => {
             if (window.innerWidth <= 900) {
-                if (e.target.closest('.dropdown-menu a')) {
-                    return; 
-                }
-                e.preventDefault();
-                const dropdown = document.getElementById('btn-cursos');
-                dropdown.classList.toggle('active');
+                document.querySelector(".nav-links").classList.add("active");
+                document.getElementById("btn-cursos").classList.add("active");
+                document.querySelector(".menu-toggle i").classList.replace("fa-bars", "fa-xmark");
+            } else {
+                const dropdownMenu = document.querySelector(".dropdown-menu");
+                dropdownMenu.style.display = "block";
+
+                setTimeout(() => {
+                    document.addEventListener("click", function closeDrop(e) {
+                        if (!e.target.closest("#btn-cursos")) {
+                            dropdownMenu.style.display = "";
+                            document.removeEventListener("click", closeDrop);
+                        }
+                    });
+                }, 100);
             }
-        }
+        }, 500);
+    }
 
-        function abrirMenuCursos() {
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-            
-            setTimeout(() => {
-                if (window.innerWidth <= 900) {
-                    document.querySelector('.nav-links').classList.add('active');
-                    document.getElementById('btn-cursos').classList.add('active');
-                    document.querySelector('.menu-toggle i').classList.replace('fa-bars', 'fa-xmark');
-                } else {
-                    const dropdownMenu = document.querySelector('.dropdown-menu');
-                    dropdownMenu.style.display = 'block';
-                    
-                    setTimeout(() => {
-                        document.addEventListener('click', function closeDrop(e) {
-                            if (!e.target.closest('#btn-cursos')) {
-                                dropdownMenu.style.display = ''; 
-                                document.removeEventListener('click', closeDrop);
-                            }
-                        });
-                    }, 100);
-                }
-            }, 600);
-        }
-
-        document.querySelectorAll('.nav-links a:not(.dropdown-menu a):not(#btn-cursos a)').forEach(link => {
-            link.addEventListener('click', () => {
-                if (window.innerWidth <= 900) {
-                    document.querySelector('.nav-links').classList.remove('active');
-                    document.querySelector('.menu-toggle i').classList.replace('fa-xmark', 'fa-bars');
-                    document.getElementById('btn-cursos').classList.remove('active');
-                }
-            });
+    /* =========================================================
+       CERRAR MENU AL NAVEGAR EN MOVIL
+    ========================================================= */
+    document.querySelectorAll(".nav-links a:not(.dropdown-menu a)").forEach(link => {
+        link.addEventListener("click", () => {
+            if (window.innerWidth <= 900) {
+                document.querySelector(".nav-links").classList.remove("active");
+                document.querySelector(".menu-toggle i").classList.replace("fa-xmark", "fa-bars");
+                document.getElementById("btn-cursos").classList.remove("active");
+            }
         });
-    </script>
+    });
+
+    /* =========================================================
+       CERRAR MODALES HACIENDO CLICK FUERA
+    ========================================================= */
+    document.querySelectorAll(".modal-overlay").forEach(modal => {
+        modal.addEventListener("click", e => {
+            if (e.target === modal) {
+                modal.style.display = "none";
+            }
+        });
+    });
+</script>
+
 </body>
 </html>
