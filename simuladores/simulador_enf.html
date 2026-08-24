@@ -106,7 +106,7 @@
     <div class="fixed-top-container">
         <header>
             <div class="nav-btns">
-                <a href="index.html" class="btn-nav"><i class="fa-solid fa-house"></i> Volver a CEFEDEP</a>
+                <a href="../../index.html" class="btn-nav"><i class="fa-solid fa-house"></i> Volver a CEFEDEP</a>
                 <button class="btn-nav" onclick="firebase.auth().signOut()"><i class="fa-solid fa-right-from-bracket"></i> Cerrar Sesión</button>
             </div>
             <div class="timer-box" id="clock" style="display:none;">00:00:00</div>
@@ -215,7 +215,7 @@
 
                 <div style="display: flex; gap: 15px; justify-content: center; margin-top: 30px;">
                     <button class="btn btn-next" onclick="location.reload()"><i class="fa-solid fa-rotate-right"></i> Nueva Sesión</button>
-                    <a href="index.html" class="btn" style="background:#eee; text-decoration:none; color: #334"><i class="fa-solid fa-house"></i> Volver al Menú</a>
+                    <a href="../../index.html" class="btn" style="background:#eee; text-decoration:none; color: #334"><i class="fa-solid fa-house"></i> Volver al Menú</a>
                 </div>
             </div>
 
@@ -245,12 +245,12 @@
         // PROTECCIÓN Y SEGURIDAD FIREBASE
         firebase.auth().onAuthStateChanged(user => {
             if (!user) {
-                window.location.href = "index.html";
+                window.location.href = "../../index.html";
             } else {
                 // Bloqueador anti-trampas para Enfermería
                 if (user.displayName && !user.displayName.includes("Enfermería") && !user.displayName.includes("Enfermeria")) {
                     alert("Acceso denegado: Tu suscripción no incluye el simulador de Enfermería.");
-                    window.location.href = "index.html";
+                    window.location.href = "../../index.html";
                     return;
                 }
                 const userName = user.email.split('@')[0];
