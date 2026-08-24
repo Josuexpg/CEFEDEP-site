@@ -1,196 +1,346 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Quiénes Somos | CEFEDEP ECUADOR</title>
-    
-    <link rel="icon" type="image/png" href="LOGO_CEFEDEP.png">
-    
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700;800&family=Playfair+Display:wght@700;900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
-    <style>
-        :root {
-            --primary: #334235; 
-            --secondary: #bca05b; 
-            --accent: #6b7a5a; 
-            --light: #f9faf8;
-            --white: #ffffff;
-            --dark: #1a1a1a;
-            --whatsapp: #25D366;
-        }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Conozca la trayectoria, misión, visión y servicios B2B de CEFEDEP Ecuador. Liderazgo en consultoría educativa superior.">
+<title>Quiénes Somos | CEFEDEP ECUADOR</title>
 
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        html { scroll-behavior: smooth; }
-        body { font-family: 'Montserrat', sans-serif; color: var(--dark); background-color: var(--white); overflow-x: hidden; }
+<!-- Ruta de imagen actualizada -->
+<link rel="icon" type="image/png" href="img/LOGO_CEFEDEP.png">
 
-        p { line-height: 1.7; margin-bottom: 15px; }
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 
-        /* Navegación (Idéntica a la principal) */
-        nav { background: rgba(255, 255, 255, 0.98); padding: 15px 5%; display: flex; justify-content: space-between; align-items: center; position: fixed; width: 100%; top: 0; z-index: 1000; box-shadow: 0 5px 25px rgba(0,0,0,0.1); }
-        .brand { display: flex; align-items: center; text-decoration: none; }
-        .brand img { height: 55px; margin-right: 15px; }
-        .brand-text { display: flex; flex-direction: column; }
-        .brand-name { font-family: 'Playfair Display', serif; font-size: 1.5rem; font-weight: 900; color: var(--primary); line-height: 1; }
-        .brand-sub { font-size: 0.7rem; letter-spacing: 3px; color: var(--secondary); font-weight: 700; text-transform: uppercase; }
+<style>
+:root{
+  /* COLORES CEFEDEP (Verde oscuro y Dorado) */
+  --primary:#334235;
+  --primary-2:#212b23;
+  --secondary:#bca05b;
+  --accent:#6b7a5a;
+  --ink:#1a201c;
+  --muted:#6b726c;
+  --bg:#f5f7f5;
+  --white:#fff;
+  --line:#e5e9e5;
+  --shadow:0 18px 50px rgba(33,43,35,.10);
+  --radius:22px;
+  --max:1180px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:Inter,Arial,sans-serif;color:var(--ink);background:#fff;line-height:1.65; overflow-x: hidden;}
+a{text-decoration:none;color:inherit}
+img{max-width:100%;display:block}
+.container{width:min(var(--max),calc(100% - 40px));margin:auto}
+.section{padding:80px 0}
+.eyebrow{color:var(--secondary);font-weight:800;text-transform:uppercase;letter-spacing:.12em;font-size:.78rem;margin-bottom:12px; display: inline-block;}
+.section-title{font-size:clamp(2rem,4vw,3.2rem);line-height:1.12;color:var(--primary-2);letter-spacing:-.04em; font-family: 'Playfair Display', serif;}
+.section-description{max-width:720px;color:var(--muted);margin:18px auto 0;font-size:1.05rem}
+.section-header{text-align:center;margin-bottom:50px}
+.divider{width:58px;height:4px;border-radius:5px;background:var(--accent);margin:20px auto}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;padding:14px 22px;border-radius:12px;font-weight:800;border:1px solid transparent;transition:.25s;cursor:pointer}
+.btn-primary{background:var(--secondary);color:white;box-shadow:0 10px 25px rgba(188,160,91,.25)}
+.btn-primary:hover{transform:translateY(-2px);filter:brightness(.96)}
 
-        .nav-links { display: flex; list-style: none; gap: 20px; align-items: center; margin-bottom: 0; }
-        .nav-links a { text-decoration: none; color: var(--primary); font-weight: 700; font-size: 0.85rem; text-transform: uppercase; transition: 0.3s; }
-        .nav-links a:hover { color: var(--secondary); }
-        .login-btn { color: var(--secondary) !important; border: 1px solid var(--secondary); padding: 6px 16px; border-radius: 20px; cursor: pointer; display: inline-block; text-align: center; }
-        .login-btn:hover { background: var(--secondary); color: white !important; }
+/* ANIMACIONES */
+.reveal { opacity: 0; transform: translateY(30px); transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1); }
+.reveal.active { opacity: 1; transform: translateY(0); }
 
-        /* Hero Pequeño para subpáginas */
-        .sub-hero { 
-            height: 40vh; 
-            background: linear-gradient(rgba(51, 66, 53, 0.9), rgba(51, 66, 53, 0.7)), url('https://images.unsplash.com/photo-1524178232363-1fb2b075b655?auto=format&fit=crop&w=1950&q=80'); 
-            background-size: cover; 
-            background-position: center; 
-            display: flex; 
-            flex-direction: column; 
-            justify-content: center; 
-            align-items: center; 
-            text-align: center; 
-            color: var(--white); 
-            padding: 0 10%; 
-            margin-top: 85px; 
-        }
-        .sub-hero h1 { font-family: 'Playfair Display', serif; font-size: 3rem; margin-bottom: 0.5rem; }
-        
-        section { padding: 80px 10%; }
-        .section-header { text-align: center; margin-bottom: 50px; }
-        .featured-tag { background: var(--secondary); color: white; padding: 6px 15px; border-radius: 4px; font-size: 0.75rem; font-weight: 800; text-transform: uppercase; margin-bottom: 20px; display: inline-block; }
-        .divider { width: 60px; height: 4px; background: var(--secondary); margin: 15px auto; border-radius: 10px; }
+/* NAV */
+nav{position:sticky;top:0;z-index:1000;background:rgba(255,255,255,.96);backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
+.nav-inner{min-height:76px;width:min(var(--max),calc(100% - 40px));margin:auto;display:flex;align-items:center;justify-content:space-between;gap:24px}
+.brand{display:flex;align-items:center;gap:11px;min-width:max-content}
+.brand img{width:48px;height:48px;object-fit:contain}
+.brand-name{display:block;font-size:1.15rem;font-weight:900;color:var(--primary)}
+.brand-sub{display:block;font-size:.67rem;letter-spacing:.18em;color:var(--secondary)}
+.nav-links{display:flex;align-items:center;gap:4px;list-style:none}
+.nav-links>li>a{display:flex;align-items:center;gap:5px;padding:11px 12px;border-radius:9px;font-weight:700;font-size:.88rem;color:#334235; transition: 0.3s;}
+.nav-links>li>a:hover{background:#f0f3ef;color:var(--secondary)}
+.nav-cta{padding:11px 16px!important;background:var(--primary)!important;color:#fff!important}
+.menu-toggle{display:none;font-size:1.5rem;color:var(--primary);cursor:pointer}
 
-        /* Tarjetas de Misión/Visión */
-        .core-services { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; margin-top: 30px; }
-        .core-card { background: white; padding: 40px; border-radius: 20px; box-shadow: 0 10px 25px rgba(0,0,0,0.05); text-align: center; }
-        .core-icon { font-size: 3rem; color: var(--secondary); margin-bottom: 20px; }
+/* DROPDOWN */
+.dropdown{position:relative}
+.dropdown-menu{position:absolute;top:100%;left:0;background:#fff;border:1px solid var(--line);border-radius:15px;padding:10px 0;min-width:340px;max-height:70vh;overflow-y:auto;box-shadow:var(--shadow);display:none;list-style:none;}
+.dropdown-menu::before { content: ""; position: absolute; top: -20px; left: 0; width: 100%; height: 20px; }
+.dropdown:hover .dropdown-menu{display:block;animation:fadeIn 0.2s ease;}
+@keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+.dropdown-menu::-webkit-scrollbar { width: 6px; }
+.dropdown-menu::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 10px; }
+.dropdown-category { font-size: 0.72rem; font-weight: 800; color: var(--secondary); text-transform: uppercase; letter-spacing: 1px; padding: 15px 20px 5px; background: #fdfdfd; border-top: 1px solid var(--line); margin-top: 5px; }
+.dropdown-menu li:first-child .dropdown-category { border-top: none; margin-top: 0; padding-top: 10px; }
+.dropdown-menu a{display:flex;align-items:center;gap:12px;padding:10px 20px;font-size:.86rem;font-weight:600;color:var(--primary); transition: 0.3s;}
+.dropdown-menu a:hover{background:#f5f7f5;color:var(--secondary); padding-left: 25px;}
+.dropdown-menu a i { color: var(--accent); width: 16px; text-align: center; }
 
-        /* Timeline de Historia */
-        .history-box { background: var(--light); padding: 40px; border-radius: 20px; border-left: 5px solid var(--primary); margin-bottom: 50px; }
-        .history-box h3 { color: var(--primary); font-family: 'Playfair Display', serif; font-size: 1.8rem; margin-bottom: 15px; }
+/* SUB-HERO */
+.sub-hero { 
+    background: linear-gradient(100deg, rgba(33,43,35,.92) 0%, rgba(42,56,44,.85) 100%), url('img/preguntas.jpg') center/cover; 
+    min-height: 40vh; 
+    color: white; 
+    display: flex; 
+    flex-direction: column; 
+    justify-content: center; 
+    align-items: center; 
+    text-align: center; 
+    padding: 60px 5%;
+}
+.sub-hero h1 { font-family: "Playfair Display", serif; font-size: clamp(2.5rem, 5vw, 3.8rem); line-height: 1.1; margin-bottom: 15px; color: #d8c27e; }
+.sub-hero p { font-size: 1.1rem; color: #e3e8e4; max-width: 600px; }
 
-        /* Footer */
-        footer { background: var(--primary); color: white; padding: 50px 10%; text-align: center; }
-        .footer-logo { height: 80px; background: white; padding: 10px 20px; border-radius: 12px; margin-bottom: 20px; }
+/* HISTORIA Y VALORES */
+.history-box { 
+    background: var(--white); 
+    border: 1px solid var(--line); 
+    border-radius: var(--radius); 
+    padding: 40px; 
+    box-shadow: var(--shadow); 
+    border-left: 6px solid var(--secondary); 
+    margin-bottom: 50px; 
+}
+.history-box h3 { color: var(--primary); font-family: 'Playfair Display', serif; font-size: 1.8rem; margin-bottom: 20px; }
+.history-box p { color: var(--muted); margin-bottom: 15px; font-size: 1.05rem; }
+.history-box strong { color: var(--primary); }
 
-        /* WHATSAPP CHAT WIDGET */
-        .wa-widget-container { position: fixed; bottom: 30px; right: 30px; z-index: 2000; }
-        .wa-float-btn { width: 60px; height: 60px; background: var(--whatsapp); color: white; border-radius: 50%; display: flex; justify-content: center; align-items: center; font-size: 30px; cursor: pointer; box-shadow: 0 5px 15px rgba(0,0,0,0.3); transition: 0.3s; }
-        .wa-float-btn:hover { transform: scale(1.1); }
+.core-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
+.core-card { background: var(--bg); padding: 40px; border-radius: var(--radius); border: 1px solid var(--line); transition: .3s; }
+.core-card:hover { transform: translateY(-5px); box-shadow: var(--shadow); background: white;}
+.core-icon { font-size: 2.5rem; color: var(--secondary); margin-bottom: 20px; }
+.core-card h3 { font-family: 'Playfair Display', serif; font-size: 1.5rem; color: var(--primary); margin-bottom: 15px; }
+.core-card p { color: var(--muted); font-size: 0.95rem; text-align: justify; }
 
-        @media (max-width: 900px) { 
-            .menu-toggle { display: block; }
-            .nav-links { display: none; }
-        }
-    </style>
+/* SERVICIOS B2B */
+.b2b-section { background: var(--bg); }
+.b2b-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; }
+.b2b-card { background: white; border-radius: var(--radius); padding: 30px; border: 1px solid var(--line); box-shadow: 0 5px 15px rgba(0,0,0,0.02); display: flex; gap: 15px; align-items: flex-start; transition: .3s; }
+.b2b-card:hover { transform: translateY(-5px); box-shadow: var(--shadow); border-color: rgba(188,160,91,.4); }
+.b2b-icon { width: 50px; height: 50px; flex-shrink: 0; border-radius: 12px; background: #f9f5ea; color: var(--secondary); display: grid; place-items: center; font-size: 1.3rem; }
+.b2b-card h4 { color: var(--primary); font-size: 1.1rem; margin-bottom: 8px; }
+.b2b-card p { color: var(--muted); font-size: 0.9rem; margin-bottom: 0; line-height: 1.5;}
+
+/* FOOTER */
+footer{background:#1a221b;color:#a3b1a6;padding:55px 0 25px}
+.footer-grid{display:grid;grid-template-columns:1.2fr 1fr 1fr 1fr;gap:40px}
+footer h3{color:#fff;font-size:1rem;margin-bottom:14px}
+footer p,footer li,footer a{font-size:.8rem;color:#a3b1a6}
+footer ul{list-style:none;display:grid;gap:7px}
+footer a:hover{color:#fff}
+.footer-bottom{border-top:1px solid rgba(255,255,255,.1);margin-top:35px;padding-top:18px;font-size:.72rem;display:flex;justify-content:space-between;gap:15px}
+
+/* WHATSAPP */
+.whatsapp{position:fixed;right:25px;bottom:25px;width:60px;height:60px;border-radius:50%;display:grid;place-items:center;background:#25d366;color:white;font-size:2rem;z-index:1100;box-shadow:0 10px 30px rgba(37,211,102,.3); transition: .3s;}
+.whatsapp:hover{transform:scale(1.1); box-shadow:0 15px 35px rgba(37,211,102,.4);}
+
+@media(max-width:1000px){
+  .nav-links{display:none}.menu-toggle{display:block}
+  .nav-links.open{display:flex;position:absolute;left:0;right:0;top:76px;background:white;padding:15px 20px;flex-direction:column;align-items:stretch;border-bottom:1px solid var(--line)}
+  .nav-links.open .dropdown-menu{position:static;box-shadow:none;border:0;display:none} 
+  .dropdown.active .dropdown-menu { display: block; }
+  .core-grid, .b2b-grid { grid-template-columns: 1fr; }
+  .footer-grid{grid-template-columns:1fr 1fr}
+}
+@media(max-width:650px){
+  .sub-hero h1 { font-size: 2rem; }
+  .history-box, .core-card, .b2b-card { padding: 25px; }
+  .footer-grid{grid-template-columns:1fr}
+  .footer-bottom{flex-direction:column; text-align: center;}
+}
+</style>
 </head>
+
 <body>
 
-    <!-- MENÚ SUPERIOR -->
-    <nav>
-        <a href="index.html" class="brand">
-            <img src="LOGO_CEFEDEP.png" alt="Logo CEFEDEP">
-            <div class="brand-text">
-                <span class="brand-name">CEFEDEP</span>
-                <span class="brand-sub">ECUADOR</span>
-            </div>
-        </a>
-        <ul class="nav-links" style="display: flex;">
-            <li><a href="index.html">Inicio</a></li>
-            <li><a href="quienes-somos.html" style="color: var(--secondary);">Quiénes Somos</a></li>
-            <li><a href="index.html#cursos">Cursos</a></li>
-            <li><a href="index.html#galeria">Galería</a></li>
+<nav>
+  <div class="nav-inner">
+    <a class="brand" href="index.html">
+      <img src="img/LOGO_CEFEDEP.png" alt="CEFEDEP Ecuador">
+      <div><span class="brand-name">CEFEDEP</span><span class="brand-sub">ECUADOR</span></div>
+    </a>
+
+    <div class="menu-toggle" onclick="toggleMenu()"><i class="fa-solid fa-bars"></i></div>
+
+    <ul class="nav-links" id="navLinks">
+      <li><a href="index.html">Inicio</a></li>
+      <li><a href="quienes-somos.html" style="color: var(--secondary);">Quiénes Somos</a></li>
+
+      <li class="dropdown" id="btn-cursos">
+        <a href="index.html#cursos">Cursos Avalados <i class="fa-solid fa-chevron-down" style="font-size:0.7rem;"></i></a>
+        <ul class="dropdown-menu">
+            <li><div class="dropdown-category">Área de Salud</div></li>
+            <li><a href="cursos/salud/curso_farmacia.html"><i class="fa-solid fa-pills"></i> Auxiliar en Farmacia</a></li>
+            <li><a href="cursos/salud/curso_enfermeria.html"><i class="fa-solid fa-user-nurse"></i> Auxiliar en Enfermería</a></li>
+            <li><a href="cursos/salud/curso_salud_ocupacional.html"><i class="fa-solid fa-helmet-safety"></i> Salud Ocupacional y Ergonomía</a></li>
+            <li><a href="cursos/salud/curso_primeros_auxilios.html"><i class="fa-solid fa-kit-medical"></i> Primeros Auxilios Básicos</a></li>
+            
+            <li><div class="dropdown-category">Área Humana y Educación</div></li>
+            <li><a href="cursos/humana/curso_asistencia_juridica.html"><i class="fa-solid fa-scale-balanced"></i> Asistencia Jurídica</a></li>
+            <li><a href="cursos/humana/curso_asistencia_parvularia.html"><i class="fa-solid fa-children"></i> Asistencia Parvularia</a></li>
+            <li><a href="cursos/humana/curso_cosmeticos.html"><i class="fa-solid fa-flask"></i> Cosmética Artesanal</a></li>
+            <li><a href="cursos/humana/curso_tramites_judiciales.html"><i class="fa-solid fa-file-signature"></i> Trámites Judiciales</a></li>
+            <li><a href="cursos/humana/curso_recursos_didacticos.html"><i class="fa-solid fa-laptop-code"></i> Recursos Didácticos Digitales</a></li>
+            <li><a href="cursos/humana/curso_apoyo_pedagogico.html"><i class="fa-solid fa-puzzle-piece"></i> Estrategias Parvularia</a></li>
+            <li><a href="cursos/humana/curso_proyectos_educativos.html"><i class="fa-solid fa-lightbulb"></i> Proyectos Curriculares (IES)</a></li>
+            <li><a href="cursos/humana/curso_facilitacion_grupos.html"><i class="fa-solid fa-users-rays"></i> Facilitación Corporativa</a></li>
+            <li><a href="cursos/humana/curso_evaluacion_desempeno.html"><i class="fa-solid fa-clipboard-check"></i> Instrumentos de Evaluación</a></li>
+
+            <li><div class="dropdown-category">Ingeniería y Tecnología</div></li>
+            <li><a href="cursos/tecnologia/curso_python_automatizacion.html"><i class="fa-brands fa-python"></i> Automatización con Python e IA</a></li>
+            <li><a href="cursos/tecnologia/curso_python_basica.html"><i class="fa-brands fa-python"></i> Programación Básica Python</a></li>
+            <li><a href="cursos/tecnologia/curso_python_datos.html"><i class="fa-solid fa-chart-pie"></i> Visualización de Datos Python</a></li>
+            <li><a href="cursos/tecnologia/curso_python_vision.html"><i class="fa-solid fa-eye"></i> Visión por Computadora Python</a></li>
+            <li><a href="cursos/tecnologia/curso_desarrollo_web.html"><i class="fa-solid fa-code"></i> Desarrollo Web</a></li>
+            <li><a href="cursos/tecnologia/curso_cloud_computing.html"><i class="fa-solid fa-cloud"></i> Cloud Computing</a></li>
         </ul>
-    </nav>
+      </li>
 
-    <!-- CABECERA -->
-    <section class="sub-hero">
-        <h1>Nuestra Identidad</h1>
-        <p>Conozca la trayectoria y vocación que nos convierte en referentes.</p>
-    </section>
+      <li><a href="index.html#inscripcion">EHEP</a></li>
+      <li><a href="index.html#galeria">Trayectoria</a></li>
+      <li><a class="nav-cta btn" href="simuladores/simulador_med.html"><i class="fa-regular fa-user" style="margin-right:5px;"></i> Iniciar Sesión EHEP</a></li>
+    </ul>
+  </div>
+</nav>
 
-    <!-- HISTORIA -->
-    <section>
-        <div class="history-box">
-            <h3>Nuestra Historia</h3>
-            <p><strong>El Origen (2012):</strong> Nacimiento como centro especializado en apoyo académico, brindando asesoría y estructuración de proyectos universitarios.</p>
-            <p><strong>Evolución:</strong> Consolidación de un equipo humano altamente capacitado en educación básica, elemental y superior para guiar el aprendizaje fundacional.</p>
-            <p><strong>El Presente:</strong> Nos hemos convertido en el aliado definitivo para la capacitación integral técnica y el desarrollo operativo de Instituciones de Educación Superior. Contamos con más de una década transformando el esfuerzo académico en excelencia técnica y profesional.</p>
-        </div>
+<header class="sub-hero">
+  <div class="container">
+      <div class="eyebrow" style="color: white; border-bottom: 2px solid var(--secondary); padding-bottom: 5px;">Nuestra Identidad</div>
+      <h1>Quiénes Somos</h1>
+      <p>Conozca la trayectoria, vocación y los valores que nos convierten en referentes a nivel nacional.</p>
+  </div>
+</header>
 
-        <!-- MISIÓN Y VISIÓN -->
-        <div class="core-services">
-            <div class="core-card">
-                <i class="fa-solid fa-bullseye core-icon"></i>
-                <h3 style="color: var(--primary); margin-bottom: 15px; font-family: 'Playfair Display', serif;">Nuestra Misión</h3>
-                <p style="text-align: justify;">Brindar servicios de formación, capacitación técnica y apoyo académico de la más alta calidad. Impulsamos el desarrollo integral de nuestros estudiantes y aportamos valor a las instituciones educativas mediante un equipo docente multidisciplinario. Ofrecemos herramientas teóricas y prácticas que responden a las exigencias del mercado laboral actual.</p>
-            </div>
-            <div class="core-card">
-                <i class="fa-solid fa-eye core-icon"></i>
-                <h3 style="color: var(--primary); margin-bottom: 15px; font-family: 'Playfair Display', serif;">Nuestra Visión</h3>
-                <p style="text-align: justify;">Consolidarnos a largo plazo como la institución líder a nivel nacional e internacional en capacitación profesional, técnica y de educación continua. Aspiramos a ser reconocidos por nuestra innovación pedagógica, rigor académico, acompañamiento exitoso a instituciones y el éxito laboral de nuestros egresados, marcando un estándar de excelencia inquebrantable.</p>
-            </div>
-        </div>
-    </section>
+<main class="section">
+  <div class="container">
+      
+      <!-- HISTORIA -->
+      <div class="history-box reveal">
+          <h3>Nuestra Historia</h3>
+          <p><strong>El Origen (2012):</strong> Nacimiento como centro especializado en apoyo académico, brindando asesoría y estructuración de proyectos universitarios.</p>
+          <p><strong>Evolución:</strong> Consolidación de un equipo humano altamente capacitado en educación básica, elemental y superior para guiar el aprendizaje fundacional.</p>
+          <p><strong>El Presente:</strong> Nos hemos convertido en el aliado definitivo para la capacitación integral técnica y el desarrollo operativo de Instituciones de Educación Superior. Contamos con más de una década transformando el esfuerzo académico en excelencia técnica y profesional, guiados por expertos con vocación de enseñanza en todos los niveles educativos.</p>
+      </div>
 
-    <!-- SERVICIOS B2B -->
-    <section style="background-color: var(--light);">
-        <div class="section-header">
-            <span class="featured-tag" style="background: var(--accent);">Consultoría Institucional B2B</span>
-            <h3 style="font-family: 'Playfair Display', serif; font-size: 2.2rem; color: var(--primary);">Servicios para la Educación Superior</h3>
-            <p style="color: #666; max-width: 800px; margin: 15px auto;">Elevando el estándar de Universidades e Institutos Tecnológicos mediante consultoría, acreditación y diseño curricular.</p>
-        </div>
+      <!-- MISIÓN Y VISIÓN -->
+      <div class="core-grid reveal">
+          <div class="core-card">
+              <i class="fa-solid fa-bullseye core-icon"></i>
+              <h3>Nuestra Misión</h3>
+              <p>Brindar servicios de formación, capacitación técnica y apoyo académico de la más alta calidad. Impulsamos el desarrollo integral de nuestros estudiantes y aportamos valor a las instituciones educativas mediante un equipo docente multidisciplinario. Ofrecemos herramientas teóricas y prácticas que responden a las exigencias del mercado laboral actual.</p>
+          </div>
+          <div class="core-card">
+              <i class="fa-solid fa-eye core-icon"></i>
+              <h3>Nuestra Visión</h3>
+              <p>Consolidarnos a largo plazo como la institución líder a nivel nacional e internacional en capacitación profesional, técnica y de educación continua. Aspiramos a ser reconocidos por nuestra innovación pedagógica, rigor académico, acompañamiento exitoso a instituciones y el éxito laboral de nuestros egresados, marcando un estándar de excelencia inquebrantable.</p>
+          </div>
+      </div>
+  </div>
+</main>
 
-        <div style="background: white; padding: 40px; border-radius: 20px; box-shadow: 0 10px 25px rgba(0,0,0,0.05); border-left: 5px solid var(--secondary);">
-            <ul style="list-style: none; padding-left: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 25px;">
-                <li style="display: flex; align-items: flex-start; gap: 15px;">
-                    <i class="fa-solid fa-building-columns" style="color: var(--accent); font-size: 1.5rem;"></i> 
-                    <div>
-                        <strong style="display: block; color: var(--primary); margin-bottom: 5px;">Diagnóstico y Cualificación</strong>
-                        <span style="font-size: 0.95rem; color: #555;">Auditoría inicial y evaluación del estado de los institutos tecnológicos frente a las normativas de educación superior.</span>
-                    </div>
-                </li>
-                <li style="display: flex; align-items: flex-start; gap: 15px;">
-                    <i class="fa-solid fa-chart-line" style="color: var(--accent); font-size: 1.5rem;"></i> 
-                    <div>
-                        <strong style="display: block; color: var(--primary); margin-bottom: 5px;">Diseño de Indicadores</strong>
-                        <span style="font-size: 0.95rem; color: #555;">Estructuración de métricas de calidad y rendimiento adaptadas a las exigencias del organismo acreditador.</span>
-                    </div>
-                </li>
-                <li style="display: flex; align-items: flex-start; gap: 15px;">
-                    <i class="fa-solid fa-users-gear" style="color: var(--accent); font-size: 1.5rem;"></i> 
-                    <div>
-                        <strong style="display: block; color: var(--primary); margin-bottom: 5px;">Simulaciones de Evaluación</strong>
-                        <span style="font-size: 0.95rem; color: #555;">Ejercicios prácticos y simulacros de auditoría para preparar a la junta directiva y al personal operativo.</span>
-                    </div>
-                </li>
-                <li style="display: flex; align-items: flex-start; gap: 15px;">
-                    <i class="fa-solid fa-award" style="color: var(--accent); font-size: 1.5rem;"></i> 
-                    <div>
-                        <strong style="display: block; color: var(--primary); margin-bottom: 5px;">Planes de Mejora Continua</strong>
-                        <span style="font-size: 0.95rem; color: #555;">Implementación de correcciones estratégicas que garantizan el éxito en la acreditación y el aseguramiento de la calidad a largo plazo.</span>
-                    </div>
-                </li>
-            </ul>
-        </div>
-    </section>
+<!-- SERVICIOS B2B -->
+<section class="section b2b-section reveal">
+  <div class="container">
+      <div class="section-header">
+          <div class="eyebrow">Exclusivo para IES</div>
+          <h2 class="section-title">Consultoría Institucional B2B</h2>
+          <div class="divider"></div>
+          <p class="section-description">Elevando el estándar de Universidades e Institutos Tecnológicos mediante consultoría, acreditación y diseño curricular.</p>
+      </div>
 
-    <!-- FOOTER -->
-    <footer>
-        <img src="LOGO_CEFEDEP.png" alt="CEFEDEP" class="footer-logo">
-        <p>&copy; 2026 CEFEDEP ECUADOR. Soluciones para el éxito académico.</p>
-        <p style="font-size: 0.8rem; margin-top: 10px;">Contacto Directo: +593 98 732 1024 | info@cefedep.com</p>
-    </footer>
+      <div class="b2b-grid">
+          <div class="b2b-card">
+              <div class="b2b-icon"><i class="fa-solid fa-building-columns"></i></div>
+              <div>
+                  <h4>Diagnóstico y Cualificación</h4>
+                  <p>Auditoría inicial y evaluación del estado de los institutos tecnológicos frente a las normativas de educación superior.</p>
+              </div>
+          </div>
+          <div class="b2b-card">
+              <div class="b2b-icon"><i class="fa-solid fa-chart-line"></i></div>
+              <div>
+                  <h4>Diseño de Indicadores</h4>
+                  <p>Estructuración de métricas de calidad y rendimiento adaptadas a las exigencias del organismo acreditador.</p>
+              </div>
+          </div>
+          <div class="b2b-card">
+              <div class="b2b-icon"><i class="fa-solid fa-users-gear"></i></div>
+              <div>
+                  <h4>Simulaciones de Evaluación</h4>
+                  <p>Ejercicios prácticos y simulacros de auditoría para preparar a la junta directiva y al personal operativo.</p>
+              </div>
+          </div>
+          <div class="b2b-card">
+              <div class="b2b-icon"><i class="fa-solid fa-award"></i></div>
+              <div>
+                  <h4>Planes de Mejora Continua</h4>
+                  <p>Implementación de correcciones estratégicas que garantizan el éxito en la acreditación y la calidad a largo plazo.</p>
+              </div>
+          </div>
+      </div>
+  </div>
+</section>
 
-    <!-- WIDGET WHATSAPP SIMPLE -->
-    <div class="wa-widget-container">
-        <a href="https://wa.me/593987321024" target="_blank" class="wa-float-btn" style="text-decoration: none;">
-            <i class="fa-brands fa-whatsapp"></i>
-        </a>
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <div class="brand" style="margin-bottom:15px"><img src="img/LOGO_CEFEDEP.png" alt="CEFEDEP"><div><span class="brand-name" style="color:#fff">CEFEDEP</span><span class="brand-sub" style="color:var(--secondary)">ECUADOR</span></div></div>
+        <p>Educación, investigación, asesoría y consultoría para profesionales e instituciones.</p>
+      </div>
+      <div><h3>Servicios</h3><ul><li><a href="index.html#servicios">Tesis e investigación</a></li><li><a href="index.html#institutos">Creación de institutos</a></li><li><a href="index.html#consultoria">Consultoría institucional</a></li><li><a href="index.html#cursos">Formación profesional</a></li></ul></div>
+      <div><h3>Formación</h3><ul><li><a href="index.html#cursos">Área de Salud</a></li><li><a href="index.html#cursos">Educación Humana</a></li><li><a href="index.html#cursos">Tecnología e IA</a></li><li><a href="index.html#inscripcion">Preparación EHEP</a></li></ul></div>
+      <div><h3>Contacto</h3><ul><li><a href="https://wa.me/593987321024" target="_blank"><i class="fa-brands fa-whatsapp"></i> WhatsApp</a></li><li><a href="https://www.instagram.com/cefedep_ecuador" target="_blank">Instagram</a></li><li><a href="https://www.tiktok.com/@cefedep.ecuador" target="_blank">TikTok</a></li></ul></div>
     </div>
+    <div class="footer-bottom"><span>© 2026 CEFEDEP Ecuador. Todos los derechos reservados.</span><span>Educación · Investigación · Innovación</span></div>
+  </div>
+</footer>
+
+<a class="whatsapp" href="https://wa.me/593987321024?text=Hola%20CEFEDEP%2C%20quisiera%20saber%20m%C3%A1s%20sobre%20ustedes." target="_blank" aria-label="Contactar por WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
+
+<script>
+// Animación de aparición (Scroll Reveal)
+function reveal() {
+    var reveals = document.querySelectorAll(".reveal");
+    for (var i = 0; i < reveals.length; i++) {
+        var windowHeight = window.innerHeight;
+        var elementTop = reveals[i].getBoundingClientRect().top;
+        var elementVisible = 100;
+        if (elementTop < windowHeight - elementVisible) {
+            reveals[i].classList.add("active");
+        }
+    }
+}
+window.addEventListener("scroll", reveal);
+reveal(); 
+
+// Manejo del menú en móviles
+function toggleMenu(){
+  const navLinks = document.getElementById('navLinks');
+  navLinks.classList.toggle('open');
+  const dropdowns = document.querySelectorAll('.dropdown');
+  dropdowns.forEach(d => d.classList.remove('active'));
+}
+
+document.querySelectorAll('.dropdown > a').forEach(dropToggle => {
+  dropToggle.addEventListener('click', function(e) {
+    if (window.innerWidth <= 1000) {
+      e.preventDefault();
+      document.querySelectorAll('.dropdown').forEach(d => {
+        if(d !== this.parentElement) d.classList.remove('active');
+      });
+      this.parentElement.classList.toggle('active');
+    }
+  });
+});
+
+document.querySelectorAll('.nav-links > li > a:not(.dropdown > a)').forEach(a=>{
+  a.addEventListener('click',()=> {
+      document.getElementById('navLinks').classList.remove('open');
+  });
+});
+</script>
 
 </body>
 </html>
