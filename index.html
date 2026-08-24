@@ -5,323 +5,171 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CEFEDEP ECUADOR | Consultoría Educativa Superior</title>
     
+    <!-- Ruta actualizada: img/ -->
     <link rel="icon" type="image/png" href="img/LOGO_CEFEDEP.png">
     
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&family=Playfair+Display:wght@600;700;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700;800&family=Playfair+Display:wght@700;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <style>
-        /* === PALETA Y VARIABLES MODERNAS === */
         :root {
-            --primary: #2a3a2c; 
-            --primary-light: #3e5441;
-            --secondary: #cba857; 
-            --secondary-hover: #b59345;
-            --accent: #7b8c6a; 
-            --bg-light: #f7f9f7; /* Blanco roto ligeramente verdoso */
+            --primary: #334235; 
+            --secondary: #bca05b; 
+            --accent: #6b7a5a; 
+            --light: #f9faf8;
             --white: #ffffff;
-            --text-dark: #1f2922;
-            --text-muted: #5a665d;
+            --dark: #1a1a1a;
             --whatsapp: #25D366;
-            --shadow-sm: 0 4px 15px rgba(0,0,0,0.03);
-            --shadow-md: 0 10px 30px rgba(0,0,0,0.06);
-            --shadow-lg: 0 20px 40px rgba(0,0,0,0.1);
-            --radius-md: 16px;
-            --radius-lg: 24px;
-            --transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            --facebook: #1877F2;
+            --instagram: #E1306C;
+            --tiktok: #000000;
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
         html { scroll-behavior: smooth; }
-        body { 
-            font-family: 'Montserrat', sans-serif; 
-            color: var(--text-dark); 
-            background-color: var(--white); 
-            overflow-x: hidden; 
-            -webkit-font-smoothing: antialiased;
-        }
+        body { font-family: 'Montserrat', sans-serif; color: var(--dark); background-color: var(--white); overflow-x: hidden; }
 
-        p { line-height: 1.8; margin-bottom: 15px; color: var(--text-muted); font-size: 1.05rem; }
-        h1, h2, h3, h4 { color: var(--primary); }
+        p { line-height: 1.7; margin-bottom: 15px; }
 
-        /* === ANIMACIONES DE SCROLL (REVEAL) === */
-        .reveal { opacity: 0; transform: translateY(40px); transition: var(--transition); }
-        .reveal.active { opacity: 1; transform: translateY(0); }
-
-        /* === NAVEGACIÓN GLASSMORPHISM === */
-        nav { 
-            background: rgba(255, 255, 255, 0.85); 
-            backdrop-filter: blur(15px); /* Efecto vidrio moderno */
-            -webkit-backdrop-filter: blur(15px);
-            padding: 15px 5%; 
-            display: flex; 
-            justify-content: space-between; 
-            align-items: center; 
-            position: fixed; 
-            width: 100%; 
-            top: 0; 
-            z-index: 1000; 
-            border-bottom: 1px solid rgba(0,0,0,0.05);
-            transition: var(--transition);
-        }
-        nav.scrolled { padding: 10px 5%; box-shadow: var(--shadow-md); background: rgba(255, 255, 255, 0.95); }
-        
+        nav { background: rgba(255, 255, 255, 0.98); padding: 15px 5%; display: flex; justify-content: space-between; align-items: center; position: fixed; width: 100%; top: 0; z-index: 1000; box-shadow: 0 5px 25px rgba(0,0,0,0.1); }
         .brand { display: flex; align-items: center; text-decoration: none; }
-        .brand img { height: 50px; margin-right: 12px; transition: var(--transition); }
+        .brand img { height: 55px; margin-right: 15px; }
         .brand-text { display: flex; flex-direction: column; }
-        .brand-name { font-family: 'Playfair Display', serif; font-size: 1.4rem; font-weight: 900; color: var(--primary); line-height: 1; }
-        .brand-sub { font-size: 0.65rem; letter-spacing: 3px; color: var(--secondary); font-weight: 700; text-transform: uppercase; margin-top: 2px;}
+        .brand-name { font-family: 'Playfair Display', serif; font-size: 1.5rem; font-weight: 900; color: var(--primary); line-height: 1; }
+        .brand-sub { font-size: 0.7rem; letter-spacing: 3px; color: var(--secondary); font-weight: 700; text-transform: uppercase; }
 
-        .nav-links { display: flex; list-style: none; gap: 25px; align-items: center; margin-bottom: 0; }
-        .nav-links a { text-decoration: none; color: var(--text-dark); font-weight: 600; font-size: 0.85rem; text-transform: uppercase; transition: var(--transition); position: relative; }
-        .nav-links a::after { content: ''; position: absolute; width: 0; height: 2px; bottom: -4px; left: 0; background-color: var(--secondary); transition: var(--transition); }
+        .nav-links { display: flex; list-style: none; gap: 20px; align-items: center; margin-bottom: 0; }
+        .nav-links a { text-decoration: none; color: var(--primary); font-weight: 700; font-size: 0.85rem; text-transform: uppercase; transition: 0.3s; }
         .nav-links a:hover { color: var(--secondary); }
-        .nav-links a:hover::after { width: 100%; }
-        
-        .login-btn { 
-            background: rgba(188, 160, 91, 0.1);
-            color: var(--secondary) !important; 
-            border: 1px solid rgba(188, 160, 91, 0.3); 
-            padding: 10px 22px; 
-            border-radius: 50px; 
-            cursor: pointer; 
-            display: inline-block; 
-            text-align: center;
-            font-weight: 700 !important;
-        }
-        .login-btn::after { display: none; }
-        .login-btn:hover { background: var(--secondary); color: white !important; transform: translateY(-2px); box-shadow: 0 5px 15px rgba(188, 160, 91, 0.3); }
+        .login-btn { color: var(--secondary) !important; border: 1px solid var(--secondary); padding: 6px 16px; border-radius: 20px; cursor: pointer; display: inline-block; text-align: center; }
+        .login-btn:hover { background: var(--secondary); color: white !important; }
 
         #dynamic-menu { display: flex; align-items: center; gap: 10px; }
 
-        /* === DROPDOWN MODERNO === */
         .dropdown { position: relative; display: inline-block; }
         .dropdown-menu { 
-            display: none; position: absolute; background-color: var(--white); 
+            display: none; position: absolute; background-color: white; 
             min-width: 380px; max-height: 75vh; overflow-y: auto; 
-            box-shadow: var(--shadow-lg); border-radius: var(--radius-md); 
-            z-index: 2000; top: 100%; left: -50px; padding: 15px 0; 
-            border: 1px solid rgba(0,0,0,0.05);
-            margin-top: 15px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1); border-radius: 12px; 
+            z-index: 2000; top: 100%; left: -50px; padding: 10px 0; 
+            border-top: 3px solid var(--secondary); 
         }
-        .dropdown-menu::before { content: ''; position: absolute; top: -6px; left: 80px; width: 12px; height: 12px; background: white; transform: rotate(45deg); border-top: 1px solid rgba(0,0,0,0.05); border-left: 1px solid rgba(0,0,0,0.05); }
         .dropdown-menu::-webkit-scrollbar { width: 6px; }
-        .dropdown-menu::-webkit-scrollbar-thumb { background: #e0e0e0; border-radius: 10px; }
-        .dropdown-category { font-size: 0.7rem; font-weight: 800; color: var(--secondary); text-transform: uppercase; letter-spacing: 1.5px; padding: 15px 25px 5px; margin-top: 5px; }
-        .dropdown-menu li:first-child .dropdown-category { margin-top: 0; padding-top: 5px; }
+        .dropdown-menu::-webkit-scrollbar-thumb { background: #ddd; border-radius: 10px; }
+        .dropdown-category { font-size: 0.75rem; font-weight: 800; color: var(--secondary); text-transform: uppercase; letter-spacing: 1px; padding: 15px 20px 5px; background: #fdfdfd; border-top: 1px solid #eee; margin-top: 5px; }
+        .dropdown-menu li:first-child .dropdown-category { border-top: none; margin-top: 0; padding-top: 10px; }
         .dropdown-menu li { list-style: none; }
-        .dropdown-menu li a { color: var(--text-dark) !important; padding: 10px 25px; display: flex; align-items: center; gap: 12px; text-transform: none !important; font-weight: 500 !important; font-size: 0.85rem !important; transition: var(--transition); border-radius: 8px; margin: 0 10px;}
-        .dropdown-menu li a::after { display: none; }
-        .dropdown-menu li a:hover { background-color: var(--bg-light); color: var(--primary) !important; transform: translateX(5px); }
-        .dropdown-menu li a i { font-size: 1rem; width: 20px; text-align: center; color: var(--secondary); }
+        .dropdown-menu li a { color: var(--primary) !important; padding: 10px 20px; display: flex; align-items: flex-start; gap: 10px; text-transform: none !important; font-weight: 600 !important; font-size: 0.8rem !important; line-height: 1.3; transition: 0.3s background; }
+        .dropdown-menu li a:hover { background-color: var(--light); color: var(--secondary) !important; padding-left: 25px; }
+        .dropdown-menu li a i { margin-top: 2px; font-size: 0.9rem; width: 15px; text-align: center; }
         
         @media (min-width: 901px) {
-            .dropdown:hover .dropdown-menu { display: block; animation: floatUp 0.3s ease forwards; }
+            .dropdown:hover .dropdown-menu { display: block; animation: fadeIn 0.3s ease; }
         }
-        @keyframes floatUp { from { opacity: 0; transform: translateY(15px); } to { opacity: 1; transform: translateY(0); } }
 
-        /* === HERO SECTION (Minimalista y Elegante) === */
-        .hero { 
-            min-height: 90vh; 
-            background: linear-gradient(to right, rgba(42, 58, 44, 0.9), rgba(42, 58, 44, 0.7)), url('https://images.unsplash.com/photo-1524178232363-1fb2b075b655?auto=format&fit=crop&w=1950&q=80') center/cover no-repeat; 
-            display: flex; 
-            flex-direction: column; 
-            justify-content: center; 
-            align-items: center; 
-            text-align: center; 
-            color: var(--white); 
-            padding: 0 10%; 
-            position: relative;
-        }
-        .hero::after { content: ''; position: absolute; bottom: 0; left: 0; width: 100%; height: 100px; background: linear-gradient(to top, var(--bg-light), transparent); }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
+        .hero { height: 80vh; background: linear-gradient(rgba(51, 66, 53, 0.8), rgba(51, 66, 53, 0.6)), url('https://images.unsplash.com/photo-1524178232363-1fb2b075b655?auto=format&fit=crop&w=1950&q=80'); background-size: cover; background-position: center; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; color: var(--white); padding: 0 10%; margin-top: 85px; }
+        .hero h1 { font-family: 'Playfair Display', serif; font-size: 3.5rem; margin-bottom: 1rem; line-height: 1.1; }
+        .hero p { font-size: 1.2rem; max-width: 800px; margin-bottom: 2.5rem; font-weight: 300; }
         
-        .hero-badge { background: rgba(255,255,255,0.1); backdrop-filter: blur(10px); border: 1px solid rgba(255,255,255,0.2); padding: 8px 20px; border-radius: 50px; font-size: 0.8rem; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 25px; color: var(--secondary); animation: slideDown 0.8s ease; }
-        .hero h1 { font-family: 'Playfair Display', serif; font-size: 4.5rem; margin-bottom: 1.5rem; line-height: 1.1; animation: slideUp 1s ease; }
-        .hero p { font-size: 1.25rem; max-width: 700px; margin-bottom: 3rem; font-weight: 300; color: rgba(255,255,255,0.9); animation: slideUp 1.2s ease; line-height: 1.6; }
-        
-        .hero-btns { display: flex; gap: 20px; flex-wrap: wrap; justify-content: center; animation: slideUp 1.4s ease; position: relative; z-index: 10;}
-        
-        @keyframes slideDown { from { opacity: 0; transform: translateY(-30px); } to { opacity: 1; transform: translateY(0); } }
-        @keyframes slideUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+        .btn-main { background: var(--secondary); color: white; padding: 18px 30px; text-decoration: none; border-radius: 50px; font-weight: 800; text-transform: uppercase; letter-spacing: 1px; transition: 0.4s; box-shadow: 0 10px 30px rgba(188, 160, 91, 0.4); display: inline-block; cursor: pointer; border: none; font-size: 0.9rem;}
+        .btn-main:hover { transform: translateY(-3px); background: var(--white); color: var(--primary); }
+        .btn-outline { background: transparent; border: 2px solid white; box-shadow: none; }
+        .btn-outline:hover { background: white; color: var(--primary); border-color: white; }
 
-        /* === BOTONES MODERNOS === */
-        .btn-main { 
-            background: var(--secondary); 
-            color: var(--white); 
-            padding: 16px 35px; 
-            text-decoration: none; 
-            border-radius: 50px; 
-            font-weight: 700; 
-            text-transform: uppercase; 
-            letter-spacing: 1px; 
-            transition: var(--transition); 
-            display: inline-flex; 
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
-            cursor: pointer; 
-            border: none; 
-            font-size: 0.85rem;
-            box-shadow: 0 10px 25px rgba(203, 168, 87, 0.3);
-        }
-        .btn-main:hover { transform: translateY(-5px); background: var(--secondary-hover); box-shadow: 0 15px 35px rgba(203, 168, 87, 0.4); }
-        .btn-outline { background: rgba(255,255,255,0.05); backdrop-filter: blur(5px); border: 1px solid rgba(255,255,255,0.5); box-shadow: none; }
-        .btn-outline:hover { background: var(--white); color: var(--primary); border-color: var(--white); box-shadow: 0 10px 25px rgba(0,0,0,0.1); }
+        section { padding: 50px 10%; }
+        .section-header { text-align: center; margin-bottom: 35px; }
+        .section-header h2 { font-family: 'Playfair Display', serif; font-size: 2.5rem; color: var(--primary); }
+        .divider { width: 60px; height: 4px; background: var(--secondary); margin: 15px auto; border-radius: 10px; }
 
-        /* === SECCIONES GLOBALES === */
-        section { padding: 100px 10%; background-color: var(--bg-light); }
-        section:nth-child(even) { background-color: var(--white); }
-        
-        .section-header { text-align: center; margin-bottom: 60px; max-width: 800px; margin-inline: auto; }
-        .featured-tag { background: rgba(203, 168, 87, 0.1); color: var(--secondary); padding: 8px 20px; border-radius: 50px; font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 20px; display: inline-block; }
-        .section-header h2 { font-family: 'Playfair Display', serif; font-size: 2.8rem; color: var(--primary); margin-bottom: 15px; }
-        .divider { width: 40px; height: 3px; background: var(--secondary); margin: 0 auto 20px; border-radius: 10px; }
-
-        /* === TARJETAS DE SERVICIOS B2B === */
-        .b2b-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 30px; }
-        .b2b-card { background: var(--white); padding: 40px 30px; border-radius: var(--radius-lg); box-shadow: var(--shadow-sm); transition: var(--transition); text-align: center; border: 1px solid rgba(0,0,0,0.03); }
-        .b2b-card:hover { transform: translateY(-10px); box-shadow: var(--shadow-lg); border-color: rgba(203, 168, 87, 0.3); }
-        .b2b-icon { width: 70px; height: 70px; background: rgba(123, 140, 106, 0.1); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.8rem; color: var(--accent); margin: 0 auto 25px; transition: var(--transition); }
-        .b2b-card:hover .b2b-icon { background: var(--accent); color: var(--white); transform: scale(1.1); }
-        .b2b-card h4 { font-family: 'Playfair Display', serif; font-size: 1.3rem; margin-bottom: 15px; }
-        .b2b-card p { font-size: 0.95rem; margin-bottom: 0; }
-
-        /* === GALERÍA TIPO MASONRY MODERNA === */
-        .gallery-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 25px; }
-        .gallery-item { position: relative; border-radius: var(--radius-md); overflow: hidden; box-shadow: var(--shadow-sm); cursor: pointer; aspect-ratio: 4/3; }
-        .gallery-item img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1); display: block; }
+        .gallery-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; }
+        .gallery-item { position: relative; border-radius: 15px; overflow: hidden; box-shadow: 0 10px 20px rgba(0,0,0,0.1); cursor: pointer; }
+        .gallery-item img { width: 100%; height: auto; aspect-ratio: 4 / 3; object-fit: cover; transition: transform 0.5s ease; display: block; }
         .gallery-item:hover img { transform: scale(1.08); }
-        .gallery-overlay { position: absolute; inset: 0; background: linear-gradient(to top, rgba(31,41,34,0.9) 0%, transparent 70%); display: flex; align-items: flex-end; padding: 30px; opacity: 0; transition: var(--transition); }
-        .gallery-item:hover .gallery-overlay { opacity: 1; }
-        .gallery-overlay span { color: white; font-weight: 600; font-size: 1.1rem; transform: translateY(15px); transition: var(--transition); font-family: 'Playfair Display', serif;}
-        .gallery-item:hover .gallery-overlay span { transform: translateY(0); }
+        .gallery-overlay { position: absolute; bottom: 0; left: 0; width: 100%; background: linear-gradient(transparent, rgba(0,0,0,0.8)); padding: 30px 20px 20px; color: white; font-weight: 700; font-size: 1.1rem; }
 
-        /* === CURSOS DESTACADOS === */
-        .courses-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 35px; }
-        .course-card { background: var(--white); border-radius: var(--radius-lg); overflow: hidden; box-shadow: var(--shadow-sm); transition: var(--transition); border: 1px solid rgba(0,0,0,0.03); display: flex; flex-direction: column; }
-        .course-card:hover { transform: translateY(-10px); box-shadow: var(--shadow-lg); }
-        .course-img-wrapper { position: relative; overflow: hidden; height: 220px; }
-        .course-img-wrapper img { width: 100%; height: 100%; object-fit: cover; transition: var(--transition); }
-        .course-card:hover .course-img-wrapper img { transform: scale(1.05); }
-        .course-tag-float { position: absolute; top: 15px; left: 15px; background: rgba(255,255,255,0.9); backdrop-filter: blur(5px); color: var(--primary); padding: 5px 15px; border-radius: 50px; font-size: 0.7rem; font-weight: 700; text-transform: uppercase; }
-        .course-info { padding: 35px 30px; display: flex; flex-direction: column; flex-grow: 1; }
-        .course-info h4 { font-size: 1.4rem; color: var(--primary); margin-bottom: 15px; font-family: 'Playfair Display', serif; line-height: 1.3; }
-        .course-info p { font-size: 0.95rem; flex-grow: 1; margin-bottom: 25px; }
-        .course-link { color: var(--secondary); font-weight: 700; text-decoration: none; display: flex; align-items: center; gap: 8px; font-size: 0.9rem; transition: var(--transition); margin-top: auto;}
-        .course-link i { transition: var(--transition); }
-        .course-card:hover .course-link { color: var(--primary); }
-        .course-card:hover .course-link i { transform: translateX(5px); }
+        .social-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 30px; margin-top: 30px; }
+        .social-card { padding: 30px; border-radius: 20px; color: white; text-align: center; text-decoration: none; transition: 0.3s; display: flex; flex-direction: column; align-items: center; justify-content: center; }
+        .social-card:hover { transform: translateY(-10px); box-shadow: 0 15px 30px rgba(0,0,0,0.2); }
+        .social-card i { font-size: 3.5rem; margin-bottom: 15px; }
+        .bg-facebook { background: linear-gradient(45deg, #1877F2, #0e5a1f); }
+        .bg-instagram { background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888); }
+        .bg-tiktok { background: linear-gradient(45deg, #000000, #25f4ee); color: white;}
+
+        /* Ruta actualizada en el CSS: url('img/preguntas.jpg') */
+        .featured-banner { background: linear-gradient(rgba(26, 26, 26, 0.85), rgba(26, 26, 26, 0.85)), url('img/preguntas.jpg'); background-size: cover; background-position: center; background-attachment: fixed; border-radius: 30px; padding: 70px; color: white; box-shadow: 0 20px 40px rgba(0,0,0,0.3); border-left: 8px solid var(--secondary); }
+        .featured-tag { background: var(--secondary); color: white; padding: 6px 15px; border-radius: 4px; font-size: 0.75rem; font-weight: 800; text-transform: uppercase; margin-bottom: 20px; display: inline-block; }
+        .featured-banner h3 { font-family: 'Playfair Display', serif; font-size: 2.5rem; margin-bottom: 20px; color: var(--secondary); }
+        .featured-banner p { font-size: 1.1rem; line-height: 1.6; margin-bottom: 25px; max-width: 900px; }
+
+        .courses-section { background: var(--light); }
+        .courses-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
+        .course-card { background: white; border-radius: 20px; overflow: hidden; box-shadow: 0 10px 25px rgba(0,0,0,0.05); transition: 0.3s; border: 1px solid transparent;}
+        .course-card:hover { transform: translateY(-8px); border-color: var(--secondary); box-shadow: 0 15px 35px rgba(188, 160, 91, 0.15); }
+        .course-img { width: 100%; height: 220px; object-fit: cover; }
+        .course-info { padding: 30px; }
+        .course-info h4 { font-size: 1.3rem; color: var(--primary); margin: 10px 0; font-family: 'Playfair Display', serif; }
+        .course-info p { text-align: left; }
         
-        .modalities-container { display: flex; justify-content: center; gap: 15px; flex-wrap: wrap; margin: 0 0 40px; }
-        .modality-badge { display: flex; align-items: center; gap: 8px; background: var(--white); padding: 10px 20px; border-radius: 50px; font-size: 0.85rem; font-weight: 600; color: var(--text-muted); box-shadow: var(--shadow-sm); border: 1px solid rgba(0,0,0,0.03); transition: var(--transition); }
-        .modality-badge:hover { transform: translateY(-3px); box-shadow: var(--shadow-md); color: var(--primary); }
-        .modality-badge i { color: var(--secondary); font-size: 1.1rem; }
-        .badge-incompany { background: rgba(203, 168, 87, 0.1); color: var(--secondary); border-color: rgba(203, 168, 87, 0.2); }
+        .modalities-container { display: flex; justify-content: center; gap: 15px; flex-wrap: wrap; margin: 30px 0 40px; }
+        .modality-badge { display: flex; align-items: center; gap: 10px; background: white; padding: 12px 25px; border-radius: 50px; font-size: 0.9rem; font-weight: 700; color: var(--primary); box-shadow: 0 5px 15px rgba(0,0,0,0.05); border: 1px solid #eee; transition: 0.3s; }
+        .modality-badge:hover { transform: translateY(-3px); box-shadow: 0 8px 20px rgba(0,0,0,0.1); }
+        .badge-incompany { background: var(--secondary); color: white; border-color: var(--secondary); }
+        .badge-incompany i { color: white !important; }
 
-        /* === BANNER PREGUNTAS (B2B) === */
-        .featured-banner { 
-            background: linear-gradient(rgba(42, 58, 44, 0.9), rgba(42, 58, 44, 0.85)), url('img/preguntas.jpg') center/cover fixed; 
-            border-radius: var(--radius-lg); 
-            padding: 80px 60px; 
-            color: var(--white); 
-            box-shadow: var(--shadow-lg); 
-            text-align: center;
-            position: relative;
-            overflow: hidden;
-        }
-        .featured-banner::before { content: ''; position: absolute; top: 0; left: 0; width: 8px; height: 100%; background: var(--secondary); }
-        .featured-banner h3 { font-family: 'Playfair Display', serif; font-size: 2.8rem; margin: 15px 0 25px; color: var(--white); }
-        .featured-banner p { font-size: 1.15rem; color: rgba(255,255,255,0.8); margin: 0 auto 35px; max-width: 800px; }
+        .core-services { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; margin-top: 30px; }
+        .core-card { background: white; padding: 40px; border-radius: 20px; box-shadow: 0 10px 25px rgba(0,0,0,0.05); text-align: center; }
+        .core-icon { font-size: 3rem; color: var(--secondary); margin-bottom: 20px; }
 
-        /* === SECCIÓN EHEP === */
-        .ehep-grid { display: grid; grid-template-columns: 3fr 2fr; gap: 40px; align-items: stretch; }
-        .ehep-card { background: var(--white); padding: 50px; border-radius: var(--radius-lg); box-shadow: var(--shadow-md); border: 1px solid rgba(0,0,0,0.03); display: flex; flex-direction: column; justify-content: center; }
-        .ehep-card.primary { border-top: 5px solid var(--secondary); }
-        .ehep-card.secondary { background: var(--primary); color: white; text-align: center; }
-        .ehep-card h3 { font-family: 'Playfair Display', serif; font-size: 2rem; margin-bottom: 25px; }
-        .ehep-card.secondary h3 { color: white; }
-        .ehep-list { list-style: none; margin-bottom: 35px; }
-        .ehep-list li { display: flex; align-items: flex-start; gap: 15px; margin-bottom: 20px; color: var(--text-muted); font-size: 1.05rem; }
-        .ehep-list i { color: var(--secondary); font-size: 1.4rem; margin-top: 2px; }
-        .ehep-card.secondary p { color: rgba(255,255,255,0.8); margin-bottom: 30px; }
-
-        /* === REDES SOCIALES === */
-        .social-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 30px; }
-        .social-card { padding: 40px 30px; border-radius: var(--radius-lg); color: white; text-align: center; text-decoration: none; transition: var(--transition); display: flex; flex-direction: column; align-items: center; justify-content: center; position: relative; overflow: hidden; z-index: 1;}
-        .social-card::before { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; transition: var(--transition); opacity: 0.8; }
-        .social-card:hover { transform: translateY(-10px); box-shadow: var(--shadow-lg); }
-        .social-card:hover::before { opacity: 1; transform: scale(1.05); }
-        .social-card i { font-size: 3rem; margin-bottom: 20px; transition: var(--transition); }
-        .social-card:hover i { transform: scale(1.2); }
-        .social-card h3 { color: white; font-size: 1.5rem; margin-bottom: 5px; font-family: 'Montserrat', sans-serif;}
-        .bg-facebook::before { background: linear-gradient(135deg, #1877F2, #0d47a1); }
-        .bg-instagram::before { background: linear-gradient(135deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888); }
-        .bg-tiktok::before { background: linear-gradient(135deg, #000000, #434343); }
-
-        /* === MODALES ESTILO APP === */
-        .modal-overlay { position: fixed; inset: 0; background: rgba(15, 23, 18, 0.7); backdrop-filter: blur(8px); z-index: 3000; display: none; align-items: center; justify-content: center; padding: 20px;}
-        .promo-modal { background: var(--white); width: 100%; max-width: 480px; border-radius: var(--radius-lg); position: relative; overflow: hidden; animation: modalZoom 0.4s cubic-bezier(0.16, 1, 0.3, 1); box-shadow: 0 25px 50px rgba(0,0,0,0.2); max-height: 90vh; overflow-y: auto;}
-        @keyframes modalZoom { from { transform: scale(0.9) translateY(20px); opacity: 0; } to { transform: scale(1) translateY(0); opacity: 1; } }
+        .oculto-temporalmente { display: none !important; }
+        .modal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); z-index: 3000; display: none; align-items: center; justify-content: center; backdrop-filter: blur(5px); }
+        .promo-modal { background: var(--white); width: 90%; max-width: 500px; border-radius: 20px; position: relative; overflow: hidden; animation: zoomIn 0.3s ease; }
+        @keyframes zoomIn { from { transform: scale(0.8); opacity: 0; } to { transform: scale(1); opacity: 1; } }
+        .modal-header-img { width: 100%; height: 180px; background: linear-gradient(45deg, var(--primary), var(--accent)); display: flex; align-items: center; justify-content: center; color: white; text-align: center; padding: 20px; position: relative; }
+        .close-modal { position: absolute; top: 15px; right: 20px; color: white; font-size: 1.5rem; cursor: pointer; z-index: 10; }
+        .modal-body { padding: 30px; }
+        .form-group { margin-bottom: 15px; }
+        .form-group label { display: block; font-size: 0.8rem; font-weight: 700; margin-bottom: 5px; color: var(--primary); }
+        .form-group input, .form-group select { width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 8px; font-family: inherit; }
         
-        .close-modal { position: absolute; top: 15px; right: 15px; background: rgba(255,255,255,0.2); backdrop-filter: blur(5px); color: white; border-radius: 50%; width: 35px; height: 35px; display: flex; align-items: center; justify-content: center; cursor: pointer; z-index: 20; transition: var(--transition); font-size: 1.2rem;}
-        .close-modal:hover { background: white; color: var(--primary); }
-        
-        .modal-header-img { background: linear-gradient(135deg, var(--primary), var(--primary-light)); padding: 40px 30px 30px; text-align: center; color: white; }
-        .modal-header-img h3 { color: white; font-family: 'Playfair Display', serif; font-size: 1.8rem; margin-bottom: 5px; }
-        
-        .modal-body { padding: 35px 30px; background: var(--white); }
-        .form-info-box { background: rgba(203, 168, 87, 0.08); border-left: 3px solid var(--secondary); padding: 15px 20px; margin-bottom: 25px; border-radius: 0 8px 8px 0; font-size: 0.85rem; line-height: 1.6; color: var(--text-dark); }
-        
-        .form-group { margin-bottom: 20px; }
-        .form-group label { display: block; font-size: 0.8rem; font-weight: 700; margin-bottom: 8px; color: var(--primary); text-transform: uppercase; letter-spacing: 1px;}
-        .form-group input, .form-group select { width: 100%; padding: 14px 18px; border: 1px solid #e2e8e4; border-radius: 10px; font-family: inherit; font-size: 0.95rem; transition: var(--transition); background: #fcfcfc;}
-        .form-group input:focus, .form-group select:focus { outline: none; border-color: var(--secondary); background: white; box-shadow: 0 0 0 4px rgba(203, 168, 87, 0.1); }
+        .form-info-box { background: rgba(107, 122, 90, 0.1); border-left: 4px solid var(--accent); padding: 12px 18px; margin-bottom: 25px; border-radius: 0 8px 8px 0; font-size: 0.85rem; line-height: 1.5; text-align: left; color: var(--primary); }
 
-        /* === FOOTER === */
-        footer { background: var(--primary); color: rgba(255,255,255,0.8); padding: 80px 10% 40px; text-align: center; }
-        .footer-logo { height: 60px; filter: brightness(0) invert(1); margin-bottom: 30px; opacity: 0.9;}
-        footer p { margin-bottom: 5px; font-size: 0.9rem; }
+        footer { background: var(--primary); color: white; padding: 50px 10%; text-align: center; }
+        .footer-logo { height: 80px; background: white; padding: 10px 20px; border-radius: 12px; margin-bottom: 20px; }
 
-        /* === WHATSAPP WIDGET === */
         .wa-widget-container { position: fixed; bottom: 30px; right: 30px; z-index: 2000; }
-        .wa-chat-box { position: absolute; bottom: 85px; right: 0; width: 350px; background: white; border-radius: var(--radius-md); box-shadow: var(--shadow-lg); display: none; overflow: hidden; animation: fadeInUp 0.4s ease; border: 1px solid rgba(0,0,0,0.05);}
-        @keyframes fadeInUp { from { opacity: 0; transform: translateY(20px) scale(0.95); } to { opacity: 1; transform: translateY(0) scale(1); } }
-        .wa-chat-header { background: var(--whatsapp); color: white; padding: 20px; display: flex; align-items: center; justify-content: space-between; }
-        .wa-header-info { display: flex; align-items: center; gap: 15px; }
-        .wa-header-info i { font-size: 2rem; }
-        .wa-close { color: white; cursor: pointer; font-size: 2rem; line-height: 1; opacity: 0.8; transition: var(--transition);}
-        .wa-close:hover { opacity: 1; transform: rotate(90deg); }
-        .wa-chat-body { background-color: #e5ddd5; padding: 25px 20px; min-height: 150px; background-image: url('https://user-images.githubusercontent.com/15075759/28719144-86dc0f70-73b1-11e7-911d-60d70fcded21.png'); background-size: cover;}
-        .wa-msg { background: white; padding: 12px 16px; border-radius: 0 12px 12px 12px; font-size: 0.95rem; line-height: 1.5; color: #333; box-shadow: 0 1px 2px rgba(0,0,0,0.1); display: inline-block; position: relative; margin-bottom: 10px; max-width: 90%; animation: slideRight 0.3s ease 0.2s both; opacity: 0;}
-        @keyframes slideRight { from { opacity: 0; transform: translateX(-15px); } to { opacity: 1; transform: translateX(0); } }
-        .wa-msg::before { content: ""; position: absolute; top: 0; left: -10px; border-width: 0 10px 10px 0; border-style: solid; border-color: transparent white transparent transparent; }
-        .wa-chat-footer { padding: 20px; background: white; text-align: center; }
-        .wa-chat-btn { background: var(--whatsapp); color: white; text-decoration: none; padding: 14px 25px; border-radius: 50px; font-weight: 700; display: flex; align-items: center; justify-content: center; gap: 10px; transition: var(--transition); width: 100%; box-shadow: 0 4px 15px rgba(37, 211, 102, 0.3);}
-        .wa-chat-btn:hover { background: #1ebe57; transform: translateY(-3px); box-shadow: 0 8px 25px rgba(37, 211, 102, 0.4);}
-        .wa-float-btn { width: 65px; height: 65px; background: var(--whatsapp); color: white; border-radius: 50%; display: flex; justify-content: center; align-items: center; font-size: 35px; cursor: pointer; box-shadow: 0 8px 25px rgba(37, 211, 102, 0.4); transition: var(--transition); position: relative;}
-        .wa-float-btn::after { content: ''; position: absolute; width: 100%; height: 100%; border-radius: 50%; border: 2px solid var(--whatsapp); animation: pulseWa 2s infinite; }
-        .wa-float-btn:hover { transform: scale(1.1); }
-        @keyframes pulseWa { 0% { transform: scale(1); opacity: 0.8; } 100% { transform: scale(1.5); opacity: 0; } }
+        .wa-chat-box { position: absolute; bottom: 80px; right: 0; width: 340px; background: white; border-radius: 15px; box-shadow: 0 15px 35px rgba(0,0,0,0.2); display: none; overflow: hidden; animation: fadeInUp 0.4s ease; }
+        @keyframes fadeInUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
 
-        /* === MÓVILES === */
+        .wa-chat-header { background: var(--whatsapp); color: white; padding: 20px; display: flex; align-items: center; justify-content: space-between; }
+        .wa-header-info { display: flex; align-items: center; gap: 12px; }
+        .wa-close { color: white; cursor: pointer; font-size: 1.8rem; line-height: 1; }
+
+        .wa-chat-body { background-color: #e5ddd5; padding: 20px; min-height: 120px; }
+        .wa-msg { background: white; padding: 12px 16px; border-radius: 0 12px 12px 12px; font-size: 0.9rem; line-height: 1.5; color: #333; text-align: left; box-shadow: 0 1px 2px rgba(0,0,0,0.1); display: inline-block; position: relative; margin-bottom: 10px; }
+        .wa-msg::before { content: ""; position: absolute; top: 0; left: -10px; border-width: 0 10px 10px 0; border-style: solid; border-color: transparent white transparent transparent; }
+
+        .wa-chat-footer { padding: 15px; background: white; text-align: center; }
+        .wa-chat-btn { background: var(--whatsapp); color: white; text-decoration: none; padding: 12px 25px; border-radius: 30px; font-weight: 700; display: inline-flex; align-items: center; gap: 10px; transition: 0.3s; width: 100%; justify-content: center;}
+        .wa-chat-btn:hover { background: #1ebe57; transform: translateY(-2px); }
+        
+        .wa-float-btn { width: 60px; height: 60px; background: var(--whatsapp); color: white; border-radius: 50%; display: flex; justify-content: center; align-items: center; font-size: 30px; cursor: pointer; box-shadow: 0 5px 15px rgba(0,0,0,0.3); transition: 0.3s; }
+        .wa-float-btn:hover { transform: scale(1.1); }
+
         .menu-toggle { display: none; font-size: 1.8rem; color: var(--primary); cursor: pointer; }
 
         @media (max-width: 900px) { 
-            .hero h1 { font-size: 2.8rem; } 
-            .hero p { font-size: 1.1rem; }
-            .section-header h2 { font-size: 2.2rem; }
-            .featured-banner { padding: 50px 30px; }
-            .ehep-grid { grid-template-columns: 1fr; }
+            .hero h1 { font-size: 2.2rem; } 
+            .featured-banner { padding: 40px 30px; }
             .menu-toggle { display: block; }
-            .nav-links { display: none; flex-direction: column; position: absolute; top: 100%; left: 0; width: 100%; background: rgba(255, 255, 255, 0.98); backdrop-filter: blur(15px); padding: 20px 0; box-shadow: var(--shadow-md); text-align: center; border-top: 1px solid #eee;}
-            .nav-links.active { display: flex; animation: slideDown 0.3s ease; }
-            .nav-links > li { width: 100%; padding: 15px 20px; border-bottom: 1px solid rgba(0,0,0,0.03); }
-            .nav-links > li:last-child { border-bottom: none; }
-            .nav-links a::after { display: none; }
-            .dropdown-menu { position: static; box-shadow: none; border: none; background: rgba(0,0,0,0.02); width: 100%; margin-top: 10px; border-radius: 8px; display: none; }
-            .dropdown-menu::before { display: none; }
+            .nav-links { display: none; flex-direction: column; position: absolute; top: 85px; left: 0; width: 100%; background: rgba(255, 255, 255, 0.98); padding: 20px 0; box-shadow: 0 10px 15px rgba(0,0,0,0.1); text-align: left; gap: 0; }
+            .nav-links.active { display: flex; }
+            .nav-links > li { width: 100%; padding: 10px 20px; border-bottom: 1px solid #f0f0f0; }
+            .nav-links > li:last-child { border-bottom: none; text-align: center; padding-top: 20px; }
+            
+            .dropdown-menu { position: static; box-shadow: none; border: none; background: #f4f6f4; width: 100%; margin-top: 10px; border-radius: 8px; display: none; }
             .dropdown.active .dropdown-menu { display: block; }
-            section { padding: 70px 5%; }
         }
     </style>
 </head>
@@ -329,60 +177,64 @@
 
     <!-- MODAL INSCRIPCIÓN EHEP -->
     <div class="modal-overlay" id="registrationModal">
-        <div class="promo-modal">
-            <span class="close-modal" onclick="closeModal()">&times;</span>
+        <div class="promo-modal" style="max-height: 90vh; overflow-y: auto;">
+            <span class="close-modal" onclick="closeModal()" style="color: var(--primary); background: white; border-radius: 50%; width: 30px; height: 30px; display: flex; align-items: center; justify-content: center; box-shadow: 0 2px 5px rgba(0,0,0,0.2); top: 10px; right: 10px; z-index: 20;">&times;</span>
             
-            <div class="modal-header-img">
-                <h3 style="font-family: 'Playfair Display'; font-size: 1.6rem; margin-bottom: 5px;">Examen EHEP 2026</h3>
-                <p style="font-size: 0.85rem; font-weight: 600; color: rgba(255,255,255,0.9); margin-bottom: 0; letter-spacing: 1px;">¡INSCRIPCIONES ABIERTAS!</p>
+            <div class="modal-header-img" style="height: auto; padding: 25px 20px 15px;">
+                <div>
+                    <h3 style="font-family: 'Playfair Display'; font-size: 1.4rem; margin-bottom: 5px;">Examen EHEP 2026</h3>
+                    <p style="font-size: 0.8rem; font-weight: 600; color: var(--secondary); margin-bottom: 0;">¡Inscripciones Abiertas!</p>
+                </div>
             </div>
             
-            <div class="modal-body">
-                <div class="form-info-box">
-                    <strong style="color: var(--primary);"><i class="fa-solid fa-bolt" style="color: var(--secondary);"></i> Activación Inmediata</strong><br>
-                    Completa tus datos. Si pagas con tarjeta ($30.00), el sistema te enviará las credenciales a tu correo al instante.
+            <div class="modal-body" style="padding: 20px;">
+                <div class="form-info-box" style="margin-bottom: 15px; padding: 12px 15px; font-size: 0.85rem;">
+                    <strong><i class="fa-solid fa-circle-info"></i> Pasos para acceder:</strong><br>
+                    1. Completa tus datos y elige tu método de pago ($30.00).<br>
+                    2. Si pagas con tarjeta, el sistema te enviará <b>inmediatamente</b> las credenciales de acceso a tu correo electrónico.
                 </div>
                 
                 <form id="ehepForm">
-                    <div class="form-group">
-                        <label>Nombre Completo</label>
-                        <input type="text" id="formName" required placeholder="Ej. Ana Pérez">
+                    <div class="form-group" style="margin-bottom: 12px;">
+                        <label style="margin-bottom: 3px;">Nombre Completo</label>
+                        <input type="text" id="formName" required style="padding: 10px;">
                     </div>
                     
-                    <div class="form-group">
-                        <label>Carrera</label>
-                        <select id="formCourse" required>
+                    <div class="form-group" style="margin-bottom: 12px;">
+                        <label style="margin-bottom: 3px;">Carrera</label>
+                        <select id="formCourse" required style="padding: 10px;">
                             <option value="">Seleccione su área</option>
                             <option value="Medicina">Medicina</option>
                             <option value="Enfermería">Enfermería</option>
+                            <!-- <option value="Odontología">Odontología</option> -->
                         </select>
                     </div>
                     
-                    <div class="form-group">
-                        <label>Número de Contacto</label>
-                        <input type="tel" id="formPhone" required placeholder="099 123 4567">
+                    <div class="form-group" style="margin-bottom: 12px;">
+                        <label style="margin-bottom: 3px;">Número de Contacto</label>
+                        <input type="tel" id="formPhone" required style="padding: 10px;">
                     </div>
                     
-                    <div class="form-group">
-                        <label>Correo Electrónico</label>
-                        <input type="email" id="formEmail" required placeholder="tucorreo@gmail.com">
-                        <small id="emailError" style="color: #e74c3c; display: none; font-size: 0.75rem; margin-top: 5px; font-weight: 600;"><i class="fa-solid fa-circle-exclamation"></i> Por favor usa una cuenta @gmail.com</small>
+                    <div class="form-group" style="margin-bottom: 12px;">
+                        <label style="margin-bottom: 3px;">Correo Electrónico</label>
+                        <input type="email" id="formEmail" required style="padding: 10px;">
+                        <small id="emailError" style="color: red; display: none; font-size: 0.7rem; margin-top: 3px;">Debe ser @gmail.com.</small>
                     </div>
                     
-                    <div class="form-group" style="margin-top: 30px;">
-                        <label style="color: var(--secondary);">Método de Pago</label>
-                        <select id="formPaymentMethod" required style="border-color: rgba(203, 168, 87, 0.5); background-color: #fdfbf5;">
+                    <div class="form-group" style="margin-bottom: 20px;">
+                        <label style="margin-bottom: 3px; color: var(--secondary);">Método de Pago</label>
+                        <select id="formPaymentMethod" required style="padding: 10px; border: 1px solid var(--secondary); background-color: #fdfaf3;">
                             <option value="">¿Cómo deseas pagar?</option>
-                            <option value="tarjeta">💳 Tarjeta / Botón de Pago</option>
-                            <option value="transferencia">🏦 Transferencia / Depósito</option>
+                            <option value="tarjeta">💳 Tarjeta (Inscripción Inmediata)</option>
+                            <option value="transferencia">🏦 Transferencia Bancaria</option>
                         </select>
                     </div>
 
-                    <button type="submit" class="btn-main" style="width: 100%; border-radius: 12px; padding: 16px; font-size: 1rem; margin-top: 10px;">Continuar <i class="fa-solid fa-arrow-right"></i></button>
+                <button type="submit" class="btn-main" style="width: 100%; border-radius: 8px; padding: 12px; font-size: 0.95rem;">Completar Inscripción</button>
                 </form>
 
                 <div id="payphone-wrapper" style="display:none; text-align: center; margin-top: 20px;">
-                    <h4 style="margin-bottom: 20px; font-family: 'Playfair Display', serif; color: var(--primary); font-size: 1.3rem;">Completa tu pago seguro</h4>
+                    <h4 style="margin-bottom: 15px; color: var(--primary);">Completa tu pago seguro</h4>
                     <div id="pp-button"></div>
                 </div>
 
@@ -394,28 +246,23 @@
     <div class="modal-overlay" id="authModal">
         <div class="promo-modal">
             <span class="close-modal" onclick="closeAuthModal()">&times;</span>
-            <div class="modal-header-img" style="padding: 30px;">
-                <h3 style="margin:0;">Plataforma EHEP</h3>
+            <div class="modal-header-img" style="height: 100px;">
+                <h3 style="font-family: 'Playfair Display'; font-size: 1.5rem;">Simuladores Médicos</h3>
             </div>
             <div class="modal-body">
-                <div class="form-group">
-                    <label>Correo Electrónico</label>
-                    <input type="email" id="authEmail" placeholder="correo@gmail.com">
-                </div>
-                <div class="form-group">
-                    <label>Contraseña</label>
-                    <input type="password" id="authPassword" placeholder="••••••••">
-                </div>
-                <p id="authError" style="color: #e74c3c; font-size: 0.85rem; font-weight: 600; display: none; margin-bottom: 15px; text-align: center;"></p>
-                <button class="btn-main" onclick="loginFirebase()" style="width: 100%; border-radius: 12px; margin-bottom: 15px;">Ingresar al Simulador</button>
-                <button class="btn-main btn-outline" onclick="registerFirebase()" style="width: 100%; border-radius: 12px; color: var(--primary); border-color: #ddd;">Crear Cuenta (Solo Autorizados)</button>
+                <div class="form-group"><label>Correo Electrónico</label><input type="email" id="authEmail"></div>
+                <div class="form-group"><label>Contraseña</label><input type="password" id="authPassword"></div>
+                <p id="authError" style="color: red; font-size: 0.8rem; display: none; margin-bottom: 10px;"></p>
+                <button class="btn-main" onclick="loginFirebase()" style="width: 100%; border-radius: 10px; margin-bottom: 10px;">Ingresar</button>
+                <button class="btn-main btn-outline" onclick="registerFirebase()" style="width: 100%; border-radius: 10px; color: var(--primary); border-color: var(--primary);">Crear Cuenta</button>
             </div>
         </div>
     </div>
 
     <!-- MENÚ SUPERIOR -->
-    <nav id="navbar">
+    <nav>
         <a href="#inicio" class="brand">
+            <!-- Ruta actualizada: img/ -->
             <img src="img/LOGO_CEFEDEP.png" alt="Logo CEFEDEP">
             <div class="brand-text">
                 <span class="brand-name">CEFEDEP</span>
@@ -423,239 +270,266 @@
             </div>
         </a>
         <div class="menu-toggle" onclick="toggleMobileMenu()">
-            <i class="fa-solid fa-bars-staggered"></i>
+            <i class="fa-solid fa-bars"></i>
         </div>
         <ul class="nav-links">
             <li><a href="#inicio">Inicio</a></li>
             <li><a href="quienes-somos.html">Quiénes Somos</a></li>
             
+            <!-- MENÚ DESPLEGABLE DE CURSOS -->
             <li class="dropdown" id="btn-cursos" onclick="toggleDropdownMobile(event)">
-                <a href="javascript:void(0)">Cursos Avalados <i class="fa-solid fa-chevron-down" style="font-size: 0.7rem; margin-left: 4px;"></i></a>
+                <a href="javascript:void(0)" style="cursor: pointer;">Cursos Avalados <i class="fa-solid fa-chevron-down" style="font-size: 0.7rem; margin-left: 3px;"></i></a>
                 <ul class="dropdown-menu">
+                    <!-- ÁREA DE SALUD -->
                     <li><div class="dropdown-category">Área de Salud</div></li>
-                    <li><a href="cursos/salud/curso_farmacia.html"><i class="fa-solid fa-pills"></i> Auxiliar en Farmacia</a></li>
-                    <li><a href="cursos/salud/curso_enfermeria.html"><i class="fa-solid fa-user-nurse"></i> Auxiliar en Enfermería</a></li>
-                    <li><a href="cursos/salud/curso_salud_ocupacional.html"><i class="fa-solid fa-helmet-safety"></i> Salud Ocupacional</a></li>
-                    <li><a href="cursos/salud/curso_primeros_auxilios.html"><i class="fa-solid fa-kit-medical"></i> Primeros Auxilios</a></li>
+                    <!-- Rutas actualizadas: cursos/salud/ -->
+                    <li><a href="cursos/salud/curso_farmacia.html" target="_blank"><i class="fa-solid fa-pills" style="color: var(--accent);"></i> Auxiliar en Farmacia</a></li>
+                    <li><a href="cursos/salud/curso_enfermeria.html" target="_blank"><i class="fa-solid fa-user-nurse" style="color: var(--accent);"></i> Auxiliar en Enfermería</a></li>
+                    <li><a href="cursos/salud/curso_salud_ocupacional.html" target="_blank"><i class="fa-solid fa-helmet-safety" style="color: var(--accent);"></i> Salud Ocupacional y Ergonomía</a></li>
+                    <li><a href="cursos/salud/curso_primeros_auxilios.html" target="_blank"><i class="fa-solid fa-kit-medical" style="color: var(--accent);"></i> Primeros Auxilios Básicos</a></li>
                     
-                    <li><div class="dropdown-category">Educación y Derecho</div></li>
-                    <li><a href="cursos/humana/curso_asistencia_juridica.html"><i class="fa-solid fa-scale-balanced"></i> Asistencia Jurídica</a></li>
-                    <li><a href="cursos/humana/curso_asistencia_parvularia.html"><i class="fa-solid fa-children"></i> Asistencia Parvularia</a></li>
-                    <li><a href="cursos/humana/curso_cosmeticos.html"><i class="fa-solid fa-flask"></i> Cosmética Artesanal</a></li>
-                    <li><a href="cursos/humana/curso_tramites_judiciales.html"><i class="fa-solid fa-file-signature"></i> Trámites Judiciales</a></li>
-                    <li><a href="cursos/humana/curso_evaluacion_desempeno.html"><i class="fa-solid fa-clipboard-check"></i> Evaluación y Rúbricas</a></li>
+                    <!-- ÁREA HUMANA -->
+                    <li><div class="dropdown-category">Área Humana y Educación</div></li>
+                    <!-- Rutas actualizadas: cursos/humana/ -->
+                    <li><a href="cursos/humana/curso_asistencia_juridica.html" target="_blank"><i class="fa-solid fa-scale-balanced" style="color: var(--secondary);"></i> Asistencia Jurídica</a></li>
+                    <li><a href="cursos/humana/curso_asistencia_parvularia.html" target="_blank"><i class="fa-solid fa-children" style="color: var(--secondary);"></i> Asistencia Parvularia</a></li>
+                    <li><a href="cursos/humana/curso_cosmeticos.html" target="_blank"><i class="fa-solid fa-flask" style="color: var(--secondary);"></i> Cosmética Artesanal</a></li>
+                    <li><a href="cursos/humana/curso_tramites_judiciales.html" target="_blank"><i class="fa-solid fa-file-signature" style="color: var(--secondary);"></i> Trámites Judiciales</a></li>
+                    <li><a href="cursos/humana/curso_recursos_didacticos.html" target="_blank"><i class="fa-solid fa-laptop-code" style="color: var(--secondary);"></i> Recursos Didácticos Digitales</a></li>
+                    <li><a href="cursos/humana/curso_apoyo_pedagogico.html" target="_blank"><i class="fa-solid fa-puzzle-piece" style="color: var(--secondary);"></i> Estrategias Parvularia</a></li>
+                    <li><a href="cursos/humana/curso_proyectos_educativos.html" target="_blank"><i class="fa-solid fa-lightbulb" style="color: var(--secondary);"></i> Proyectos Curriculares (IES)</a></li>
+                    <li><a href="cursos/humana/curso_facilitacion_grupos.html" target="_blank"><i class="fa-solid fa-users-rays" style="color: var(--secondary);"></i> Facilitación Corporativa</a></li>
+                    <li><a href="cursos/humana/curso_evaluacion_desempeno.html" target="_blank"><i class="fa-solid fa-clipboard-check" style="color: var(--secondary);"></i> Instrumentos de Evaluación</a></li>
 
-                    <li><div class="dropdown-category">Tecnología e IA</div></li>
-                    <li><a href="cursos/tecnologia/curso_python_automatizacion.html"><i class="fa-brands fa-python"></i> Automatización con IA</a></li>
-                    <li><a href="cursos/tecnologia/curso_desarrollo_web.html"><i class="fa-solid fa-code"></i> Desarrollo Web</a></li>
+                    <!-- TECNOLOGÍA -->
+                    <li><div class="dropdown-category">Ingeniería y Tecnología</div></li>
+                    <!-- Rutas actualizadas: cursos/tecnologia/ -->
+                    <li><a href="cursos/tecnologia/curso_python_automatizacion.html" target="_blank"><i class="fa-brands fa-python" style="color: #306998;"></i> Automatización con Python e IA</a></li>
+                    <li><a href="cursos/tecnologia/curso_python_basica.html" target="_blank"><i class="fa-brands fa-python" style="color: #306998;"></i> Programación Básica Python</a></li>
+                    <li><a href="cursos/tecnologia/curso_python_datos.html" target="_blank"><i class="fa-solid fa-chart-pie" style="color: #306998;"></i> Visualización de Datos Python</a></li>
+                    <li><a href="cursos/tecnologia/curso_python_vision.html" target="_blank"><i class="fa-solid fa-eye" style="color: #306998;"></i> Visión por Computadora Python</a></li>
+                    <li><a href="cursos/tecnologia/curso_desarrollo_web.html" target="_blank"><i class="fa-solid fa-code" style="color: #306998;"></i> Desarrollo Web</a></li>
+                    <li><a href="cursos/tecnologia/curso_cloud_computing.html" target="_blank"><i class="fa-solid fa-cloud" style="color: #306998;"></i> Cloud Computing</a></li>
                 </ul>
             </li>
 
-            <li><a href="#inscripcion">Simulador EHEP</a></li>
+            <li><a href="#inscripcion" style="color: var(--secondary);">Simulador EHEP</a></li>
+            <li><a href="#galeria">Galería</a></li>
+            <li><a href="#redes">Redes</a></li>
             
             <li id="dynamic-menu">
-                <a href="#" onclick="openAuthModal()" class="login-btn"><i class="fa-regular fa-user" style="margin-right: 5px;"></i> Iniciar Sesión</a>
+                <a href="#" onclick="openAuthModal()" class="login-btn">INICIAR SESIÓN EHEP</a>
             </li>
         </ul>
     </nav>
 
-    <!-- HERO SECTION -->
     <section class="hero" id="inicio">
-        <div class="hero-badge">Excelencia Académica Integral</div>
         <h1>Liderazgo en Consultoría Educativa Superior</h1>
-        <p>Acompañamos a instituciones y profesionales hacia la acreditación, el éxito en exámenes nacionales y la excelencia profesional con tecnología de vanguardia.</p>
-        <div class="hero-btns">
-            <a href="javascript:void(0)" onclick="openModal()" class="btn-main">Simulador EHEP 2026 <i class="fa-solid fa-arrow-right"></i></a>
-            <a href="#cursos" class="btn-main btn-outline">Explorar Cursos</a>
+        <p>Acompañamos a instituciones y profesionales hacia la acreditación, el éxito en exámenes nacionales y la excelencia académica integral.</p>
+        <div style="display: flex; gap: 20px; flex-wrap: wrap; justify-content: center; margin-top: 20px;">
+            <a href="javascript:void(0)" onclick="openModal()" class="btn-main">Simulador EHEP 2026</a>
+            <a href="#cursos" class="btn-main btn-outline">Ver Catálogo de Cursos</a>
         </div>        
     </section>
 
     <!-- SERVICIOS B2B -->
-    <section id="servicios-b2b" class="reveal">
+    <section id="servicios-b2b" style="background-color: var(--light);">
         <div class="section-header">
-            <span class="featured-tag">Consultoría Institucional</span>
-            <h2>Servicios para IES</h2>
+            <span class="featured-tag" style="background: var(--accent);">Consultoría Institucional B2B</span>
+            <h3 style="font-family: 'Playfair Display', serif; font-size: 2.5rem; color: var(--primary);">Servicios para la Educación Superior</h3>
             <div class="divider"></div>
-            <p>Elevando el estándar de Universidades e Institutos Tecnológicos mediante consultoría técnica, acreditación y diseño curricular.</p>
+            <p style="color: #666; max-width: 800px; margin: 15px auto;">Elevando el estándar de Universidades e Institutos Tecnológicos mediante consultoría, acreditación y diseño curricular.</p>
         </div>
 
-        <div class="b2b-grid">
-            <div class="b2b-card">
-                <div class="b2b-icon"><i class="fa-solid fa-magnifying-glass-chart"></i></div>
-                <h4>Diagnóstico y Cualificación</h4>
-                <p>Auditoría inicial y evaluación del estado de los institutos tecnológicos frente a normativas de educación superior.</p>
-            </div>
-            <div class="b2b-card">
-                <div class="b2b-icon"><i class="fa-solid fa-chart-pie"></i></div>
-                <h4>Diseño de Indicadores</h4>
-                <p>Estructuración de métricas de calidad y rendimiento adaptadas a exigencias del organismo acreditador.</p>
-            </div>
-            <div class="b2b-card">
-                <div class="b2b-icon"><i class="fa-solid fa-users-viewfinder"></i></div>
-                <h4>Simulaciones de Evaluación</h4>
-                <p>Ejercicios prácticos y simulacros de auditoría para preparar a la junta directiva y personal operativo.</p>
-            </div>
-            <div class="b2b-card">
-                <div class="b2b-icon"><i class="fa-solid fa-arrow-trend-up"></i></div>
-                <h4>Planes de Mejora</h4>
-                <p>Implementación de correcciones estratégicas que garantizan el éxito en el aseguramiento de la calidad.</p>
-            </div>
+        <div style="background: white; padding: 40px; border-radius: 20px; box-shadow: 0 10px 25px rgba(0,0,0,0.05); border-left: 5px solid var(--secondary);">
+            <ul style="list-style: none; padding-left: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px;">
+                <li style="display: flex; align-items: flex-start; gap: 10px;">
+                    <i class="fa-solid fa-check-circle" style="color: var(--accent); margin-top: 4px;"></i> 
+                    <span><strong>Diagnóstico y Cualificación:</strong> Auditoría inicial y evaluación del estado de los institutos tecnológicos frente a las normativas de educación superior.</span>
+                </li>
+                <li style="display: flex; align-items: flex-start; gap: 10px;">
+                    <i class="fa-solid fa-check-circle" style="color: var(--accent); margin-top: 4px;"></i> 
+                    <span><strong>Diseño de Indicadores:</strong> Estructuración de métricas de calidad y rendimiento adaptadas a las exigencias del organismo acreditador.</span>
+                </li>
+                <li style="display: flex; align-items: flex-start; gap: 10px;">
+                    <i class="fa-solid fa-check-circle" style="color: var(--accent); margin-top: 4px;"></i> 
+                    <span><strong>Simulaciones de Evaluación:</strong> Ejercicios prácticos y simulacros de auditoría para preparar a la junta directiva y al personal operativo.</span>
+                </li>
+                <li style="display: flex; align-items: flex-start; gap: 10px;">
+                    <i class="fa-solid fa-check-circle" style="color: var(--accent); margin-top: 4px;"></i> 
+                    <span><strong>Planes de Mejora Continua:</strong> Implementación de correcciones estratégicas que garantizan el éxito en la acreditación y el aseguramiento de la calidad a largo plazo.</span>
+                </li>
+            </ul>
         </div>
     </section>
 
     <!-- GALERÍA -->
-    <section id="galeria" class="reveal">
+    <section id="galeria" style="background: var(--white);">
         <div class="section-header">
             <span class="featured-tag">Nuestra Trayectoria</span>
             <h2>Transformando la Educación</h2>
             <div class="divider"></div>
-            <p>Impactamos a profesionales e instituciones de todo el Ecuador con certificaciones y capacitaciones de altísima calidad.</p>
+            <p style="color: #666; font-size: 1.1rem;">Impactamos a profesionales e instituciones de todo el Ecuador con certificaciones y capacitaciones de altísima calidad.</p>
         </div>
         <div class="gallery-grid">
             <div class="gallery-item">
-                <img src="img/galeria_diplomas.jpeg" alt="Entrega de Diplomas" loading="lazy">
-                <div class="gallery-overlay"><span>Certificaciones Avaladas</span></div>
+                <!-- Ruta actualizada: img/ -->
+                <img src="img/galeria_diplomas.jpeg" alt="Entrega de Diplomas">
+                <div class="gallery-overlay">Entrega de Certificaciones Avaladas</div>
             </div>
             <div class="gallery-item">
-                <img src="img/galeria_universidad.png" alt="Capacitación Universitaria" loading="lazy">
-                <div class="gallery-overlay"><span>Capacitación Docente</span></div>
+                <!-- Ruta actualizada: img/ -->
+                <img src="img/galeria_universidad.png" alt="Capacitación Universitaria">
+                <div class="gallery-overlay">Capacitación a Docentes Universitarios</div>
             </div>
             <div class="gallery-item">
-                <img src="img/galeria_artes.png" alt="Trabajo Institucional" loading="lazy">
-                <div class="gallery-overlay"><span>Innovación Institucional</span></div>
+                <!-- Ruta actualizada: img/ -->
+                <img src="img/galeria_artes.png" alt="Trabajo Institucional">
+                <div class="gallery-overlay">Innovación y Excelencia Institucional</div>
             </div>
         </div>
     </section>
 
     <!-- TOP CURSOS -->
-    <section id="cursos" class="reveal">
+    <section id="cursos" class="courses-section">
         <div class="section-header">
-            <span class="featured-tag" style="background: rgba(42, 58, 44, 0.1); color: var(--primary);">Educación Continua</span>
+            <span class="featured-tag" style="background: var(--primary);">Educación Continua</span>
             <h2>Programas Destacados</h2>
             <div class="divider"></div>
-            <p>Potencia tu currículum con nuestras áreas de mayor demanda laboral, adaptadas a tu disponibilidad.</p>
-        </div>
-        
-        <div class="modalities-container">
-            <div class="modality-badge"><i class="fa-solid fa-laptop"></i> Virtual</div>
-            <div class="modality-badge"><i class="fa-solid fa-chalkboard-user"></i> Híbrida</div>
-            <div class="modality-badge badge-incompany"><i class="fa-solid fa-building-user"></i> In-Company (Corporativa)</div>
+            <p style="color: #666; font-size: 1.1rem; max-width: 700px; margin: 0 auto;">Potencia tu currículum con nuestras áreas de mayor demanda laboral, adaptadas a tu disponibilidad.</p>
+            
+            <div class="modalities-container">
+                <div class="modality-badge">
+                    <i class="fa-solid fa-laptop" style="color: var(--accent);"></i> Virtual
+                </div>
+                <div class="modality-badge">
+                    <i class="fa-solid fa-chalkboard-user" style="color: var(--accent);"></i> Híbrida
+                </div>
+                <div class="modality-badge badge-incompany">
+                    <i class="fa-solid fa-building-user"></i> Modalidad In-Company (Corporativa)
+                </div>
+            </div>
         </div>
 
         <div class="courses-grid">
-            <!-- Curso 1 -->
             <div class="course-card">
-                <div class="course-img-wrapper">
-                    <span class="course-tag-float">Salud</span>
-                    <img src="img/curso_salud.jpg" alt="Área de Salud" loading="lazy">
-                </div>
+                <!-- Ruta actualizada: img/ -->
+                <img src="img/curso_salud.jpg" class="course-img" alt="Área de Salud">
                 <div class="course-info">
+                    <span class="featured-tag" style="background: var(--accent); margin-bottom: 0;">Área de la Salud</span>
                     <h4>Auxiliares en Farmacia y Enfermería</h4>
-                    <p>Formación técnica avalada para el manejo seguro de pacientes, normativa ARCSA y farmacología.</p>
-                    <a href="#" onclick="abrirMenuCursos(); return false;" class="course-link">Ver Especialidades <i class="fa-solid fa-arrow-right"></i></a>   
+                    <p style="color: #666; font-size: 0.95rem; margin-bottom: 15px;">Formación técnica avalada para el manejo seguro de pacientes, normativa ARCSA y farmacología.</p>
+                    <a href="#" onclick="abrirMenuCursos(); return false;" style="color: var(--primary); font-weight: 800; text-decoration: none;">Ver Especialidades <i class="fa-solid fa-arrow-right"></i></a>   
                 </div>
             </div>
-            <!-- Curso 2 -->
             <div class="course-card">
-                <div class="course-img-wrapper">
-                    <span class="course-tag-float" style="color: var(--secondary);">Educación</span>
-                    <img src="img/curso_humana.jpg" alt="Área Humana" loading="lazy">
-                </div>
+                <!-- Ruta actualizada: img/ -->
+                <img src="img/curso_humana.jpg" class="course-img" alt="Área Humana">
                 <div class="course-info">
+                    <span class="featured-tag" style="background: var(--secondary); margin-bottom: 0;">Derecho y Educación</span>
                     <h4>Asistencia Jurídica y Parvularia</h4>
-                    <p>Apoya la gestión de trámites notariales o domina la estimulación pedagógica en la primera infancia.</p>
-                    <a href="#" onclick="abrirMenuCursos(); return false;" class="course-link">Ver Especialidades <i class="fa-solid fa-arrow-right"></i></a>   
+                    <p style="color: #666; font-size: 0.95rem; margin-bottom: 15px;">Apoya la gestión de trámites notariales o domina la estimulación pedagógica en la primera infancia.</p>
+                    <a href="#" onclick="abrirMenuCursos(); return false;" style="color: var(--primary); font-weight: 800; text-decoration: none;">Ver Especialidades <i class="fa-solid fa-arrow-right"></i></a>
                 </div>
             </div>
-            <!-- Curso 3 -->
             <div class="course-card">
-                <div class="course-img-wrapper">
-                    <span class="course-tag-float" style="color: #306998;">Tecnología</span>
-                    <img src="img/curso_tecnologia.jpg" alt="Área Tecnología" loading="lazy">
-                </div>
+                <!-- Ruta actualizada: img/ -->
+                <img src="img/curso_tecnologia.jpg" class="course-img" alt="Área Tecnología">
                 <div class="course-info">
-                    <h4>Programación en Python y Desarrollo Web</h4>
-                    <p>Domina el lenguaje del futuro: Automatización, Visión por Computadora y Análisis de Datos con IA.</p>
-                    <a href="#" onclick="abrirMenuCursos(); return false;" class="course-link">Ver Especialidades <i class="fa-solid fa-arrow-right"></i></a>   
+                    <span class="featured-tag" style="background: #306998; margin-bottom: 0;">Ingeniería y Sistemas</span>
+                    <h4>Programación en Python y Desarrollo</h4>
+                    <p style="color: #666; font-size: 0.95rem; margin-bottom: 15px;">Domina el lenguaje del futuro: Automatización, Visión por Computadora y Análisis de Datos con IA.</p>
+                    <a href="#" onclick="abrirMenuCursos(); return false;" style="color: var(--primary); font-weight: 800; text-decoration: none;">Ver Especialidades <i class="fa-solid fa-arrow-right"></i></a>
                 </div>
             </div>
         </div>
-        <div style="text-align: center; margin-top: 50px;">
-            <button class="btn-main" onclick="abrirMenuCursos()"><i class="fa-solid fa-layer-group"></i> Explorar Catálogo Completo</button>
+        <div style="text-align: center; margin-top: 40px;">
+            <button class="btn-main" onclick="abrirMenuCursos()">Explorar todos los cursos aquí</button>
         </div>
     </section>
 
-    <!-- BANNER B2B PREGUNTAS -->
-    <section id="especialidad" style="padding: 60px 5%;" class="reveal">
+    <!-- SECCIÓN PREGUNTAS ALTO IMPACTO -->
+    <section id="especialidad">
         <div class="featured-banner">
-            <span class="featured-tag" style="background: rgba(255,255,255,0.2); color: white;">Exclusivo para IES</span>
+            <span class="featured-tag">Servicios Exclusivos para IES</span>
             <h3>Elaboración de Preguntas de Alto Impacto</h3>
             <p>Capacitamos a facultades y docentes universitarios en la creación técnica de reactivos de alta complejidad, alineados estrictamente a los estándares nacionales (EHEP).</p>
-            <a href="https://wa.me/593987321024?text=Deseo%20más%20información%20sobre%20el%20Curso%20de%20Preguntas%20para%20Universidades" target="_blank" class="btn-main" style="margin-top: 10px; background: white; color: var(--primary);">Solicitar Propuesta Institucional</a>
+            <a href="https://wa.me/593987321024?text=Deseo%20más%20información%20sobre%20el%20Curso%20de%20Preguntas%20para%20Universidades" target="_blank" class="btn-main" style="margin-top: 15px;">Solicitar Propuesta Institucional</a>
         </div>
     </section>
 
     <!-- SECCIÓN EHEP -->
-    <section id="inscripcion" class="reveal">
+    <section id="inscripcion" style="background-color: var(--white); border-bottom: 1px solid #eee;">
         <div class="section-header">
             <span class="featured-tag">Médicos / Enfermeros / Odontólogos</span>
             <h2>Preparación Examen EHEP 2026</h2>
             <div class="divider"></div>
         </div>
-        
-        <div class="ehep-grid">
-            <div class="ehep-card primary">
-                <h3>Plataforma y Simulador IA</h3>
-                <ul class="ehep-list">
-                    <li><i class="fa-solid fa-check-circle"></i> <span><strong>Banco de +1,000 Preguntas Reales:</strong> Practica con reactivos y casos clínicos estructurados bajo el estándar oficial.</span></li>
-                    <li><i class="fa-solid fa-check-circle"></i> <span><strong>Simulacros a tu Medida:</strong> Configura el tiempo límite y la cantidad de preguntas según tu ritmo.</span></li>
-                    <li><i class="fa-solid fa-check-circle"></i> <span><strong>Tarjetas de Repaso (Flashcards):</strong> Optimiza la retención de conceptos clave a largo plazo.</span></li>
-                    <li><i class="fa-solid fa-check-circle"></i> <span><strong>Tecnología Inteligente:</strong> Acceso exclusivo a herramientas diseñadas para potenciar tu preparación.</span></li>      
-                </ul>
-                <button onclick="openModal()" class="btn-main"><i class="fa-solid fa-bolt"></i> Inscribirme Ahora</button>
-            </div>
+        <div class="core-services">
+                    <div class="core-card" style="text-align: left; padding: 40px; border-left: 5px solid var(--secondary); background: white; border-radius: 20px; box-shadow: 0 10px 25px rgba(0,0,0,0.05);">
+                        <h3 style="color: var(--primary); margin-bottom: 20px; font-family: 'Playfair Display', serif; font-size: 1.8rem;">Plataforma y Simulador EHEP</h3>
+                        <ul style="list-style: none; padding-left: 0; margin-bottom: 25px;">
+                            <li style="margin-bottom: 15px; display: flex; align-items: flex-start; gap: 10px; line-height: 1.5;">
+                                <i class="fa-solid fa-check-circle" style="color: var(--accent); margin-top: 4px;"></i> 
+                                <span><strong>Banco de +1,000 Preguntas Reales:</strong> Practica con reactivos y casos clínicos estructurados bajo el estándar de los exámenes oficiales.</span>
+                            </li>
+                            <li style="margin-bottom: 15px; display: flex; align-items: flex-start; gap: 10px; line-height: 1.5;">
+                                <i class="fa-solid fa-check-circle" style="color: var(--accent); margin-top: 4px;"></i> 
+                                <span><strong>Simulacros a tu Medida:</strong> Configura el tiempo límite y la cantidad de preguntas según tu ritmo de estudio.</span>
+                            </li>
+                            <li style="margin-bottom: 15px; display: flex; align-items: flex-start; gap: 10px; line-height: 1.5;">
+                                <i class="fa-solid fa-check-circle" style="color: var(--accent); margin-top: 4px;"></i> 
+                                <span><strong>Tarjetas de Repaso (Flashcards):</strong> Optimiza la retención de conceptos clave a largo plazo.</span>
+                            </li>
+                            <li style="margin-bottom: 15px; display: flex; align-items: flex-start; gap: 10px; line-height: 1.5;">
+                                <i class="fa-solid fa-check-circle" style="color: var(--accent); margin-top: 4px;"></i> 
+                                <span><strong>Tecnología Inteligente:</strong> Acceso exclusivo a herramientas de IA diseñadas para potenciar tu preparación.</span>
+                            </li>      
+                        </ul>
+                        <button onclick="openModal()" class="btn-main" style="width: 100%;">Quiero Inscribirme</button>
+                    </div>
             
-            <div class="ehep-card secondary">
-                <div class="b2b-icon" style="background: rgba(255,255,255,0.1); color: white; border: 1px solid rgba(255,255,255,0.2);"><i class="fa-solid fa-laptop-medical"></i></div>
-                <h3>Usuarios Registrados</h3>
-                <p>Si ya activaste tu cuenta en el simulador intensivo, accede directamente a tu panel de evaluación clínica.</p>
-                <button onclick="openAuthModal()" class="btn-main btn-outline" style="width: 100%;">Entrar a mi Plataforma</button>
+            <div class="core-card" style="background: var(--light);">
+                <i class="fa-solid fa-laptop-medical core-icon"></i>
+                <h3 style="font-family: 'Playfair Display', serif; font-size: 1.8rem; color: var(--primary);">Usuarios Registrados</h3>
+                <p style="margin-top: 15px; text-align: center;">Si ya estás inscrito en el simulador, accede directamente a la plataforma con tus credenciales.</p>
+                <button onclick="openAuthModal()" class="btn-main btn-outline" style="margin-top: 20px; color: var(--primary); border-color: var(--primary); width: 100%;">Entrar al Simulador</button>
             </div>
         </div>
     </section>
 
     <!-- REDES SOCIALES -->
-    <section id="redes" class="reveal">
+    <section id="redes" style="background-color: var(--light);">
         <div class="section-header">
             <span class="featured-tag">Comunidad CEFEDEP</span>
-            <h2>Únete a la Evolución</h2>
+            <h2>Síguenos en Redes Sociales</h2>
             <div class="divider"></div>
-            <p>Descubre contenido de valor, tips académicos, testimonios y promociones diarias en nuestras redes.</p>
+            <p style="color: #666; font-size: 1.1rem;">Únete a miles de profesionales y descubre contenido de valor, testimonios y promociones diarias.</p>
         </div>
         <div class="social-grid">
             <a href="https://www.tiktok.com/@cefedep.ecuador?_r=1&_t=ZS-98OQk4LKbNy" target="_blank" class="social-card bg-tiktok">
                 <i class="fa-brands fa-tiktok"></i>
                 <h3>TikTok</h3>
-                <p>Tips rápidos y el día a día</p>
+                <p style="font-size: 0.9rem; margin-top: 5px;">Tips rápidos y el día a día</p>
             </a>
             <a href="https://www.instagram.com/cefedep_ecuador" target="_blank" class="social-card bg-instagram">
                 <i class="fa-brands fa-instagram"></i>
                 <h3>Instagram</h3>
-                <p>Fotos, Reels y eventos</p>
+                <p style="font-size: 0.9rem; margin-top: 5px;">Fotos, Reels y eventos</p>
             </a>
             <a href="https://www.facebook.com/cefedep/" target="_blank" class="social-card bg-facebook">
                 <i class="fa-brands fa-facebook-f"></i>
                 <h3>Facebook</h3>
-                <p>Noticias y comunidad oficial</p>
+                <p style="font-size: 0.9rem; margin-top: 5px;">Noticias y comunidad oficial</p>
             </a>
         </div>
     </section>
 
-    <!-- FOOTER -->
     <footer>
+        <!-- Ruta actualizada: img/ -->
         <img src="img/LOGO_CEFEDEP.png" alt="CEFEDEP" class="footer-logo">
         <p>&copy; 2026 CEFEDEP ECUADOR. Soluciones para el éxito académico.</p>
-        <p style="color: rgba(255,255,255,0.5);">Contacto Directo: +593 98 732 1024 | info@cefedep.com</p>
+        <p style="font-size: 0.8rem; margin-top: 10px;">Contacto Directo: +593 98 732 1024 | info@cefedep.com</p>
     </footer>
 
     <!-- WIDGET WHATSAPP -->
@@ -663,10 +537,10 @@
         <div class="wa-chat-box" id="waChatBox">
             <div class="wa-chat-header">
                 <div class="wa-header-info">
-                    <i class="fa-brands fa-whatsapp"></i>
+                    <i class="fa-brands fa-whatsapp" style="font-size: 1.8rem;"></i>
                     <div>
-                        <div style="font-weight: 800; font-family: 'Montserrat', sans-serif;">Atención CEFEDEP</div>
-                        <div style="font-size: 0.75rem; font-weight: 500;">En línea ahora</div>
+                        <div style="font-weight: 800; line-height: 1.2; font-size: 1rem;">Atención CEFEDEP</div>
+                        <div style="font-size: 0.75rem; opacity: 0.9;">En línea ahora</div>
                     </div>
                 </div>
                 <span class="wa-close" onclick="closeWaChat()">&times;</span>
@@ -681,38 +555,16 @@
         <div class="wa-float-btn" onclick="toggleWaChat()"><i class="fa-brands fa-whatsapp"></i></div>
     </div>
 
-    <!-- LIBRERÍAS CAJITA DE PAGOS PAYPHONE V2.0 -->
-    <link rel="stylesheet" href="https://cdn.payphonetodoesposible.com/box/v2.0/payphone-payment-box.css">
-    <script type="module" src="https://cdn.payphonetodoesposible.com/box/v2.0/payphone-payment-box.js"></script>
+  <!-- LIBRERÍAS CAJITA DE PAGOS PAYPHONE V2.0 -->
+  <link rel="stylesheet" href="https://cdn.payphonetodoesposible.com/box/v2.0/payphone-payment-box.css">
+  <script type="module" src="https://cdn.payphonetodoesposible.com/box/v2.0/payphone-payment-box.js"></script>
 
     <!-- LIBRERÍAS DE FIREBASE -->
     <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
 
     <script>
-        // === ANIMACIONES DE SCROLL (REVEAL) ===
-        function reveal() {
-            var reveals = document.querySelectorAll(".reveal");
-            for (var i = 0; i < reveals.length; i++) {
-                var windowHeight = window.innerHeight;
-                var elementTop = reveals[i].getBoundingClientRect().top;
-                var elementVisible = 100;
-                if (elementTop < windowHeight - elementVisible) {
-                    reveals[i].classList.add("active");
-                }
-            }
-        }
-        window.addEventListener("scroll", reveal);
-        reveal(); // Ejecutar al inicio
-
-        // === NAVBAR GLASSMORPHISM SCROLL EFFECT ===
-        window.addEventListener("scroll", function() {
-            var navbar = document.getElementById("navbar");
-            if (window.scrollY > 50) { navbar.classList.add("scrolled"); } 
-            else { navbar.classList.remove("scrolled"); }
-        });
-
-        // === CONFIGURACIÓN DE FIREBASE ===
+        // CONFIGURACIÓN DE FIREBASE
         const firebaseConfig = {
             apiKey: "AIzaSyDM8QEUh_FnvbGdcINHzsxUWkWGQQigSmo",
             authDomain: "cefedep-ecuador.firebaseapp.com",
@@ -734,7 +586,7 @@
             const pass = document.getElementById('authPassword').value;
             const errBox = document.getElementById('authError');
             auth.signInWithEmailAndPassword(email, pass).then(() => { closeAuthModal(); }).catch(err => {
-                errBox.style.display = 'block'; errBox.innerHTML = "<i class='fa-solid fa-circle-exclamation'></i> Correo o contraseña incorrectos.";
+                errBox.style.display = 'block'; errBox.innerText = "Error: Correo o contraseña incorrectos.";
             });
         }
         function registerFirebase() {
@@ -742,7 +594,7 @@
             const pass = document.getElementById('authPassword').value;
             const errBox = document.getElementById('authError');
             auth.createUserWithEmailAndPassword(email, pass).then(() => { closeAuthModal(); }).catch(err => {
-                errBox.style.display = 'block'; errBox.innerHTML = "<i class='fa-solid fa-circle-exclamation'></i> Error al crear cuenta (Mínimo 6 caracteres).";
+                errBox.style.display = 'block'; errBox.innerText = "Error al crear cuenta. Mínimo 6 caracteres.";
             });
         }
 
@@ -752,6 +604,7 @@
                 let cursoAsignado = user.displayName || ""; 
                 let botonSimulador = "";
         
+                // Rutas de simuladores actualizadas: simuladores/
                 if (cursoAsignado.includes("Medicina")) {
                     botonSimulador = `<a href="simuladores/simulador_med.html" class="login-btn" style="background: var(--primary); color: white !important; border-color: var(--primary); font-size: 0.75rem;">MEDICINA</a>`;
                 } else if (cursoAsignado.includes("Enfermería") || cursoAsignado.includes("Enfermeria")) {
@@ -766,16 +619,16 @@
                 }
         
                 menuContainer.innerHTML = botonSimulador + `
-                    <a href="#" onclick="auth.signOut()" style="color: #e74c3c; text-decoration: none; font-size: 0.8rem; font-weight: 700; margin-left: 10px;">
+                    <a href="#" onclick="auth.signOut()" style="color: #ff4757; text-decoration: none; font-size: 0.8rem; font-weight: 700; margin-left: 10px;">
                         <i class="fa-solid fa-right-from-bracket"></i> SALIR
                     </a>
                 `;
             } else {
-                menuContainer.innerHTML = `<a href="#" onclick="openAuthModal()" class="login-btn"><i class="fa-regular fa-user" style="margin-right: 5px;"></i> Iniciar Sesión</a>`;
+                menuContainer.innerHTML = `<a href="#" onclick="openAuthModal()" class="login-btn">INICIAR SESIÓN EHEP</a>`;
             }
         });
 
-        // FORMULARIO EHEP Y PAYPHONE
+        // FORMULARIO EHEP
         function openModal() { document.getElementById('registrationModal').style.display = 'flex'; }
         function closeModal() { document.getElementById('registrationModal').style.display = 'none'; }
         
@@ -798,8 +651,8 @@
                 emailError.style.display = 'none'; 
             }
 
-            const originalText = btnSubmit.innerHTML;
-            btnSubmit.innerHTML = "<i class='fa-solid fa-circle-notch fa-spin'></i> Procesando...";
+            const originalText = btnSubmit.innerText;
+            btnSubmit.innerText = "Procesando...";
             btnSubmit.disabled = true;
 
             const myTransactionId = "EHEP-" + Date.now();
@@ -825,7 +678,7 @@
                     const text = `Hola CEFEDEP, soy *${name}*. Me registré al EHEP de *${courseSelect}*.\n_Deseo realizar mi pago mediante transferencia o efectivo en ventanilla._`;
                     window.open(`https://wa.me/593987321024?text=${encodeURIComponent(text)}`, '_blank');
                     closeModal();
-                    btnSubmit.innerHTML = originalText;
+                    btnSubmit.innerText = originalText;
                     btnSubmit.disabled = false;
                     document.getElementById('ehepForm').reset();
                     
@@ -845,23 +698,23 @@
                             reference: "Inscripción " + courseSelect,
                             currency: 'USD',
                             clientTransactionId: myTransactionId,
-                            backgroundColor: "#2a3a2c",
+                            backgroundColor: "#334235",
                             responseUrl: "https://cefedep.com/" 
                         }).render('pp-button');
             
-                        btnSubmit.innerHTML = originalText;
+                        btnSubmit.innerText = originalText;
                         btnSubmit.disabled = false;
                         
                     } catch (err) {
                         alert("⚠️ Error al dibujar la caja de pago: " + err.message);
-                        btnSubmit.innerHTML = originalText;
+                        btnSubmit.innerText = originalText;
                         btnSubmit.disabled = false;
                     }
                 }
             })
             .catch(error => {
                 alert("⚠️ Fallo en el envío de datos: " + error.message);
-                btnSubmit.innerHTML = originalText;
+                btnSubmit.innerText = originalText;
                 btnSubmit.disabled = false;
             });
             
@@ -901,12 +754,14 @@
             const navLinks = document.querySelector('.nav-links');
             navLinks.classList.toggle('active');
             const icon = document.querySelector('.menu-toggle i');
-            icon.classList.replace(navLinks.classList.contains('active') ? 'fa-bars-staggered' : 'fa-xmark', navLinks.classList.contains('active') ? 'fa-xmark' : 'fa-bars-staggered');
+            icon.classList.replace(navLinks.classList.contains('active') ? 'fa-bars' : 'fa-xmark', navLinks.classList.contains('active') ? 'fa-xmark' : 'fa-bars');
         }
 
         function toggleDropdownMobile(e) {
             if (window.innerWidth <= 900) {
-                if (e.target.closest('.dropdown-menu a')) return; 
+                if (e.target.closest('.dropdown-menu a')) {
+                    return; 
+                }
                 e.preventDefault();
                 const dropdown = document.getElementById('btn-cursos');
                 dropdown.classList.toggle('active');
@@ -915,16 +770,15 @@
 
         function abrirMenuCursos() {
             window.scrollTo({ top: 0, behavior: 'smooth' });
+            
             setTimeout(() => {
                 if (window.innerWidth <= 900) {
                     document.querySelector('.nav-links').classList.add('active');
                     document.getElementById('btn-cursos').classList.add('active');
-                    document.querySelector('.menu-toggle i').classList.replace('fa-bars-staggered', 'fa-xmark');
+                    document.querySelector('.menu-toggle i').classList.replace('fa-bars', 'fa-xmark');
                 } else {
                     const dropdownMenu = document.querySelector('.dropdown-menu');
                     dropdownMenu.style.display = 'block';
-                    dropdownMenu.style.opacity = '1';
-                    dropdownMenu.style.transform = 'translateY(0)';
                     
                     setTimeout(() => {
                         document.addEventListener('click', function closeDrop(e) {
@@ -942,7 +796,7 @@
             link.addEventListener('click', () => {
                 if (window.innerWidth <= 900) {
                     document.querySelector('.nav-links').classList.remove('active');
-                    document.querySelector('.menu-toggle i').classList.replace('fa-xmark', 'fa-bars-staggered');
+                    document.querySelector('.menu-toggle i').classList.replace('fa-xmark', 'fa-bars');
                     document.getElementById('btn-cursos').classList.remove('active');
                 }
             });
