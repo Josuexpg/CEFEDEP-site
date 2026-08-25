@@ -1,4 +1,4 @@
-const bancoPreguntas = [
+window.bancoPreguntas = [
     {
         "pregunta": "¿Cuáles son los conceptos descritos por Florence Nightingale en la teoría del entorno, que se deben manejar en la atención a pacientes?",
         "opciones": [
