@@ -1,4 +1,4 @@
-const bancoPreguntas = [
+window.bancoPreguntas = [
     {
         "pregunta": "Mujer de 35 años, acude a consulta preempleo, no refiere síntoma alguno. Antecedentes: Madre con problemas de tiroides. Examen físico: normal. Complementarios: Concentración de hemoglobina: 13 g/dl. Hematocrito: 40%. Glucemia en ayunas: 90 mg/100dL. HbA1c: 4 %. TSH: 9 mUI/L (valor de referencia 0.5-4.0 mUI/L). T3: 5 pmol/L (valor de referencia 3.5 - 7.8 pmol/L). T4: 15 pmol/L (valor de referencia 9-25 pmol/L). ¿Cuál es el diagnóstico más probable?",
         "opciones": [
