@@ -64,7 +64,6 @@ nav{position:sticky;top:0;z-index:1000;background:rgba(255,255,255,.96);backdrop
 /* DROPDOWN CORREGIDO */
 .dropdown{position:relative}
 .dropdown-menu{position:absolute;top:100%;left:0;background:#fff;border:1px solid var(--line);border-radius:15px;padding:10px 0;min-width:340px;max-height:70vh;overflow-y:auto;box-shadow:var(--shadow);display:none;list-style:none;}
-/* El ::before actúa como "puente invisible" para que el mouse no pierda el hover */
 .dropdown-menu::before { content: ""; position: absolute; top: -20px; left: 0; width: 100%; height: 20px; }
 .dropdown:hover .dropdown-menu{display:block;animation:fadeIn 0.2s ease;}
 
@@ -162,11 +161,12 @@ min-height:650px;color:white;display:flex;align-items:center}
 .consulting{background:var(--primary-2);color:white}
 .consulting .section-title{color:#fff}
 .consulting .section-description{color:#dce3dc}
-.consulting-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
-.consult-card{padding:25px;border:1px solid rgba(255,255,255,.14);background:rgba(255,255,255,.05);border-radius:18px}
-.consult-card i{color:var(--secondary);font-size:1.3rem}
+/* Grid ajustado para soportar fluidamente los 7 elementos */
+.consulting-grid{display:grid;grid-template-columns:repeat(auto-fit, minmax(260px, 1fr));gap:14px}
+.consult-card{padding:25px;border:1px solid rgba(255,255,255,.14);background:rgba(255,255,255,.05);border-radius:18px; display: flex; flex-direction: column;}
+.consult-card i{color:var(--secondary);font-size:1.4rem}
 .consult-card h3{font-size:1rem;margin:12px 0 6px}
-.consult-card p{font-size:.78rem;color:#bfd0dc}
+.consult-card p{font-size:.78rem;color:#bfd0dc; line-height:1.5}
 
 /* COURSES */
 .course-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
@@ -240,12 +240,11 @@ footer a:hover{color:#fff}
 @media(max-width:1000px){
   .nav-links{display:none}.menu-toggle{display:block}
   .nav-links.open{display:flex;position:absolute;left:0;right:0;top:76px;background:white;padding:15px 20px;flex-direction:column;align-items:stretch;border-bottom:1px solid var(--line)}
-  .nav-links.open .dropdown-menu{position:static;box-shadow:none;border:0;display:none} /* Ahora se controla por JS */
+  .nav-links.open .dropdown-menu{position:static;box-shadow:none;border:0;display:none} 
   .dropdown.active .dropdown-menu { display: block; }
   .hero-grid,.thesis-grid,.institute-grid,.ehep-box{grid-template-columns:1fr}
   .path-grid{grid-template-columns:repeat(3,1fr)}
   .service-grid,.course-grid{grid-template-columns:repeat(2,1fr)}
-  .consulting-grid{grid-template-columns:repeat(2,1fr)}
   .process-grid{grid-template-columns:repeat(3,1fr)}
   .metrics-grid{grid-template-columns:repeat(2,1fr)}
   .metric:nth-child(2){border-right:0}.metric:nth-child(-n+2){border-bottom:1px solid var(--line)}
@@ -379,7 +378,7 @@ footer a:hover{color:#fff}
         </ul>
       </li>
 
-      <!-- MENÚ DESPLEGABLE DE CURSOS RESTAURADO -->
+      <!-- MENÚ DESPLEGABLE DE CURSOS -->
       <li class="dropdown" id="btn-cursos">
         <a href="#cursos">Cursos Avalados <i class="fa-solid fa-chevron-down" style="font-size:0.7rem;"></i></a>
         <ul class="dropdown-menu">
@@ -496,12 +495,12 @@ footer a:hover{color:#fff}
       <article class="service-card">
         <div class="service-icon"><i class="fa-solid fa-chart-line"></i></div>
         <h3>Consultoría educativa</h3>
-        <p>Fortalecimiento de universidades e institutos mediante diagnóstico, indicadores y mejora continua.</p>
+        <p>Acompañamiento especializado para el desarrollo, evaluación y normativa de instituciones educativas.</p>
         <ul>
-          <li>Diagnóstico institucional</li>
-          <li>Indicadores de calidad</li>
-          <li>Simulaciones de evaluación</li>
-          <li>Planes de mejora</li>
+          <li>Autoevaluación de posgrados y carreras</li>
+          <li>Acreditación nacional e internacional</li>
+          <li>Planificación Estratégica Institucional</li>
+          <li>Creación de carreras (3er y 4to nivel)</li>
         </ul>
         <a class="btn btn-light" href="#consultoria">Conocer más</a>
       </article>
@@ -632,13 +631,17 @@ footer a:hover{color:#fff}
       <div class="eyebrow" style="color:var(--secondary)">Para universidades e institutos</div>
       <h2 class="section-title">Consultoría para fortalecer instituciones educativas</h2>
       <div class="divider"></div>
-      <p class="section-description">Soluciones para diagnóstico, evaluación, calidad, capacitación y mejora institucional.</p>
+      <p class="section-description">Acompañamiento especializado en evaluación, normativa, diseño académico y planificación estratégica.</p>
     </div>
     <div class="consulting-grid">
-      <div class="consult-card"><i class="fa-solid fa-magnifying-glass-chart"></i><h3>Diagnóstico institucional</h3><p>Identificación de brechas y definición de una hoja de ruta.</p></div>
-      <div class="consult-card"><i class="fa-solid fa-chart-line"></i><h3>Indicadores de calidad</h3><p>Diseño de indicadores y sistemas de seguimiento.</p></div>
-      <div class="consult-card"><i class="fa-solid fa-clipboard-check"></i><h3>Simulaciones</h3><p>Preparación de equipos frente a procesos de evaluación.</p></div>
-      <div class="consult-card"><i class="fa-solid fa-arrows-rotate"></i><h3>Mejora continua</h3><p>Planes de acción, seguimiento y acompañamiento estratégico.</p></div>
+      <!-- NUEVOS SERVICIOS SOLICITADOS -->
+      <div class="consult-card"><i class="fa-solid fa-clipboard-list"></i><h3>Autoevaluación</h3><p>Autoevaluación institucional de programas de posgrado y carreras.</p></div>
+      <div class="consult-card"><i class="fa-solid fa-award"></i><h3>Acreditación</h3><p>Preparación para la acreditación nacional e internacional de posgrados y carreras.</p></div>
+      <div class="consult-card"><i class="fa-solid fa-sitemap"></i><h3>Planificación Estratégica</h3><p>Levantamiento y estructuración del plan estratégico institucional.</p></div>
+      <div class="consult-card"><i class="fa-solid fa-book-open"></i><h3>Creación de carreras</h3><p>Técnicas, tecnológicas y tecnológicas-universitarias de tercer y cuarto nivel.</p></div>
+      <div class="consult-card"><i class="fa-solid fa-people-arrows"></i><h3>Formación dual</h3><p>Consultoría integral para la implementación y diseño de formación dual.</p></div>
+      <div class="consult-card"><i class="fa-solid fa-certificate"></i><h3>Microcredenciales</h3><p>Diseño, validación e implementación de certificaciones de ciclo corto.</p></div>
+      <div class="consult-card"><i class="fa-solid fa-scale-balanced"></i><h3>Estatutos educativos</h3><p>Creación y actualización de estatutos de acuerdo a la normativa LOEI y LOES.</p></div>
     </div>
     <div style="text-align:center;margin-top:30px"><a class="btn btn-primary" href="#contacto">Solicitar propuesta institucional</a></div>
   </div>
