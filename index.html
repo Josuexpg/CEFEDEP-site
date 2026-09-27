@@ -905,10 +905,12 @@ function closeModal() {
     document.getElementById("registrationModal").style.display = "none";
 }
 
-document.getElementById("ehepForm").addEventListener("submit", function(e) {
+    document.getElementById("ehepForm").addEventListener("submit", function(e) {
     e.preventDefault();
 
     const name = document.getElementById("formName").value;
+    const ci = document.getElementById("formCI").value; // NUEVO
+    const address = document.getElementById("formAddress").value; // NUEVO
     const courseSelect = document.getElementById("formCourse").value;
     const course = "Preparación Examen EHEP " + courseSelect;
     const phone = document.getElementById("formPhone").value;
@@ -930,8 +932,11 @@ document.getElementById("ehepForm").addEventListener("submit", function(e) {
 
     const myTransactionId = "EHEP-" + Date.now();
 
+    // PAYLOAD ACTUALIZADO CON LOS NUEVOS DATOS
     const payload = {
         nombre: name,
+        ci: ci,                   // NUEVO
+        direccion: address,       // NUEVO
         email: email,
         curso: course,
         telefono: phone,
